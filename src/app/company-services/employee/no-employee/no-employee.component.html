@@ -1,0 +1,68 @@
+<p-dialog
+    *ngIf="!employees || employees.length == 0"
+    [header]="'Employee.Message' | translate"
+    [(visible)]="displayNoEmployeeModal"
+    [modal]="true"
+    [style]="{ width: '500px' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+    position="center"
+    styleClass="mydialog"
+  >
+    <div class="modal-body text-center">
+      <div><img src="/assets/img/all-workers-checked.png" alt="" /></div>
+      <div class="font-weight-bold fs-md-22 mt-3 text-0056a7">
+        {{ "Employee.WorkersReserved" | translate }}
+      </div>
+      <div class="fs-md-22 mb-3">
+        {{ "Employee.DoYouWantToContract" | translate }}
+      </div>
+      <div class="modal-footer-direction">
+        <button
+          (click)="displayNoEmployeeModal = false"
+          class="btn btn-light mx-1"
+        >
+          {{ "Shared.Cancel" | translate }}
+        </button>
+        <button (click)="detailsPage()" class="btn btn-primary mx-1">
+          {{ "Employee.ContractNow" | translate }}
+        </button>
+      </div>
+    </div>
+  </p-dialog>
+
+
+<!-- <p-dialog
+*ngIf="!employees || employees.length == 0"
+[header]="'Employee.Message' | translate"
+[(visible)]="displayNoEmployeeModal"
+[modal]="true"
+[style]="{ width: '500px' }"
+[baseZIndex]="10000"
+[draggable]="false"
+[resizable]="false"
+position="center"
+styleClass="mydialog"
+>
+<div class="modal-body text-center">
+  <div><img src="/assets/img/all-workers-checked.png" alt="" /></div>
+  <div class="font-weight-bold fs-md-22 mt-3 text-0056a7">
+    {{ "Employee.WorkersReserved" | translate }}
+  </div>
+  <div class="fs-md-22 mb-3">
+    {{ "Employee.DoYouWantToContract" | translate }}
+  </div>
+  <div class="modal-footer-direction">
+    <button
+      (click)="displayNoEmployeeModal = false"
+      class="btn btn-light mx-1"
+    >
+      {{ "Shared.Cancel" | translate }}
+    </button>
+    <button (click)="detailsPage()" class="btn btn-primary mx-1">
+      {{ "Employee.ContractNow" | translate }}
+    </button>
+  </div>
+</div>
+</p-dialog> -->

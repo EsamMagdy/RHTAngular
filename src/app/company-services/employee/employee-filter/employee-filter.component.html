@@ -1,0 +1,224 @@
+<div class="bg-e6e6e6 rounded-10 p-3 mb-3">
+  <div class="fs-md-18 font-weight-bold mb-3">
+    {{ "Employee.FilterResult" | translate }}
+  </div>
+  <div class="mb-3">
+    <form class="filters" (ngSubmit)="onFilterData()" #filterDataForm="ngForm">
+      <div class="form-group">
+        <div class="pb-1">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="customRadioInline1"
+              name="experience"
+              class="custom-control-input"
+              [value]="[2]"
+              [(ngModel)]="selectedExpreience"
+            />
+            <label class="custom-control-label" for="customRadioInline1"
+              >{{ "Employee.Experienced" | translate }}
+            </label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="customRadioInline2"
+              name="experience"
+              class="custom-control-input"
+              [value]="[1]"
+              [(ngModel)]="selectedExpreience"
+            />
+            <label class="custom-control-label" for="customRadioInline2">{{
+              "Employee.WithoutExperience" | translate
+            }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="pb-1">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="customRadioInline11"
+              name="religion"
+              class="custom-control-input"
+              [value]="[1]"
+              [(ngModel)]="selectedRelegion"
+            />
+            <label class="custom-control-label" for="customRadioInline11">{{
+              "Employee.Muslim" | translate
+            }}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="customRadioInline12"
+              name="religion"
+              class="custom-control-input"
+              [value]="[2]"
+              [(ngModel)]="selectedRelegion"
+            />
+            <label class="custom-control-label" for="customRadioInline12">{{
+              "Employee.NotMuslim" | translate
+            }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="pb-1">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="customRadioInline31"
+              name="marital_Status"
+              class="custom-control-input"
+              [value]="[2]"
+              [(ngModel)]="selectedMaritalStatus"
+            />
+            <label class="custom-control-label" for="customRadioInline31">{{
+              "Employee.Married" | translate
+            }}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              type="radio"
+              id="customRadioInline32"
+              name="marital_Status"
+              class="custom-control-input"
+              [value]="[1]"
+              [(ngModel)]="selectedMaritalStatus"
+            />
+            <label class="custom-control-label" for="customRadioInline32">{{
+              "Employee.Single" | translate
+            }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="font-weight-bold">{{
+          "Employee.Age" | translate
+        }}</label>
+        <div>
+          <h6 class="font-weight-bold">{{ age[0] + " - " + age[1] }}</h6>
+          <p-slider
+            [min]="18"
+            [max]="50"
+            name="age"
+            [(ngModel)]="age"
+            [range]="true"
+          ></p-slider>
+        </div>
+      </div>
+
+      <div class="font-weight-bold">
+        {{ "Employee.OtherSkills" | translate }}
+      </div>
+
+      <div class="form-group">
+        <div *ngIf="showDriver">
+          <div class="pb-2">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="automaticDriving"
+                name="automaticDriving"
+                ngModel
+              />
+              <label class="custom-control-label" for="automaticDriving">{{
+                "Employee.AutomaticDriving" | translate
+              }}</label>
+            </div>
+          </div>
+          <div class="pb-2">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="manualDriving"
+                name="manualDriving"
+                ngModel
+              />
+              <label class="custom-control-label" for="manualDriving">{{
+                "Employee.ManualDriving" | translate
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="pb-2">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="canCook"
+              name="canCook"
+              ngModel
+            />
+            <label class="custom-control-label" for="canCook">{{
+              "Employee.CleaningCookingProficiency" | translate
+            }}</label>
+          </div>
+        </div>
+        <div class="pb-2">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheck81"
+              name="treatChildren"
+              ngModel
+            />
+            <label class="custom-control-label" for="customCheck81"
+              >{{ "Employee.ChildernTreatment" | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="pb-2">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheck82"
+              name="treatOld"
+              ngModel
+            />
+            <label class="custom-control-label" for="customCheck82"
+              >{{ "Employee.ElderlyTreatment" | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="pb-2">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheck83"
+              name="speakEnglish"
+              ngModel
+            />
+            <label class="custom-control-label" for="customCheck83"
+              >{{ "Employee.SpeakEnglish" | translate }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="font-weight-bold">{{
+          "Employee.MaximumDisplayNumber" | translate
+        }}</label>
+        <div class="pb-2">
+          <h3>{{ maxNumberToDisplay }}</h3>
+          <p-slider name="pageSize" [(ngModel)]="maxNumberToDisplay"></p-slider>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="align-items-center d-flex justify-content-between mt-3">
+    <button (click)="onFilterData()" type="submit" class="btn btn-primary">
+      {{ "Employee.DisplayWorkers" | translate }}
+    </button>
+    <i class="reset-search" (click)="onClearForm()"></i>
+  </div>
+</div>

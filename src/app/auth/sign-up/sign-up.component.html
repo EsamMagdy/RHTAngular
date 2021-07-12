@@ -1,0 +1,320 @@
+<div class="font-weight-bold fs-18 fs-md-36 text-white text-center">
+  {{ "Auth.CreateNewAccount" | translate }}
+</div>
+<div class="row mx-2">
+  <div class="bg-white col-md-8 fs-18 mt-4 mx-auto p-5 rounded-20">
+    <form
+      (ngSubmit)="Register()"
+      #registerForm="ngForm"
+      id="registerForm"
+      novalidate="novalidate"
+    >
+      <div class="form-group row">
+        <label for="firstName" class="col-sm-3 col-form-label"
+          >{{ "Auth.Name" | translate }}
+        </label>
+        <div class="col-sm-9">
+          <div class="row half-gutters">
+            <div class="col-sm-4">
+              <input
+                autocomplete="off"
+                class="form-control"
+                data-val="true"
+                id="firstName"
+                name="firstName"
+                #firstName="ngModel"
+                ngModel
+                required
+                placeholder="{{ 'Auth.FirstName' | translate }}"
+                type="text"
+                value=""
+              />
+              <p-message
+                *ngIf="
+                  (!firstName.valid && firstName.touched) ||
+                  (!firstName.valid && submitted)
+                "
+                styleClass="p-mt-1"
+                severity="error"
+                text="{{ 'Auth.FirstNameRequired' | translate }}"
+                id="floorNumberError"
+              >
+              </p-message>
+            </div>
+            <div class="col-sm-4">
+              <input
+                autocomplete="off"
+                class="form-control"
+                data-val="true"
+                name="middleName"
+                #middleName="ngModel"
+                ngModel
+                required
+                placeholder="{{ 'Auth.MiddleName' | translate }}"
+                type="text"
+              />
+              <p-message
+                *ngIf="
+                  (!middleName.valid && middleName.touched) ||
+                  (!middleName.valid && submitted)
+                "
+                styleClass="p-mt-1"
+                severity="error"
+                text="{{ 'Auth.MiddleNameRequired' | translate }}"
+                id="floorNumberError"
+              >
+              </p-message>
+            </div>
+            <div class="col-sm-4">
+              <input
+                autocomplete="off"
+                class="form-control"
+                data-val="true"
+                placeholder="{{ 'Auth.LastName' | translate }}"
+                type="text"
+                name="lastName"
+                #lastName="ngModel"
+                ngModel
+                required
+              />
+              <p-message
+                *ngIf="
+                  (!lastName.valid && lastName.touched) ||
+                  (!lastName.valid && submitted)
+                "
+                styleClass="p-mt-1"
+                severity="error"
+                text="{{ 'Auth.LastNameRequired' | translate }}"
+                id="floorNumberError"
+              >
+              </p-message>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="Email" class="col-sm-3 col-form-label">{{
+          "Auth.Email" | translate
+        }}</label>
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            data-val="true"
+            id="Email"
+            placeholder="{{ 'Auth.Email' | translate }}"
+            type="text"
+            name="email"
+            #email="ngModel"
+            ngModel
+            appCheckEmail
+          />
+          <p-message
+            *ngIf="
+              (email.errors?.notEmail && email.touched) ||
+              (email.errors?.notEmail && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.EmailValidRequired' | translate }}"
+          >
+          </p-message>
+          <!-- <p-message
+            *ngIf="email.errors?.email && email.touched"
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{'Auth.EmailValidRequired'|translate}}"
+            id="floorNumberError"
+          >
+          </p-message> -->
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="Password" class="col-sm-3 col-form-label">{{
+          "Auth.Password" | translate
+        }}</label>
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            data-val="true"
+            id="Password"
+            pattern=".{6,}"
+            placeholder="{{ 'Auth.Password' | translate }}"
+            type="password"
+            name="password"
+            #password="ngModel"
+            ngModel
+            required
+          />
+          <p-message
+            *ngIf="
+              (password.errors?.required && password.touched) ||
+              (password.errors?.required && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.PasswordRequired' | translate }}"
+            id="floorNumberError"
+          >
+          </p-message>
+          <p-message
+            *ngIf="
+              (password.errors?.pattern && password.touched) ||
+              (password.errors?.pattern && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.PasswordCountCheck' | translate }}"
+            id="floorNumberError"
+          >
+          </p-message>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="confirmPassword" class="col-sm-3 col-form-label">{{
+          "Auth.ConfirmPassword" | translate
+        }}</label>
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            placeholder="{{ 'Auth.ConfirmPassword' | translate }}"
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            pattern=".{6,}"
+            #confirmPassword="ngModel"
+            ngModel
+            required
+            appCheckPassword="password"
+          />
+          <p-message
+            *ngIf="
+              (confirmPassword.errors?.required && confirmPassword.touched) ||
+              (confirmPassword.errors?.required && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.ConfirmPasswordRequired' | translate }}"
+            id="floorNumberError"
+          >
+          </p-message>
+          <p-message
+            *ngIf="
+              (confirmPassword.errors?.pattern && confirmPassword.touched) ||
+              (confirmPassword.errors?.pattern && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.PasswordCountCheck' | translate }}"
+            id="floorNumberError"
+          >
+          </p-message>
+          <p-message
+            *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual"
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.ConfirmPasswordCheckRequired' | translate }}."
+            id="floorNumberError"
+          >
+          </p-message>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="UserName" class="col-sm-3 col-form-label">{{
+          "Auth.Mobile" | translate
+        }}</label>
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            data-val="true"
+            id="UserName"
+            placeholder="{{ 'Auth.Mobile' | translate }}"
+            type="text"
+            name="userName"
+            #mobile="ngModel"
+            ngModel
+            required
+            appCheckMobile
+          />
+          <p-message
+            *ngIf="
+              (mobile.errors?.required && mobile.touched) ||
+              (mobile.errors?.required && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.MobileRequired' | translate }}"
+            id="floorNumberError"
+          >
+          </p-message>
+          <p-message
+            *ngIf="
+              (mobile.errors?.notMobile && mobile.touched) ||
+              (mobile.errors?.notMobile && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Auth.MobileNotValid' | translate }}"
+          >
+          </p-message>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="Address" class="col-sm-3 col-form-label">{{
+          "Auth.Address" | translate
+        }}</label>
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            id="Address"
+            placeholder="{{ 'Auth.Address' | translate }}"
+            type="text"
+            name="address"
+            #address="ngModel"
+            ngModel
+          />
+          <p-message
+            *ngIf="error"
+            styleClass="p-mt-1"
+            severity="error"
+            [text]="error"
+          >
+          </p-message>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-9 offset-sm-3">
+          <button type="submit" class="btn btn-block btn-lg btn-primary">
+            {{ "Auth.Register" | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-9 offset-sm-3 text-center">
+          {{ "Auth.HaveAccount" | translate }}
+          <a [routerLink]="['../login']" class="text-success">{{
+            "Auth.Login" | translate
+          }}</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <app-alert
+  *ngIf="success"
+  life="5000"
+  message="{{ 'Auth.CheckYourEmail' | translate }}"
+  severity="success"
+  summary="{{ 'Auth.CreateNewRegisterAccepted' | translate }}"
+></app-alert> -->
+<!-- <app-alert
+  *ngIf="error"
+  life="5000"
+  summary="{{ 'Shared.Error' | translate }}"
+  message="{{error}}"
+  severity="error"
+></app-alert> -->

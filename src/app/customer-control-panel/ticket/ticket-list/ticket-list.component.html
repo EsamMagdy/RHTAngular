@@ -1,0 +1,57 @@
+<div
+  class="
+    bg-grad-blue
+    d-flex
+    font-weight-bold
+    fs-20
+    justify-content-between
+    px-2
+    py-2
+    text-white
+    rounded-10 rounded-top
+  "
+>
+  <div>{{ "Dashboard.CustomerTickets" | translate }}</div>
+  <div>
+    <a [routerLink]="['./ticket-creation']" class="btn btn-primary btn-sm mx-2"
+      ><i class="fa-plus-circle fa mr-1"></i
+      ><span class="d-none d-sm-inline"
+        >{{ "CustomerTicket.NewTicket" | translate }}
+      </span>
+    </a>
+  </div>
+</div>
+<div
+  *ngIf="tickets?.length == 0"
+  class="alert alert-primary wow fadeInUp"
+  data-wow-delay="0.5s"
+  role="alert"
+>
+  {{ "Dashboard.NoRecordsFound" | translate }}
+</div>
+<!-- <div class="p-3">
+  <app-ticket-filter></app-ticket-filter>
+</div> -->
+<div class="table-responsive" *ngIf="tickets?.length > 0">
+  <app-ticket-item
+    [tickets]="tickets"
+    [pageNumebrs]="pageNumber"
+    [totalCounts]="totalCount"
+    [pageSizes]="pageSize"
+  ></app-ticket-item>
+
+  <!-- <p-paginator
+    [showCurrentPageReport]="true"
+    [rows]="pageSize"
+    [totalRecords]="totalCount"
+    (onPageChange)="paginate($event)"
+  ></p-paginator> -->
+
+  <pagination-controls
+    class="pagination justify-content-center font-secondary my-pagination"
+    previousLabel="{{ 'Shared.Previous' | translate }}"
+    nextLabel="{{ 'Shared.Next' | translate }}"
+    (pageChange)="paginate($event)"
+    [autoHide]="true"
+  ></pagination-controls>
+</div>

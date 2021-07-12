@@ -1,0 +1,84 @@
+<div
+  class="
+    bg-grad-blue
+    d-flex
+    font-weight-bold
+    fs-20
+    justify-content-between
+    px-2
+    py-2
+    text-white
+    rounded-10 rounded-top
+  "
+>
+  <div>{{ "Dashboard.LastRequests" | translate }}</div>
+  <div>
+    <a
+      [routerLink]="['./other-orders/other-orders-creation']"
+      class="btn btn-primary btn-sm mx-2"
+      ><i class="fa-plus-circle fa mr-1"></i
+      ><span class="d-none d-sm-inline">{{
+        "Dashboard.Request" | translate
+      }}</span>
+      <!-- {{ "Dashboard.New" | translate }}  -->
+    </a>
+    <a [routerLink]="['./other-orders']" class="btn btn-primary btn-sm mx-2"
+      ><i class="fa-list-ul fa mr-1"></i> {{ "Dashboard.All" | translate }}</a
+    >
+  </div>
+</div>
+<br />
+<div
+  *ngIf="!lead"
+  class="alert alert-primary wow fadeInUp"
+  data-wow-delay="0.5s"
+  role="alert"
+>
+  {{ "Dashboard.NoRequests" | translate }}
+</div>
+<div *ngIf="lead" class="table-responsive">
+  <table class="table table-bordered table-light table-sm table-hover">
+    <tbody>
+      <tr>
+        <th class="font-weight-light">
+          {{ "Dashboard.RequestNumber" | translate }}
+        </th>
+        <th class="font-weight-normal">
+          {{ "Dashboard.FinalPrice" | translate }}
+        </th>
+        <th class="font-weight-normal">
+          {{ "Dashboard.RequestStatus" | translate }}
+        </th>
+        <th class="font-weight-normal">
+          {{ "Dashboard.RequestDate" | translate }}
+        </th>
+        <!-- <th class="font-weight-normal" style="width: 100px">
+          {{ "Dashboard.Options" | translate }}
+        </th> -->
+      </tr>
+      <tr>
+        <td>
+          <span class="font-secondary">{{ lead?.code }}</span>
+        </td>
+        <td class="font-secondary">{{ lead?.description }}</td>
+        <td *ngIf="lead.statusCode == '2'">
+          <span class="badge badge-danger">{{ lead?.statusName }}</span>
+        </td>
+        <td *ngIf="lead.statusCode != '2'">
+          <span class="badge badge-danger">{{ lead?.statusName }}</span>
+        </td>
+        <td class="font-secondary">{{ lead?.createdOn }}</td>
+        <!-- <td>
+          <a
+            href="orders-details.html"
+            class="border-0 btn btn-primary btn-sm text-white"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="عرض"
+            ><i class="fa fa-eye"></i
+          ></a>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

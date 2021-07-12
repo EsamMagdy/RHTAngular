@@ -1,0 +1,51 @@
+<div
+  class="
+    bg-grad-blue
+    d-flex
+    font-weight-bold
+    fs-20
+    justify-content-between
+    px-2
+    py-2
+    text-white
+    rounded-10 rounded-top
+  "
+>
+  <div>{{ "OtherOrders.Header" | translate }}</div>
+  <div>
+    <a
+      [routerLink]="['./other-orders-creation']"
+      class="btn btn-primary btn-sm mx-2"
+      ><i class="fa-plus-circle fa mr-1"></i
+      ><span class="d-none d-sm-inline">{{
+        "Shared.NewRequest" | translate
+      }}</span>
+    </a>
+  </div>
+</div>
+<div
+  *ngIf="leads?.length==0"
+  class="alert alert-primary wow fadeInUp"
+  data-wow-delay="0.5s"
+  role="alert"
+>
+  {{ "Dashboard.NoRecordsFound" | translate }}
+</div>
+<!-- <div class="p-3">
+  <app-other-orders-filter></app-other-orders-filter>
+</div> -->
+<div class="table-responsive" *ngIf="leads?.length>0">
+  <app-other-orders-item
+    [leads]="leads"
+    [pageNumebrs]="pageNumber"
+    [totalCounts]="totalCount"
+    [pageSizes]="pageSize"
+  ></app-other-orders-item>
+  <pagination-controls
+    class="pagination justify-content-center font-secondary my-pagination"
+    previousLabel="{{ 'Shared.Previous' | translate }}"
+    nextLabel="{{ 'Shared.Next' | translate }}"
+    (pageChange)="paginate($event)"
+    [autoHide]="true"
+  ></pagination-controls>
+</div>

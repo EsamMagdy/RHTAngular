@@ -1,0 +1,71 @@
+<table class="table table-bordered table-light table-hover">
+  <tbody>
+    <tr>
+      <th class="font-weight-light">
+        {{ "Dashboard.ContractNumber" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "Dashboard.FinalPrice" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "Contracts.ContractStatus" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "Contracts.ContractDate" | translate }}
+      </th>
+      <th class="font-weight-normal" style="width: 100px">
+        {{ "Dashboard.Options" | translate }}
+      </th>
+    </tr>
+    <tr
+      *ngFor="
+        let contract of individualContract
+          | paginate: {
+            itemsPerPage: pageSize,
+            currentPage: pageNumebr,
+            totalItems: totalCount
+          }
+      "
+    >
+      <td>
+        <a
+          [routerLink]="[
+            '../contracts/contract-details/',
+            contract.individualContractId
+          ]"
+          class="font-secondary"
+          >{{ contract?.contractNumber }}</a
+        >
+      </td>
+      <td class="font-secondary">{{ contract?.totalAmountWithVat }}</td>
+      <td>
+        <span class="badge badge-danger">{{ contract?.statusCodeName }}</span>
+      </td>
+      <td class="font-secondary">{{ contract?.contractDate }}</td>
+      <td>
+        <a
+          [routerLink]="[
+            '../contracts/contract-details/',
+            contract.individualContractId
+          ]"
+          class="border-0 btn btn-primary btn-sm text-white"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="عرض"
+          ><i class="fa fa-eye"></i
+        ></a>
+        <a
+          [routerLink]="[
+            '/dashboard/contract-renewal/',
+            contract.individualContractId
+          ]"
+          class="border-0 btn btn-primary btn-sm text-white"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="تجديد"
+          ><i class="fa fa-refresh"></i
+        ></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,125 @@
+<div
+  class="
+    bg-grad-blue
+    d-flex
+    font-weight-bold
+    fs-20
+    justify-content-between
+    px-2
+    py-2
+    text-white
+    rounded-10 rounded-top
+  "
+>
+  <div>آخر التعاقدات</div>
+  <div>
+    <a href="contracts-add.html" class="btn btn-primary btn-sm mx-2"
+      ><i class="fa-plus-circle fa mr-1"></i
+      ><span class="d-none d-sm-inline">عقد</span> جديد
+    </a>
+    <a href="contracts.html" class="btn btn-primary btn-sm mx-2"
+      ><i class="fa-list-ul fa mr-1"></i> الكل</a
+    >
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered table-light table-sm table-hover">
+    <tbody>
+      <tr>
+        <th class="font-weight-light">
+          {{ "Dashboard.ContractNumber" | translate }}
+        </th>
+        <th class="font-weight-normal">
+          {{ "Dashboard.FinalPrice" | translate }}
+        </th>
+        <th class="font-weight-normal">
+          {{ "Contracts.ContractStatus" | translate }}
+        </th>
+        <th class="font-weight-normal">تاريخ العقد</th>
+        <th class="font-weight-normal" style="width: 100px">
+          {{ "Dashboard.Options" | translate }}
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <a href="contracts-details.html" class="font-secondary">rht000122</a>
+        </td>
+        <td class="font-secondary">236.52</td>
+        <td><span class="badge badge-danger">لم يتم تأكيد الدفع</span></td>
+        <td class="font-secondary">12/12/2018 10:00</td>
+        <td>
+          <a
+            href="contracts-details.html"
+            class="border-0 btn btn-primary btn-sm text-white"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="عرض"
+            ><i class="fa fa-eye"></i
+          ></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="contracts-details.html" class="font-secondary">rht000122</a>
+        </td>
+        <td class="font-secondary">236.52</td>
+        <td><span class="badge badge-success">تم تأكيد الدفع</span></td>
+        <td class="font-secondary">12/12/2018 10:00</td>
+        <td>
+          <a
+            href="contracts-details.html"
+            class="border-0 btn btn-primary btn-sm text-white"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="عرض"
+            ><i class="fa fa-eye"></i
+          ></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="contracts-details.html" class="font-secondary">rht000122</a>
+        </td>
+        <td class="font-secondary">236.52</td>
+        <td><span class="badge badge-secondary">تم الإلغاء</span></td>
+        <td class="font-secondary">12/12/2018 10:00</td>
+        <td>
+          <a
+            href="contracts-details.html"
+            class="border-0 btn btn-primary btn-sm text-white"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="عرض"
+            ><i class="fa fa-eye"></i
+          ></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="contracts-details.html" class="font-secondary">rht000122</a>
+        </td>
+        <td class="font-secondary">236.52</td>
+        <td><span class="badge badge-warning">أوشك على الانتهاء</span></td>
+        <td class="font-secondary">12/12/2018 10:00</td>
+        <td>
+          <a
+            href="contracts-details.html"
+            class="border-0 btn btn-primary btn-sm text-white"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="عرض"
+            ><i class="fa fa-eye"></i
+          ></a>
+          <a
+            href="contracts-renew.html"
+            class="border-0 btn btn-primary btn-sm text-white"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="تجديد"
+            ><i class="fa fa-refresh"></i
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

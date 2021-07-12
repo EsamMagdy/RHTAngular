@@ -1,0 +1,183 @@
+<!-- <section class="py-md-5 py-4">
+  <div class="container">
+    <div class="bg-feefd6">
+      <div class="no-gutters row">
+        <div class="col-md-8">
+          <div class="p-4">
+            <div class="bg-darkred fs-20 p-1 text-center text-white mb-4"></div>
+            <div class="row">
+              <div class="col-md-10 offset-md-1">
+                <form
+                  action="/ar/Account/ReGenrateSignInCode"
+                  data-ajax="true"
+                  data-ajax-method="POST"
+                  data-ajax-mode="replace"
+                  data-ajax-update="#status"
+                  id="form0"
+                  method="post"
+                >
+                  <input
+                    id="cUserId"
+                    name="UserId"
+                    type="hidden"
+                    value=""
+                  /><input
+                    id="cPhoneNumber"
+                    name="PhoneNumber"
+                    type="hidden"
+                    value="0503456789"
+                  />
+                  <button (click)="resendCode()" class="btn color-darkred">
+                    <i class="fa fa-refresh" aria-hidden="true"></i> إعاده إرسال
+                  </button>
+                </form>
+                <br />
+                <div class="form-group h4 text-primary" id="status"></div>
+
+                <form
+                  class="form-horizontal"
+                  (ngSubmit)="onSubmit()"
+                  #verificationForm="ngForm"
+                >
+                  <div class="form-group">
+                    <input
+                      value=""
+                      class="form-control rounded-0"
+                      id="Code"
+                      name="code"
+                      placeholder="ادخال كود التحقق"
+                      type="text"
+                      ngModel
+                      required
+                      #code="ngModel"
+                    />
+                    <p-message
+                    *ngIf="
+                      (code.errors?.required && code.touched) ||
+                      (code.errors?.required && submitted)
+                    "
+                    styleClass="p-mt-1"
+                    severity="error"
+                    text="{{'Auth.MobileRequired'|translate}}"
+                    id="floorNumberError"
+                  >
+                  </p-message>
+                  </div>
+                  <div class="form-group text-center">
+                    <input
+                      type="submit"
+                      class="btn color-darkred w-50"
+                      value="تم"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 side-banner d-none d-md-block">
+          <div class="p-5 position-relative z-index1">
+            <h3 class="text-white mb-4"></h3>
+            <p class="font-secondary text-white"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-alert
+  *ngIf="success"
+  life="5000"
+  message="{{ 'Auth.ModificationsSavedWithTimeOut' | translate }}"
+  severity="success"
+  summary="{{ 'Auth.VerificationCodeSuccess' | translate }}"
+></app-alert>
+<app-alert
+  *ngIf="resendCodeSuccess"
+  life="5000"
+  message="{{ 'Auth.ResendCodeSuccess' | translate }}"
+  severity="success"
+  summary="{{ 'Auth.ResendCodeHeader' | translate }}"
+></app-alert>
+<app-alert
+  [message]="error"
+  severity="error"
+  summary="{{ 'Shared.Error' | translate }}"
+  *ngIf="error"
+></app-alert> -->
+
+<div class="font-weight-bold fs-18 fs-md-36 text-white text-center">{{'Verification.Header'|translate}}</div>
+<div class="row mx-2">
+  <div class="bg-white col-md-6 fs-18 mt-4 mx-auto p-5 rounded-20">
+    <div class="fs-24 mb-4">{{'Verification.EnterVerificationCode'|translate}}</div>
+    <form (ngSubmit)="onSubmit()" #verificationForm="ngForm">
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-3 col-form-label"
+          >{{'Verification.VerificationCode'|translate}}</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="inputPassword"
+            name="code"
+            placeholder=" "
+            type="text"
+            ngModel
+            required
+            #code="ngModel"
+          />
+          <p-message
+            *ngIf="
+              (code.errors?.required && code.touched) ||
+              (code.errors?.required && submitted)
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{'Verification.VerificationCodeRequired'|translate}}"
+            id="floorNumberError"
+          >
+          </p-message>
+          <p-message
+            *ngIf="error"
+            styleClass="p-mt-1"
+            severity="error"
+            [text]="error"
+            id="floorNumberError"
+          >
+          </p-message>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-9 offset-sm-3">
+          <button type="submit" class="btn btn-block btn-lg btn-primary">
+            {{'Verification.Verfiy'|translate}}
+          </button>
+          <div class="mt-3">
+            {{'Verification.NotRecieved'|translate}}
+            <button
+              type="button"
+              (click)="resendCode()"
+              [disabled]="resendCodeButton"
+              class="btn btn-link m-0 p-0"
+            >
+              {{'Verification.Resend'|translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="form-group row">
+        <div class="col-sm-9 d-flex justify-content-between offset-sm-3">
+          <a [routerLink]="['../login']" class="text-success">{{
+            "Auth.NLogin" | translate
+          }}</a>
+          <a [routerLink]="['../sign-up']" class="float-right text-success">
+            {{ "Auth.NewAccount" | translate }}</a
+          >
+        </div>
+      </div> -->
+    </form>
+  </div>
+</div>

@@ -1,0 +1,203 @@
+<div
+  class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3 wow fadeInUp"
+  data-wow-delay="0.5s"
+  style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+>
+  {{ "Attachments.Header" | translate }}
+</div>
+<div>
+  <div
+    class="alert alert-warning mb-4 wow fadeInUp"
+    data-wow-delay="0.5s"
+    role="alert"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    {{ "Attachments.UploadOrSkip" | translate }}
+  </div>
+  <div
+    class="
+      box-shadow
+      h-100
+      position-relative
+      rounded-10
+      overflow-hidden
+      p-4
+      mb-4
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="row">
+      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+        {{ "Attachments.IdentificationNumberImage" | translate }}
+      </div>
+      <div class="col-md-6 text-md-left text-center">
+        <label class="file">
+          <input
+            type="file"
+            id="file"
+            aria-label="File browser example"
+            #identificationImage
+            type="file"
+            name="identificationImage"
+            ngModel
+          />
+
+          <span class="file-custom"></span>
+        </label>
+      </div>
+      <div class="col-md-3 text-md-right text-center">
+        <button
+          class="btn btn-lg btn-warning"
+          (click)="onPrieviewImage(identificationImage)"
+        >
+          {{ "Attachments.Review" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="
+      box-shadow
+      h-100
+      position-relative
+      rounded-10
+      overflow-hidden
+      p-4
+      mb-4
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="row">
+      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+        {{ "Attachments.FamilyCardImage" | translate }}
+      </div>
+      <div class="col-md-6 text-md-left text-center">
+        <label class="file">
+          <input
+            type="file"
+            id="file"
+            aria-label="File browser example"
+            #familyImage
+          />
+          <span class="file-custom"></span>
+        </label>
+      </div>
+      <div class="col-md-3 text-md-right text-center">
+        <button
+          class="btn btn-lg btn-warning"
+          (click)="onPrieviewImage(familyImage)"
+        >
+          {{ "Attachments.Review" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="
+      box-shadow
+      h-100
+      position-relative
+      rounded-10
+      overflow-hidden
+      p-4
+      mb-4
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="row">
+      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+       {{ 'Attachments.NationalAddressImage' | translate }}
+      </div>
+      <div class="col-md-6 text-md-left text-center">
+        <label class="file">
+          <input
+            type="file"
+            id="file"
+            aria-label="File browser example"
+            #nationalAddressImage
+          />
+          <span class="file-custom"></span>
+        </label>
+      </div>
+      <div class="col-md-3 text-md-right text-center">
+        <button
+          class="btn btn-lg btn-warning"
+          (click)="onPrieviewImage(nationalAddressImage)"
+        >
+          {{ "Attachments.Review" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="
+      box-shadow
+      h-100
+      position-relative
+      rounded-10
+      overflow-hidden
+      p-4
+      mb-4
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="row">
+      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+        {{ 'Attachments.CustomerSalaryImage' | translate }}
+      </div>
+      <div class="col-md-6 text-md-left text-center">
+        <label class="file">
+          <input
+            type="file"
+            id="file"
+            aria-label="File browser example"
+            #customerSalaryImage
+          />
+          <span class="file-custom"></span>
+        </label>
+      </div>
+      <div class="col-md-3 text-md-right text-center">
+        <button
+          class="btn btn-lg btn-warning"
+          (click)="onPrieviewImage(customerSalaryImage)"
+        >
+          {{ "Attachments.Review" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <p-galleria
+    [(value)]="images"
+    [(visible)]="displayBasic2"
+    [containerStyle]="{ 'max-width': '850px' }"
+    [circular]="true"
+    [fullScreen]="true"
+    [showItemNavigators]="false"
+    [showThumbnails]="false"
+    [baseZIndex]="100000"
+  >
+    <ng-template pTemplate="item" let-item>
+      <img [src]="previewImage" style="width: 100%; display: block" />
+    </ng-template>
+  </p-galleria>
+  <div class="d-flex justify-content-between mt-4" data-wow-delay="0.2s">
+    <button (click)="contractlPage()" class="btn btn-lg btn-outline-primary">
+      {{ "Shared.Previous" | translate }}
+    </button>
+    <button (click)="paymentPage()" class="btn btn-lg btn-primary">
+      {{ "Shared.Next" | translate }}
+    </button>
+  </div>
+</div>

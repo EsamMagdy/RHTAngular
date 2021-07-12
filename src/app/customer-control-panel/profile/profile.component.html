@@ -1,0 +1,328 @@
+<!-- <div class="p-4 box-shadow rounded-10"> -->
+<!-- Mobile user menu -->
+<!-- <app-mobile-user-menu></app-mobile-user-menu> -->
+<!-- /.Mobile user menu -->
+<div class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3">
+  {{ "Profile.Header" | translate }}
+</div>
+<form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label"
+      >{{ "Profile.FullName" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        id="inputPassword"
+        readonly
+        name="fullName"
+        [ngModel]="contact?.fullName"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="jobTitle" class="col-sm-3 col-form-label"
+      >{{ "Profile.JobTitle" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        id="jobTitle"
+        placeholder="{{ 'Profile.EnterJobTitle' | translate }}"
+        name="jobTitle"
+        [ngModel]="contact?.jobTitle"
+        required
+        #JobTitle="ngModel"
+        [readonly]="contact?.jobTitle != null"
+      />
+      <p-message
+        *ngIf="
+          (JobTitle.errors?.required && JobTitle.touched) ||
+          (JobTitle.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Shared.Required' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="city" class="col-sm-3 col-form-label"
+      >{{ "Profile.City" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        #drpCities="ngModel"
+        name="city"
+        inputId="city"
+        [options]="cities"
+        [(ngModel)]="selectedCity"
+        (onChange)="onChangeCity($event.value)"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div class="country-item country-item-value" *ngIf="selectedCity">
+            <div>{{ selectedCity.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-city pTemplate="item">
+          <div class="country-item">
+            <div>{{ city.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (!drpCities.valid && drpCities.touched) ||
+          (!drpCities.valid && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Shared.Required' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="nationality" class="col-sm-3 col-form-label"
+      >{{ "Profile.Nationality" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        #drpNationalities="ngModel"
+        inputId="nationality"
+        name="nationality"
+        [options]="nationalities"
+        [(ngModel)]="selectedNationalities"
+        [readonly]="selectedNationalities?.key != null"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedNationalities"
+          >
+            <div>{{ selectedNationalities.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-nationality pTemplate="item">
+          <div class="country-item">
+            <div>{{ nationality.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (!drpNationalities.valid && drpNationalities.touched) ||
+          (!drpNationalities.valid && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Shared.Required' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="gender" class="col-sm-3 col-form-label"
+      >{{ "Profile.Sex" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        #drpGenders="ngModel"
+        name="gender"
+        inputId="gender"
+        [options]="genders"
+        [(ngModel)]="selectedGenders"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        [readonly]="selectedGenders?.key != null"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div class="country-item country-item-value">
+            <div>{{ selectedGenders.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-gender pTemplate="item">
+          <div class="country-item">
+            <div>{{ gender.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (!drpGenders.valid && drpGenders.touched) ||
+          (!drpGenders.valid && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Shared.Required' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="region" class="col-sm-3 col-form-label"
+      >{{ "Profile.Region" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        #drpRegions="ngModel"
+        name="region"
+        inputId="region"
+        [options]="regions"
+        [(ngModel)]="selectedRegions"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div class="country-item country-item-value">
+            <div>{{ selectedRegions.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-region pTemplate="item">
+          <div class="country-item">
+            <div>{{ region.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (!drpRegions.valid && drpRegions.touched) ||
+          (!drpRegions.valid && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Shared.Required' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="iDNumber" class="col-sm-3 col-form-label">{{
+      "Profile.IDNumber" | translate
+    }}</label>
+    <div class="col-sm-9">
+      <input
+        [disabled]="contact?.identificationNo != null"
+        type="text"
+        class="form-control"
+        id="iDNumber"
+        placeholder="{{ 'Shared.Example' | translate }} : 0596479033"
+        [ngModel]="contact?.identificationNo"
+        name="identificationNo"
+        required
+        #iDNumber="ngModel"
+        [maxLength]="10"
+        pattern="[1-9]{1}[0-9]{9}"
+        [appCheckIDNumber]="selectedNationalities?.key"
+      />
+      <p-message
+        *ngIf="
+          (iDNumber.errors?.required && iDNumber.touched) ||
+          (iDNumber.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Shared.Required' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+
+      <p-message
+        *ngIf="
+          !selectedNationalities &&
+          ((iDNumber.errors?.chooseNationalityFirst && iDNumber.touched) ||
+            (iDNumber.errors?.chooseNationalityFirst && submitted))
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Profile.ChooseNationalityFirst' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+      <p-message
+        *ngIf="
+          (iDNumber.errors?.notSaudi && iDNumber.touched) ||
+          (iDNumber.errors?.notSaudi && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Profile.IdNumberStartWith1' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+      <p-message
+        *ngIf="
+          (iDNumber.errors?.notOthers && iDNumber.touched) ||
+          (iDNumber.errors?.notOthers && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Profile.IdNumberStartWith2' | translate }}"
+        id="districtsError"
+      >
+      </p-message>
+      <p-message
+        *ngIf="
+          (iDNumber.errors?.pattern && iDNumber.touched) ||
+          (iDNumber.errors?.pattern && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Profile.Enter10Numbers' | translate }} "
+        id="districtsError"
+      >
+      </p-message>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-9 offset-sm-3">
+      <button type="submit" class="btn btn-primary btn-lg">
+        {{ "Shared.Save" | translate }}
+      </button>
+      <button type="button" (click)="cancelProfile()" class="btn btn-secondary btn-lg">
+        {{ "Shared.Cancel" | translate }}
+      </button>
+    </div>
+  </div>
+</form>
+<!-- </div> -->
+<app-alert
+  message="{{ 'Shared.ModificationsSaved' | translate }}"
+  severity="success"
+  summary="{{ 'Shared.OperationSuccess' | translate }}"
+  *ngIf="success"
+></app-alert>

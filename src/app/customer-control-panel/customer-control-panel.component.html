@@ -1,0 +1,31 @@
+<div class="inner-slider py-3">
+  <div class="container">
+    <div class="text-center text-white">
+      <div class="fs-md-36 fs-18 font-weight-bold">
+        {{ "Dashboard.Header" | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+<section class="py-md-5 py-4">
+  <div class="container">
+    <div class="mb-4">
+      <div class="row">
+        <div class="col-md-3 d-none d-md-block">
+          <app-user-menu></app-user-menu>
+        </div>
+
+        <div class="col-md-9 col-12">
+          <div class="p-4 box-shadow rounded-10">
+            <!-- Mobile user menu -->
+            <app-mobile-user-menu></app-mobile-user-menu>
+            <!-- /.Mobile user menu -->
+
+            <router-outlet></router-outlet>
+          </div>
+          <!-- <router-outlet></router-outlet> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

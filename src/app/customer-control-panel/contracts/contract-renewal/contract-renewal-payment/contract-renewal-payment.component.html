@@ -1,0 +1,89 @@
+<div class="container pt-5">
+  <div
+    class="
+      text-center
+      fs-md-24 fs-18
+      font-weight-bold
+      mb-md-4 mb-3
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.1s"
+    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp"
+  >
+    {{ "Stepper.Payment" | translate }}
+  </div>
+  <div class="text-center">
+    <div>
+      <img
+        src="/assets/img/success-img.png"
+        class="img-fluid wow fadeInDown"
+        data-wow-delay="0.5s"
+        style="
+          visibility: visible;
+          animation-delay: 0.5s;
+          animation-name: fadeInDown;
+        "
+      />
+    </div>
+    <div
+      class="fs-md-22 mt-4 wow fadeInUp"
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      {{ "Payment.DearCustomer" | translate }} :
+      <span class="font-secondary">{{
+        indivContractProcedure.contactName
+      }}</span>
+    </div>
+    <p class="text-success">{{ "Payment.RequestSuccess" | translate }}</p>
+    <div
+      class="fs-md-22 text-success font-weight-bold wow fadeInUp"
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      {{ "Payment.ProcedureNumber" | translate }}
+      <span class="color-darkred font-weight-bold">{{
+        indivContractProcedure.procedureNumber
+      }}</span>
+    </div>
+    <div
+      class="fs-md-22 text-warning font-weight-bold wow fadeInUp"
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      {{ "Payment.DeservedAmount" | translate }}
+      <span class="color-darkred font-weight-bold">
+        {{ indivContractProcedure.renewalAmount | mathRound }} </span
+      >{{ "Shared.SAR" | translate }}
+    </div>
+
+    <div class="text-center">
+      <div class="mb-2">
+        <a
+          href="/ar/Payment/ShopperResult?id=24ec0f56-143f-4357-a6d9-d6419594c9d0&amp;type=RenewIndividualContract"
+          class="btn btn-primary"
+          id="online-tab"
+        >
+          <i class="fa fa-credit-card mr-2"></i
+          >{{ "Payment.PayNow" | translate }}
+        </a>
+        <a href="/" class="btn btn-primary">
+          <i class="fa fa-home ml-2"></i> {{ "Shared.HomePage" | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

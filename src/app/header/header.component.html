@@ -1,0 +1,162 @@
+<div class="" id="top">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light px-0 py-3">
+      <a class="navbar-brand" href="index.html">
+        <img src="/assets/img/logo.jpg" class="d-md-inline d-none" />
+        <img src="/assets/img/logo-mobile.jpg" class="d-inline d-md-none" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarToggler02"
+        aria-controls="navbarToggler02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarToggler02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/home']">{{
+              "Header.Home" | translate
+            }}</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/about']">{{
+              "Header.About" | translate
+            }}</a>
+          </li>
+          <li
+            class="nav-item dropdown dropdown-at-navbar"
+            routerLinkActive="active"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="services.html"
+              id="dropdown11"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >{{ "Header.Services" | translate }}</a
+            >
+            <div class="dropdown-menu">
+              <a class="dropdown-item" [routerLink]="['/services']">{{
+                "Header.IndvContract" | translate
+              }}</a>
+            </div>
+          </li>
+          <li
+            *ngIf="isAuthenticated"
+            class="nav-item"
+            routerLinkActive="active"
+          >
+            <a class="nav-link" [routerLink]="['/dashboard', 'ticket']">{{
+              "Header.CustomerServices" | translate
+            }}</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/faqs']">{{
+              "Header.Faqs" | translate
+            }}</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/contact-us']">{{
+              "Header.ContactUs" | translate
+            }}</a>
+          </li>
+          <li
+            *ngIf="!isAuthenticated"
+            class="nav-item"
+            routerLinkActive="active"
+          >
+            <a class="nav-link" [routerLink]="['/auth']">{{
+              "Header.Login" | translate
+            }}</a>
+          </li>
+          <li
+            *ngIf="language == languageEnum.English"
+            class="nav-item"
+            routerLinkActive="active"
+          >
+            <a
+              style="cursor: pointer"
+              class="nav-link"
+              (click)="onChangeLanguage(0)"
+              >En</a
+            >
+          </li>
+          <li
+            *ngIf="language == languageEnum.Arabic"
+            class="nav-item"
+            routerLinkActive="active"
+          >
+            <a
+              style="cursor: pointer"
+              class="nav-link"
+              (click)="onChangeLanguage(1)"
+              >عربى</a
+            >
+          </li>
+          <li
+            *ngIf="isAuthenticated"
+            class="nav-item dropdown dropdown-at-navbar"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="dropdown11"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><img src="/assets/img/user-icon.png" />
+              <span class="d-inline d-lg-none">محمد</span></a
+            >
+            <div class="dropdown-menu dropdown-menu-right">
+              <a [routerLink]="['/dashboard']" class="dropdown-item"
+                ><i class="fa fa-tachometer mr-2"></i
+                >{{ "Dashboard.Dashboard" | translate }}</a
+              >
+              <a [routerLink]="['/dashboard', 'profile']" class="dropdown-item"
+                ><i class="fa fa-user-circle mr-2"></i>
+                {{ "Dashboard.MyProfile" | translate }}</a
+              >
+              <a
+                [routerLink]="['/dashboard', 'contracts']"
+                class="dropdown-item"
+                ><i class="fa fa-list-ul mr-2"></i>
+                {{ "Dashboard.IndividualContract" | translate }}</a
+              >
+              <a
+                [routerLink]="['/dashboard', 'ind-orders']"
+                class="dropdown-item"
+                ><i class="fa fa-list-ul mr-2"></i
+                >{{ "Dashboard.IndividualRequests" | translate }}</a
+              >
+              <a [routerLink]="['/dashboard', 'ticket']" class="dropdown-item"
+                ><i class="fa fa-question-circle mr-2"></i
+                >{{ "Dashboard.TechnicalSupport" | translate }}</a
+              >
+              <a
+                [routerLink]="['/dashboard', 'other-orders']"
+                class="dropdown-item"
+                ><i class="fa fa-info-circle mr-2"></i
+                >{{ "Dashboard.OthersRequests" | translate }}</a
+              >
+              <a
+                (click)="onLogout()"
+                tabindex="-1"
+                style="cursor: pointer"
+                class="dropdown-item"
+                ><i class="fa fa-power-off mr-2"></i
+                >{{ "Shared.Logout" | translate }}</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

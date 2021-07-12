@@ -1,0 +1,35 @@
+<div class="box-shadow h-100 position-relative rounded-10 overflow-hidden">
+  <div class="p-3 bg-grad-blue text-white fs-md-22 text-center">
+    {{ "PricingDetails.EmployeeDetails" | translate }}
+  </div>
+  <div class="p-3">
+    <div class="text-0056a7 fs-md-22 mb-3 font-weight-bold">
+      {{ "PricingDetails.EmployeeName" | translate }} : {{ employee.name }}
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.Profession" | translate }} : {{ employee.jobTitle }}
+      </div>
+      <div class="col-md-6 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.Nationality" | translate }} :
+        {{ employee.nationalityName }}
+      </div>
+      <div class="col-md-6 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.Religion" | translate }} :
+        {{ employee.candidate.religionName }}
+      </div>
+      <div class="col-md-6 mb-2">
+        <i class="info-icon-small"></i>{{ "PricingDetails.Sex" | translate }} :
+        {{ employee.sex }}
+      </div>
+      <div class="col-md-6 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.MaritalStatus" | translate }} :
+        {{ employee.maritalStatusName }}
+      </div>
+    </div>
+  </div>
+</div>

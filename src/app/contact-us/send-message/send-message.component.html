@@ -1,0 +1,208 @@
+<div class="box-shadow p-5 rounded-20">
+    <div class="mb-3">
+      <h2 class="font-weight-bold text-success fs-md-20 fs-16">
+        {{ "ContactUs.SendMessage" | translate }}
+      </h2>
+    </div>
+    <div class="">
+      <div class="row">
+        <div class="col-md-12 order-md-first">
+          <form (ngSubmit)="submitMessage()" #contactUs="ngForm">
+            <div class="form-group row">
+              <label
+                for="inputPassword"
+                class="col-sm-3 col-form-label"
+                >{{ "ContactUs.FullName" | translate }}</label
+              >
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  name="name"
+                  placeholder="{{ 'ContactUs.FullName' | translate }}"
+                  type="text"
+                  ngModel
+                  required
+                  #fullName="ngModel"
+                />
+                <p-message
+                  *ngIf="
+                    (fullName.errors?.required && fullName.touched) ||
+                    (fullName.errors?.required && submitted)
+                  "
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{ 'ContactUs.FullNameRequired' | translate }}"
+                  id="floorNumberError"
+                >
+                </p-message>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="inputPassword"
+                class="col-sm-3 col-form-label"
+                >{{ "ContactUs.PhoneNumber" | translate }}</label
+              >
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  placeholder="{{
+                    'ContactUs.PhoneNumber' | translate
+                  }}"
+                  type="text"
+                  value=""
+                  name="phone"
+                  #phone="ngModel"
+                  ngModel
+                  required
+                  appCheckMobile
+                />
+                <p-message
+                  *ngIf="
+                    (phone.errors?.required && phone.touched) ||
+                    (phone.errors?.required && submitted)
+                  "
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{ 'ContactUs.MobileRequired' | translate }}"
+                  id="floorNumberError"
+                >
+                </p-message>
+                <p-message
+                  *ngIf="
+                    (phone.errors?.notMobile && phone.touched) ||
+                    (phone.errors?.notMobile && submitted)
+                  "
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{ 'ContactUs.MobileNotValid' | translate }}"
+                >
+                </p-message>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="inputPassword"
+                class="col-sm-3 col-form-label"
+              >
+                {{ "ContactUs.Email" | translate }}
+              </label>
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  placeholder="{{ 'ContactUs.Email' | translate }}"
+                  type="text"
+                  value=""
+                  name="email"
+                  #email="ngModel"
+                  ngModel
+                  email
+                  required
+                />
+                <p-message
+                  *ngIf="
+                    (email.errors?.required && email.touched) ||
+                    (email.errors?.required && submitted)
+                  "
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{ 'ContactUs.EmailRequired' | translate }}"
+                  id="floorNumberError"
+                >
+                </p-message>
+                <p-message
+                  *ngIf="email.errors?.email && email.touched"
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{
+                    'ContactUs.EmailValidRequired' | translate
+                  }}"
+                  id="floorNumberError"
+                >
+                </p-message>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label"
+                >{{ "ContactUs.Subject" | translate }}
+              </label>
+              <div class="col-sm-9">
+                <input
+                  class="form-control"
+                  placeholder="{{ 'ContactUs.Subject' | translate }}"
+                  type="text"
+                  value=""
+                  name="subject"
+                  #subject="ngModel"
+                  ngModel
+                  required
+                />
+                <p-message
+                  *ngIf="
+                    (subject.errors?.required && subject.touched) ||
+                    (subject.errors?.required && submitted)
+                  "
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{ 'ContactUs.SubjectRequired' | translate }}"
+                  id="floorNumberError"
+                >
+                </p-message>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="inputPassword"
+                class="col-sm-3 col-form-label"
+                >{{ "ContactUs.Details" | translate }}</label
+              >
+              <div class="col-sm-9">
+                <textarea
+                  class="form-control"
+                  cols="20"
+                  placeholder="{{ 'ContactUs.Details' | translate }}"
+                  rows="2"
+                  name="details"
+                  #details="ngModel"
+                  ngModel
+                  required
+                ></textarea>
+                <p-message
+                  *ngIf="
+                    (details.errors?.required && details.touched) ||
+                    (details.errors?.required && submitted)
+                  "
+                  styleClass="p-mt-1"
+                  severity="error"
+                  text="{{ 'ContactUs.DetailsRequired' | translate }}"
+                  id="floorNumberError"
+                >
+                </p-message>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-9 offset-sm-3">
+                <button type="submit" class="btn btn-lg btn-primary">
+                  {{ "ContactUs.Send" | translate }}
+                </button>
+                <button
+                  type="reset"
+                  class="btn btn-lg btn-outline-secondary"
+                  (click)="clearData()"
+                >
+                  {{ "ContactUs.ClearData" | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-alert
+  *ngIf="success"
+  life="5000"
+  message="{{ 'ContactUs.SendMessageSuccess' | translate }}"
+  severity="success"
+  summary="{{ 'ContactUs.SendMessageHeader' | translate }}"
+></app-alert>

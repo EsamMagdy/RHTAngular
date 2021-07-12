@@ -1,0 +1,58 @@
+<div
+  class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3 wow fadeInUp"
+  data-wow-delay="0.5s"
+  style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+>
+  {{ "Pricing.ChoosePackage" | translate }}
+</div>
+<div>
+  <div
+    class="row wow fadeInUp"
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="col-lg-3 col-md-4 col-12">
+      <app-pricing-filter></app-pricing-filter>
+    </div>
+    <div class="col-lg-9 col-md-8 col-12">
+      <app-pricing-list></app-pricing-list>
+      <app-employee-pick-source></app-employee-pick-source>
+      <div *ngIf="errorMessage && errorMessage.length > 0">
+        <div *ngFor="let error of errorMessage">
+          <div
+            class="alert alert-danger wow fadeInUp"
+            data-wow-delay="0.5s"
+            role="alert"
+          >
+            {{error}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="d-flex justify-content-between mt-4" data-wow-delay="0.2s">
+    <button (click)="locationPage()" class="btn btn-lg btn-outline-primary">
+      {{'Shared.Previous'|translate}}</button
+    >
+    <button
+      *ngIf="pricing||(pricings && pricings.length > 0)"
+      (click)="workerPage()"
+      class="btn btn-lg btn-primary"
+      >{{'Shared.Next'|translate}}
+    </button>
+  </div>
+</div>
+<p-confirmDialog
+  header="{{ 'Shared.Attention' | translate }}"
+  message="{{ 'Shared.ToContinueMustLogin' | translate }}"
+  acceptLabel="{{ 'Shared.Continue' | translate }}"
+  rejectLabel="{{ 'Shared.Cancel' | translate }}"
+  rejectIcon=""
+  acceptIcon=""
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="p-3">
+    <!-- start -->
+    <div class="box-shadow mb-3 overflow-hidden rounded-10">
+      <div>
+        <div class="bg-grad-blue fs-24 p-1 text-center text-white">
+          {{ "PricingDetails.PricingDetails" | translate }}
+        </div>
+        <div class="fs-18 p-3">
+          <div class="mb-1 text-center">
+            {{ "PricingDetails.Pricing" | translate }} :<span
+              class="font-weight-bold text-0056a7"
+              >{{ indivContractProcedure?.pricing?.name }}</span
+            >
+          </div>
+          <div class="mb-3 text-center">
+            <span class="font-weight-bold text-0056a7">{{
+              indivContractProcedure?.pricing?.nationalityName
+            }}</span>
+          </div>
+          <div class="">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-2">
+                  <i class="info-icon-small mr-2"></i>
+                  {{
+                    "PricingDetails.PreviousContractFinishedDate" | translate
+                  }}:
+                  <span class="font-weight-bold text-0056a72">{{
+                    indivContractProcedure.oldContractCloseDate
+                  }}</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-2">
+                  <i class="info-icon-small mr-2"></i
+                  >{{ "PricingDetails.NewContractStartDate" | translate }}:
+                  <span class="font-weight-bold text-0056a72">{{
+                    indivContractProcedure.newContractStartDate
+                  }}</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-2">
+                  <i class="info-icon-small mr-2"></i
+                  >{{ "PricingDetails.RenewalValueWithoutTax" | translate }}:
+                  <span class="font-weight-bold text-0056a72">
+                    {{
+                      indivContractProcedure?.pricing?.contractpricewithoutvat +
+                        indivContractProcedure?.pricing?.amountInsurance
+                    }}</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-2">
+                  <i class="info-icon-small mr-2"></i>
+                  {{ "PricingDetails.RenwalValueAfterTax" | translate }}: :
+                  <span class="font-weight-bold text-0056a72">
+                    {{ indivContractProcedure?.pricing?.finalPrice }}</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-2">
+                  <i class="info-icon-small mr-2"></i>
+                  {{ "PricingDetails.ContractPeriod" | translate }} :
+                  <span class="font-weight-bold text-0056a72"
+                    >{{ indivContractProcedure?.pricing?.contractMonths }}
+                    {{ "PricingDetails.Month" | translate }}</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-2">
+                  <i class="info-icon-small mr-2"></i>
+                  {{ "PricingDetails.NewContractEndDate" | translate }}
+                  :
+                  <span class="font-weight-bold text-0056a72">{{
+                    endContractDate
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4" data-wow-delay="0.2s">
+      <button
+        type="button"
+        name="StepType"
+        value="Previous"
+        class="btn btn-outline-primary cancel"
+        id="Previous"
+      >
+        {{ "Shared.Previous" | translate }}
+      </button>
+      <button
+        type="button"
+        name="StepType"
+        id="NextBtn"
+        value="Next"
+        class="btn btn-primary"
+        (click)="paymentPage()"
+      >
+        {{ 'PricingDetails.CompleteRenewal' | translate }}
+      </button>
+    </div>
+
+    <!-- end -->
+    <div class="">
+      <div class="text-md-left">
+        <div class="mt-3"></div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" value="SecondStep" id="CurrentStep" name="CurrentStep" />
+  <input type="hidden" value="Next" id="StepType" name="StepType" />
+</div>

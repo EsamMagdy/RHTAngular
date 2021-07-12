@@ -1,0 +1,29 @@
+<div
+  class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3 wow fadeInUp"
+  data-wow-delay="0.5s"
+  style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+>
+  {{ 'PricingDetails.Header' | translate }}
+</div>
+<div>
+  <div
+    class="row wow fadeInUp"
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="col-md mb-3">
+      <app-pricing-details></app-pricing-details>
+    </div>
+    <div class="col-md mb-3">
+      <app-employee-details *ngIf="employee"></app-employee-details>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mt-4" data-wow-delay="0.2s">
+    <button (click)="workerPage()" class="btn btn-lg btn-outline-primary">
+        {{'Shared.Previous'|translate}}
+    </button>
+    <button (click)="completingDataOrcontractPage()" class="btn btn-lg btn-primary">
+      {{'Shared.Next'|translate}}
+    </button>
+  </div>
+</div>

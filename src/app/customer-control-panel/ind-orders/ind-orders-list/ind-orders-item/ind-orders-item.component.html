@@ -1,0 +1,55 @@
+<table class="table table-bordered table-light table-hover">
+  <tbody>
+    <tr>
+      <th class="font-weight-light">
+        {{ "Dashboard.RequestNumber" | translate }}
+      </th>
+      <th class="font-weight-normal">{{ "Dashboard.FinalPrice" | translate }}</th>
+      <th class="font-weight-normal">{{ "Dashboard.RequestStatus" | translate }}</th>
+      <th class="font-weight-normal">{{ "Dashboard.RequestDate" | translate }}</th>
+      <th class="font-weight-normal" style="width: 100px">{{ "Dashboard.Options" | translate }}</th>
+    </tr>
+    <tr
+      *ngFor="
+        let indContractReq of indContractRequests
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: pageNumebr,
+                totalItems: totalCount
+              }
+      "
+    >
+      <td>
+        <a
+          [routerLink]="[
+            '../ind-orders/ind-orders-details/',
+            indContractReq.individualContractRequestId
+          ]"
+          class="font-secondary"
+          >{{ indContractReq.contractRequestNumber }}</a
+        >
+      </td>
+      <td class="font-secondary">{{ indContractReq.finalPrice }}</td>
+      <td>
+        <span class="badge badge-danger">{{
+          indContractReq.statusCodeName
+        }}</span>
+      </td>
+      <td class="font-secondary">{{ indContractReq.requestDate }}</td>
+      <td>
+        <a
+          [routerLink]="[
+            '../ind-orders/ind-orders-details/',
+            indContractReq.individualContractRequestId
+          ]"
+          class="border-0 btn btn-primary btn-sm text-white"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="عرض"
+          ><i class="fa fa-eye"></i
+        ></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

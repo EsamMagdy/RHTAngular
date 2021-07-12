@@ -1,0 +1,150 @@
+<div class="inner-slider py-md-5 py-4">
+  <div class="container">
+    <div class="my-md-4 text-center text-white">
+      <div class="fs-md-36 fs-18 font-weight-bold">
+        {{ "Faqs.Header" | translate }}
+      </div>
+      <div>
+        {{ "Header.Home" | translate }} // {{ "Faqs.Header" | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+<section class="py-md-5 py-4">
+  <div class="container">
+    <div class="mb-4">
+      <div class="row">
+        <div class="col-md-3">
+          <div
+            class="mb-3 h3 font-weight-bold"
+            innerHtml="{{ 'Faqs.CommonQuestions' | translate }}"
+          >
+            <!-- <div class="text-success">الأسئلة</div>
+            <div class="fs-md-36">الشائعة</div> -->
+          </div>
+          <div class="mb-3 fs-17">
+            <p>
+              {{ "Faqs.DisplayMoreQuesions" | translate }}،
+              <a 
+              [routerLink]="['/contact-us']"
+              class="text-0056a7">{{ "Faqs.MessageUs" | translate }}.</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div id="accordion" role="tablist">
+            <div class="card">
+              <div class="card-header" role="tab" id="headingOne">
+                <h5 class="mb-0">
+                  <a
+                    data-toggle="collapse"
+                    href="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                    class="d-block"
+                  >
+                    {{ "Faqs.FirstHeader" | translate }}
+                    <i class="fa fa-chevron-up float-right p-1"></i>
+                  </a>
+                </h5>
+              </div>
+              <div
+                id="collapseOne"
+                class="collapse show"
+                role="tabpanel"
+                aria-labelledby="headingOne"
+                data-parent="#accordion"
+              >
+                <div class="card-body">
+                  {{ "Faqs.FirstContent" | translate }}
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" role="tab" id="headingTwo">
+                <h5 class="mb-0">
+                  <a
+                    class="collapsed d-block"
+                    data-toggle="collapse"
+                    href="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    {{ "Faqs.SecondHeader" | translate }}
+                    <i class="fa fa-chevron-up float-right p-1"></i>
+                  </a>
+                </h5>
+              </div>
+              <div
+                id="collapseTwo"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingTwo"
+                data-parent="#accordion"
+              >
+                <div class="card-body">
+                  {{ "Faqs.SecondContent" | translate }}
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" role="tab" id="headingThree">
+                <h5 class="mb-0">
+                  <a
+                    class="collapsed d-block"
+                    data-toggle="collapse"
+                    href="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    {{ "Faqs.ThirdHeader" | translate }}
+                    <i class="fa fa-chevron-up float-right p-1"></i>
+                  </a>
+                </h5>
+              </div>
+              <div
+                id="collapseThree"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree"
+                data-parent="#accordion"
+              >
+                <div class="card-body">
+                  {{ "Faqs.ThirdContent" | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" role="tab" id="heading5">
+                <h5 class="mb-0">
+                  <a
+                    class="collapsed d-block"
+                    data-toggle="collapse"
+                    href="#collapse5"
+                    aria-expanded="false"
+                    aria-controls="collapse5"
+                  >
+                    {{ "Faqs.ForthHeader" | translate }}
+                    <i class="fa fa-chevron-up float-right p-1"></i>
+                  </a>
+                </h5>
+              </div>
+              <div
+                id="collapse5"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="heading5"
+                data-parent="#accordion"
+              >
+                <div class="card-body">
+                  {{ "Faqs.ForthContent" | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,242 @@
+<div class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3">
+  {{ "CustomerTicket.CreateCustomerTicket" | translate }}
+</div>
+<form (ngSubmit)="onCreateTicket()" #ticketForm="ngForm">
+  <div class="form-group row">
+    <label for="inputSectorType" class="col-sm-3 col-form-label"
+      >{{ "CustomerTicket.SectorType" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        inputId="inputSectorType"
+        #drpHousingType="ngModel"
+        name="sectorType"
+        #sectorType="ngModel"
+        [options]="sectors"
+        [(ngModel)]="selectedSectors"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        (onChange)="getTicketItem()"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+        emptyMessage="'Shared.NoRecordsFound' | translate "
+        emptyFilterMessage="{{ 'Shared.NoResultsFound' | translate }}"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div class="country-item country-item-value" *ngIf="selectedSectors">
+            <div>{{ selectedSectors.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-professions pTemplate="item">
+          <div class="country-item">
+            <div>{{ professions.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (sectorType.errors?.required && sectorType.touched) ||
+          (sectorType.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'CustomerTicket.SectorTypeRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <!-- <div class="form-group row">
+    <label for="inputContractId" class="col-sm-3 col-form-label"
+      >{{'Dashboard.ContractNumber'|translate}}</label
+    >
+    <div class="col-sm-9">
+      <p-dropdown
+        inputId="inputContractId"
+        #drpHousingType="ngModel"
+        name="ContractId"
+        #contractId="ngModel"
+        [options]="activeContracts"
+        [(ngModel)]="selectedActiveContracts"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedActiveContracts"
+          >
+            <div>{{ selectedActiveContracts.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-professions pTemplate="item">
+          <div class="country-item">
+            <div>{{ professions.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (contractId.errors?.required && contractId.touched) ||
+          (contractId.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Ticket.ContractNumberRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div> -->
+  <div class="form-group row">
+    <label for="inputTicketingGroupId" class="col-sm-3 col-form-label">{{
+      "CustomerTicket.TicketGroup" | translate
+    }}</label>
+    <div class="col-sm-9">
+      <p-dropdown
+        inputId="inputTicketingGroupId"
+        #ticketingGroupId="ngModel"
+        name="ticketingGroupId"
+        [options]="ticketTypeGroup"
+        [(ngModel)]="selectedTicketTypeGroup"
+        (onChange)="getTicketItem()"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+        emptyMessage="'Shared.NoRecordsFound' | translate "
+        emptyFilterMessage="{{ 'Shared.NoResultsFound' | translate }}"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedTicketTypeGroup"
+          >
+            <div>{{ selectedTicketTypeGroup.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-professions pTemplate="item">
+          <div class="country-item">
+            <div>{{ professions.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (ticketingGroupId.errors?.required && ticketingGroupId.touched) ||
+          (ticketingGroupId.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'CustomerTicket.TicketGroupRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="showTicketItems">
+    <label for="inputTicketingItems" class="col-sm-3 col-form-label">{{
+      "CustomerTicket.TicketType" | translate
+    }}</label>
+    <div class="col-sm-9">
+      <p-dropdown
+        inputId="inputTicketingItems"
+        #ticketingItems="ngModel"
+        name="ticketingTypeId"
+        [options]="ticketItems"
+        [(ngModel)]="selectedTicketItems"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+        emptyMessage="'Shared.NoRecordsFound' | translate "
+        emptyFilterMessage="{{ 'Shared.NoResultsFound' | translate }}"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedTicketItems"
+          >
+            <div>{{ selectedTicketItems.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-ticketItems pTemplate="item">
+          <div class="country-item">
+            <div>{{ ticketItems.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (ticketingItems.errors?.required && ticketingItems.touched) ||
+          (ticketingItems.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'CustomerTicket.TicketItemRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="problemDetails" class="col-sm-3 col-form-label">{{
+      "CustomerTicket.TicketDetails" | translate
+    }}</label>
+    <div class="col-sm-9">
+      <textarea
+        name="problemDetails"
+        id="problemDetails"
+        ngModel
+        #problemDetails="ngModel"
+        required
+        class="form-control"
+        rows="6"
+        placeholder="{{ 'CustomerTicket.EnterTicketDetails' | translate }}"
+      ></textarea>
+      <p-message
+        *ngIf="
+          (problemDetails.errors?.required && problemDetails.touched) ||
+          (problemDetails.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'CustomerTicket.TicketDetailsRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-9 offset-sm-3">
+      <button type="submit" class="btn btn-primary btn-lg">
+        {{ "CustomerTicket.SendTicket" | translate }}
+      </button>
+      <button type="button" (click)="cancelTicket()" class="btn btn-secondary btn-lg">
+        {{ "Shared.Cancel" | translate }}
+      </button>
+    </div>
+  </div>
+</form>
+<app-alert
+  *ngIf="success"
+  life="5000"
+  message="{{ 'Shared.ModificationsSavedWithTimeOut' | translate }}"
+  severity="success"
+  summary="{{ 'Shared.OperationSuccess' | translate }}"
+></app-alert>

@@ -1,0 +1,40 @@
+<div class="bg-e6e6e6 rounded-10 p-3 mb-3">
+  <form (ngSubmit)="filterPackages()" #filterForm="ngForm">
+    <div class="fs-md-18 font-weight-bold mb-3">
+      {{ "Pricing.FilterResult" | translate }}
+    </div>
+    <div class="mb-3">
+      <p-dropdown
+        name="profession"
+        [(ngModel)]="selectedProfession"
+        [options]="professions"
+        placeholder="{{
+          'Pricing.ChooseProfession' | translate
+        }}"
+        optionLabel="value"
+        [showClear]="false"
+        (onChange)="onChangeProfession($event.value)"
+      ></p-dropdown>
+    </div>
+    <div class="mb-3">
+      <p-dropdown
+        name="nationality"
+        [(ngModel)]="selectedNationality"
+        [options]="nationalities"
+        placeholder="{{
+          'Pricing.ChooseNationality' | translate
+        }}"
+        optionLabel="nationalityName"
+        [showClear]="false"
+        (onChange)="onChangeNationality($event.value)"
+      ></p-dropdown>
+    </div>
+    <div class="align-items-center d-flex justify-content-between mt-3">
+      <button class="btn btn-primary" type="submit">
+        {{ "Pricing.ShowPackages" | translate }}
+      </button>
+      <!-- <a href="#" class="btn btn-primary">{{'Pricing.ShowPackages'|translate}}</a> -->
+      <i class="reset-search"></i>
+    </div>
+  </form>
+</div>

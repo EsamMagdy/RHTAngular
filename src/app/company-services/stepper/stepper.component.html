@@ -1,0 +1,159 @@
+<div class="steps mb-md-4 mb-3">
+  <div
+    [ngClass]="{
+      'step-done': step > 1,
+      'step-current': step == 1
+    }"
+    class="step step-no-1 wow fadeInUp"
+    data-wow-delay="0"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{ "Stepper.FirstStep" | translate }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.SelectAddress" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    class="step step-no-2 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 2,
+      'step-current': step == 2
+    }"
+    data-wow-delay="0.1s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{ "Stepper.SecondStep" | translate }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.ChoosePricing" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    class="step step-no-3 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 3,
+      'step-current': step == 3
+    }"
+    data-wow-delay="0.15s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{ "Stepper.ThirdStep" | translate }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.ChooseEmployee" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    class="step step-no-4 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 4,
+      'step-current': step == 4
+    }"
+    data-wow-delay="0.2s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{ "Stepper.ForthStep" | translate }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.Details" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="showCompletedData"
+    class="step step-no-5 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 5,
+      'step-current': step == 5
+    }"
+    data-wow-delay="0.25s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{ "Stepper.FifthStep" | translate }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.CompletingData" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    class="step step-no-5 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 6,
+      'step-current': step == 6
+    }"
+    data-wow-delay="0.25s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{
+          showCompletedData == true
+            ? ("Stepper.SixthStep" | translate)
+            : ("Stepper.FifthStep" | translate)
+        }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.DsiplayContract" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    class="step step-no-6 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 7,
+      'step-current': step == 7
+    }"
+    data-wow-delay="0.3s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{
+          showCompletedData == true
+            ? ("Stepper.SeventhStep" | translate)
+            : ("Stepper.SixthStep" | translate)
+        }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.Attachments" | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    class="step step-no-7 wow fadeInUp"
+    [ngClass]="{
+      'step-done': step > 8,
+      'step-current': step == 8
+    }"
+    data-wow-delay="0.35s"
+  >
+    <div class="step-icon"></div>
+    <div class="step-text d-none d-lg-block">
+      <div class="font-weight-bold fs-15">
+        {{
+          showCompletedData == true
+            ? ("Stepper.EighthStep" | translate)
+            : ("Stepper.SeventhStep" | translate)
+        }}
+      </div>
+      <div class="fs-18 d-none d-md-block">
+        {{ "Stepper.Payment" | translate }}
+      </div>
+    </div>
+  </div>
+</div>

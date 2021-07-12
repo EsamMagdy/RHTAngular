@@ -1,0 +1,6 @@
+/* p-dropdown.ng-invalid.ng-touched>.p-dropdown {
+    border-color: black !important;
+} */
+:host ::ng-deep p-dropdown.ng-invalid.ng-touched>.p-dropdown {
+    border-color: #ced4da !important;
+}

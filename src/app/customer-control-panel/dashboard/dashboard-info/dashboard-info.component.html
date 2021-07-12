@@ -1,0 +1,135 @@
+<div class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3">
+  {{ "Dashboard.Dashboard" | translate }}
+</div>
+<div class="p-2">
+  <div class="row half-gutters dashboard">
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.contractCount.currentContracts
+              }}</span
+              >{{ "Dashboard.CurrentContracts" | translate }}
+            </div>
+            <div class="col-4"><i class="fa-list-alt fa fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.contractCount.almostOverContracts
+              }}</span
+              >{{ "Dashboard.ContractsExpired" | translate }}
+            </div>
+            <div class="col-4"><i class="fa fa-address-book-o fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.contractCount.cancelledContracts
+              }}</span
+              >{{ "Dashboard.ContractsCancelled" | translate }}
+            </div>
+            <div class="col-4"><i class="fa-times-circle fa fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.contractCount.remainingVisits
+              }}</span
+              >{{ "Dashboard.RemainingVisits" | translate }}
+            </div>
+            <div class="col-4"><i class="fa-car fa fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.complainsCount.complains
+              }}</span
+              >{{ "Dashboard.ComplationsNumbers" | translate }}
+            </div>
+            <div class="col-4"><i class="fa-question-circle fa fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.complainsCount.closedComplains
+              }}</span
+              >{{ 'Dashboard.ClosedSupportTickets' | translate }}
+            </div>
+            <div class="col-4"><i class="fa fa-check-circle-o fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.complainsCount.openedComplains
+              }}</span
+              >{{ 'Dashboard.OpenedSupportTickets' | translate }}
+            </div>
+            <div class="col-4"><i class="fa-question fa fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <span class="d-block font-secondary fs-40 lh-30">{{
+                dashboard?.leadCount
+              }}</span
+              >{{ 'Dashboard.Requests' | translate }}
+            </div>
+            <div class="col-4"><i class="fa fa-clipboard fs-44"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+  </div>
+</div>

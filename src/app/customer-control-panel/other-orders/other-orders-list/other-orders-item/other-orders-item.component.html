@@ -1,0 +1,58 @@
+<table class="table table-bordered table-light table-hover">
+  <tbody>
+    <tr>
+      <th class="font-weight-light">
+        {{ "Dashboard.RequestNumber" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "Shared.OrderDetails" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "Dashboard.RequestStatus" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "Dashboard.RequestDate" | translate }}
+      </th>
+      <!-- <th class="font-weight-normal" style="width: 100px">
+        {{ "Dashboard.Options" | translate }}
+      </th> -->
+    </tr>
+    <tr
+      *ngFor="
+        let lead of leads
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: pageNumebr,
+                totalItems: totalCount
+              }
+      "
+    >
+      <td>
+        <!-- <a
+          [routerLink]="['../other-orders/other-orders-details/', lead.id]"
+          class="font-secondary"
+          >{{ lead.code }}</a
+        > -->
+        <span class="font-secondary">
+          {{ lead.code }}
+        </span>
+      </td>
+      <td class="font-secondary">{{ lead.description }}</td>
+      <td>
+        <span class="badge badge-danger">{{ lead.statusName }}</span>
+      </td>
+      <td class="font-secondary">{{ lead.createdOn }}</td>
+      <!-- <td>
+        <a
+          href="contracts-details.html"
+          class="border-0 btn btn-primary btn-sm text-white"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="عرض"
+          ><i class="fa fa-eye"></i
+        ></a>
+      </td> -->
+    </tr>
+  </tbody>
+</table>

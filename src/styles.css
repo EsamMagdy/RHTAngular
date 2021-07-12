@@ -1,0 +1,187 @@
+/* You can add global styles to this file, and also import other style files */
+
+.splash-logo {
+  left: 50%;
+  top: 50%;
+  margin-left: -26px;
+  margin-top: -26px;
+  z-index: 2;
+  position: absolute;
+  width: 54px;
+}
+
+.splash-loader,
+.splash-loader:before,
+.splash-loader:after {
+  left: 50%;
+  top: 50%;
+  margin-left: -45px;
+  margin-top: -45px;
+  position: absolute;
+  vertical-align: middle;
+  background: #2196f3;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.splash-loader {
+  background: transparent;
+}
+
+.splash-loader:before {
+  content: "";
+  animation: bounce 1.5s infinite;
+}
+
+.splash-loader:after {
+  content: "";
+  animation: bounce 1.5s -0.4s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.3);
+    -webkit-transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    -webkit-transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    transform: scale(0.3);
+    -webkit-transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    -webkit-transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.splash-screen {
+  background-color: #f3f3f3;
+  height: 100%;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #f44336 !important;
+}
+.p-dropdown {
+  width: 100% !important;
+  border-radius: 1.5rem !important;
+}
+
+p-dropdown.ng-invalid.ng-touched > .p-dropdown {
+  border-color: #f44336 !important;
+}
+.card {
+  padding: 2%;
+  margin: 2% 2% 0 2%;
+  border-radius: 10px;
+}
+
+/* div#p-panel-0 {
+    margin: 2%;
+} */
+
+.stepsdemo-content {
+  margin: 2%;
+}
+
+:host ::ng-deep .p-dropdown {
+  width: 100%;
+}
+
+.color-7a2cb3 {
+  color: #7a2cb3;
+}
+
+.alert-danger {
+  color: #ab0d1c;
+  background-color: #f8d7da;
+  border-color: #e68791;
+}
+
+.p-inline-message-error {
+  width: 100%;
+  border-radius: 1.5rem;
+}
+.p-card-title {
+  background: #e3f2fd;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 3px 3px -2px rgb(0 0 0 / 20%), 0 3px 4px 0 rgb(0 0 0 / 14%),
+    0 1px 8px 0 rgb(0 0 0 / 12%);
+}
+
+:host ::ng-deep .p-component {
+  font-family: "Tajawal", sans-serif !important;
+  font-size: 1.0625rem !important;
+  font-weight: normal !important;
+}
+.p-inputtext {
+  font-family: "Tajawal", sans-serif !important;
+  font-size: 1.0625rem !important;
+  font-weight: normal !important;
+}
+.animated {
+  visibility: visible !important;
+}
+.hide-on-init {
+  visibility: hidden;
+}
+/* .pi-step-backward:before {
+  content: "\e917";
+}
+
+.pi-step-forward:before {
+  content: "\e916";
+}
+
+.pi-caret-right:before {
+  content: "\e904";
+}
+.pi-angle-double-left:before {
+  content: "\e905";
+}
+.pi-angle-left:before {
+  content: "\e905";
+}
+.pi-angle-double-right:before {
+  content: "\e904";
+}
+.pi-angle-right:before {
+  content: "\e904";
+} */
+
+.my-pagination .ngx-pagination .current {
+  background: #0081c8;
+}
+html:lang(en) .p-scrollpanel-content {
+  padding: 0px 0px 18px 18px;
+}
+.p-dialog-footer:lang(en){
+  direction: rtl;
+}
+.p-dialog-footer:lang(ar){
+  direction: ltr;
+}
+.p-dialog-header:lang(en){
+  direction: rtl;
+}
+.p-dialog-header:lang(ar){
+  direction: ltr;
+}
+.p-inline-message .p-inline-message-icon:lang(ar) {
+  font-size: 1rem;
+  margin-left: .5rem;
+  margin-right: 0.5rem;
+}

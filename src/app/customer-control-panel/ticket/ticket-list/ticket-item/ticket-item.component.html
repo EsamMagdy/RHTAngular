@@ -1,0 +1,68 @@
+<table class="table table-bordered table-light table-hover">
+  <tbody>
+    <tr>
+      <th class="font-weight-light">
+        {{ "CustomerTicket.TicketNumber" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "CustomerTicket.SectorType" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "CustomerTicket.TicketGroup" | translate }}
+      </th>
+      <th class="font-weight-normal">
+        {{ "CustomerTicket.TicketType" | translate }}
+      </th>
+      <th class="font-weight-normal" style="width: 100px">
+        {{ "CustomerTicket.TicketStatus" | translate }}
+      </th>
+      <th class="font-weight-normal" style="width: 100px">
+        {{ "Dashboard.RequestDate" | translate }}
+      </th>
+      <!-- <th class="font-weight-normal" style="width: 100px">
+        {{ "Dashboard.Options" | translate }}
+      </th> -->
+    </tr>
+    <tr
+      *ngFor="
+        let ticket of tickets
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: pageNumebr,
+                totalItems: totalCount
+              }
+      "
+    >
+      <!-- <td>
+        <a href="contracts-details.html" class="font-secondary">{{
+          ticket.ticketNumber
+        }}</a>
+      </td> -->
+      <td class="font-secondary">{{ ticket.ticketNumber }}</td>
+      <td class="font-secondary">{{ ticket.sectorTypeName }}</td>
+      <td>
+        <span class="badge badge-danger">{{
+          ticket.ticketingGroupNameAr
+        }}</span>
+      </td>
+      <td>
+        <span class="badge badge-danger">{{ ticket.ticketingTypeNameAr }}</span>
+      </td>
+      <td>
+        <span class="badge badge-danger">{{ ticket.statusName }}</span>
+      </td>
+      <td class="font-secondary">{{ ticket.createdOn }}</td>
+      <!-- <td>
+        <a
+          href="contracts-details.html"
+          class="border-0 btn btn-primary btn-sm text-white"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="عرض"
+          ><i class="fa fa-eye"></i
+        ></a>
+      </td> -->
+    </tr>
+  </tbody>
+</table>

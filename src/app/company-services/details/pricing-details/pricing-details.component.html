@@ -1,0 +1,99 @@
+<div class="box-shadow h-100 position-relative rounded-10 overflow-hidden">
+  <div class="p-3 bg-grad-blue text-white fs-md-22 text-center">
+    {{ "PricingDetails.PricingDetails" | translate }}
+  </div>
+  <div class="p-3">
+    <div class="row">
+      <div class="col-md-12 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.Pricing" | translate }} :
+        {{ pricing.priceTypeName }}
+      </div>
+      <div class="col-md-12 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.ContractPeriod" | translate }} :
+        {{ pricing.periodinDaiys }}
+      </div>
+      <div class="col-md-12 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.RequestDate" | translate }} : {{ requestDate }}
+      </div>
+      <div class="col-md-12 mb-2">
+        <i class="info-icon-small"></i>
+        {{ "PricingDetails.PackagePrcing" | translate }}:
+        {{ pricing.contractpricewithoutvat }} {{ "Shared.SAR" | translate }}
+      </div>
+      <div *ngIf="pricing.discount">
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "PricingDetails.DiscountValue" | translate }} :
+          {{ pricing.discount }}
+          {{ "Shared.SAR" | translate }}
+        </div>
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "PricingDetails.TotalAfterDiscount" | translate }} :
+          {{ pricing.amountafterdiscount }}{{ "Shared.SAR" | translate }}
+        </div>
+      </div>
+      <div
+        *ngIf="
+          pricing.activationAmount &&
+          pricing.activationAmount < pricing.contractpricewithoutvat
+        "
+      >
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "PricingDetails.ContractActivitaion" | translate }} :
+          {{ pricing.activationAmount }}{{ "Shared.SAR" | translate }}
+        </div>
+      </div>
+      <div
+        *ngIf="
+          indivContractReq.insurancePaymentMethod == 2 && pricing.sanadAmount
+        "
+      >
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "PricingDetails.DiscountValue" | translate }} :
+          {{ pricing.sanadAmount }}
+          {{ "Shared.SAR" | translate }}
+        </div>
+      </div>
+      <div *ngIf="pricing.prePaid">
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "PricingDetails.AdvancedPayment" | translate }} :
+          {{ pricing.prePaid }} {{ "Shared.SAR" | translate }}
+        </div>
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "Pricing.MonthlyPaid" | translate }} : {{ pricing.monthlyPaid }}
+          {{ "Shared.SAR" | translate }}
+        </div>
+      </div>
+      <div class="col-md-12 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.TaxValue" | translate }} : {{ pricing.vatamount }}
+        {{ "Shared.SAR" | translate }}
+      </div>
+      <div class="col-md-12 mb-2">
+        <i class="info-icon-small"></i
+        >{{ "Pricing.TotalPriceWithVat" | translate }} :
+        {{ pricing.contractAmount }} {{ "Shared.SAR" | translate }}
+      </div>
+      <div
+        *ngIf="
+          indivContractReq.deliveryCost &&
+          indivContractReq.howtoReceiveWorker == HowToRecieveWorker.Delivery
+        "
+      >
+        <div class="col-md-12 mb-2">
+          <i class="info-icon-small"></i
+          >{{ "PricingDetails.DeliveryCharge" | translate }} :
+          {{ indivContractReq.deliveryCost }} {{ "Shared.SAR" | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

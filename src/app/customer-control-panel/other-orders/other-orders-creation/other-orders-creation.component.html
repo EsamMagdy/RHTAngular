@@ -1,0 +1,220 @@
+<div class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3">
+  {{ "OtherOrders.Create" | translate }}
+</div>
+<form (ngSubmit)="createIndiv()" #indivForm="ngForm">
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-3 col-form-label">
+      {{ "ContactUs.FullName" | translate }}</label
+    >
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        id="inputName"
+        placeholder="{{ 'ContactUs.FullName' | translate }}"
+        (keydown)="onChangeName($event)"
+        name="lastName"
+        required
+        #indName="ngModel"
+        [(ngModel)]="name"
+      />
+      <p-message
+        *ngIf="
+          (indName.errors?.required && indName.touched) ||
+          (indName.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'ContactUs.FullNameRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputMobile" class="col-sm-3 col-form-label">
+      {{ "ContactUs.PhoneNumber" | translate }}</label
+    >
+    <div class="col-sm-9">
+      <input
+        type="tel"
+        class="form-control"
+        id="inputMobile"
+        placeholder="{{ 'ContactUs.PhoneNumber' | translate }}"
+        name="mobilePhone"
+        #mobile="ngModel"
+        [ngModel]="mobileNumber"
+        appCheckMobile
+        required
+        readonly
+      />
+      <!-- <p-message
+        *ngIf="
+          (mobile.errors?.required && mobile.touched) ||
+          (mobile.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Auth.MobileRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+      <p-message
+        *ngIf="
+          (mobile.errors?.notMobile && mobile.touched) ||
+          (mobile.errors?.notMobile && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'Auth.MobileNotValid' | translate }}"
+      >
+      </p-message> -->
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputProfession" class="col-sm-3 col-form-label"
+      >{{ "OtherOrders.PreferedProfession" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        inputId="inputProfession"
+        #drpHousingType="ngModel"
+        name="preferredProfession"
+        #preferredProfession="ngModel"
+        [options]="professions"
+        [(ngModel)]="selectedProfession"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedProfession"
+          >
+            <div>{{ selectedProfession.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-professions pTemplate="item">
+          <div class="country-item">
+            <div>{{ professions.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (preferredProfession.errors?.required &&
+            preferredProfession.touched) ||
+          (preferredProfession.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'OtherOrders.ProfessionRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputNationality" class="col-sm-3 col-form-label"
+      >{{ "OtherOrders.PreferdNationality" | translate }}
+    </label>
+    <div class="col-sm-9">
+      <p-dropdown
+        inputId="inputNationality"
+        #drpHousingType="ngModel"
+        name="nationalityId"
+        #nationality="ngModel"
+        [options]="nationalities"
+        [(ngModel)]="selectedNationalitie"
+        optionLabel="value"
+        [filter]="true"
+        filterBy="value"
+        [showClear]="false"
+        [required]="true"
+        placeholder="{{ 'Shared.Select' | translate }}"
+        aria-describedby="citiesError"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedNationalitie"
+          >
+            <div>{{ selectedNationalitie.value }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-nationalities pTemplate="item">
+          <div class="country-item">
+            <div>{{ nationalities.value }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-message
+        *ngIf="
+          (nationality.errors?.required && nationality.touched) ||
+          (nationality.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'OtherOrders.NationalityRequired' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputDetails" class="col-sm-3 col-form-label">{{
+      "Shared.OrderDetails" | translate
+    }}</label>
+    <div class="col-sm-9">
+      <textarea
+        id="inputDetails"
+        class="form-control"
+        rows="6"
+        placeholder="{{ 'OtherOrders.EnterRequestDetails' | translate }}"
+        required
+        name="description"
+        #details="ngModel"
+        ngModel
+      ></textarea>
+      <p-message
+        *ngIf="
+          (details.errors?.required && details.touched) ||
+          (details.errors?.required && submitted)
+        "
+        styleClass="p-mt-1"
+        severity="error"
+        text="{{ 'OtherOrders.Details' | translate }}"
+        id="floorNumberError"
+      >
+      </p-message>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-9 offset-sm-3">
+      <button type="submit" class="btn btn-primary btn-lg">
+        {{ "OtherOrders.Send" | translate }}
+      </button>
+      <button
+        type="button"
+        (click)="onCancelIndiv()"
+        class="btn btn-secondary btn-lg"
+      >
+        {{ "Shared.Cancel" | translate }}
+      </button>
+    </div>
+  </div>
+</form>
+<app-alert
+  *ngIf="success"
+  life="5000"
+  message="{{ 'Shared.ModificationsSavedWithTimeOut' | translate }}"
+  severity="success"
+  summary="{{ 'Shared.OperationSuccess' | translate }}"
+></app-alert>

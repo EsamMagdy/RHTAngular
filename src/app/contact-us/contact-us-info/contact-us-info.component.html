@@ -1,0 +1,65 @@
+<div class="mb-3 h3 font-weight-bold">
+    <div class="text-success">
+      {{ "ContactUs.ContactUs" | translate }}
+    </div>
+  </div>
+  <div
+    class="mb-3 fs-17"
+    innerHtml="{{ 'ContactUs.Questions' | translate }}"
+  >
+    <!-- <p>
+      نقوم بعرض أكثر الأسئلة والأجوبة المتكررة التى قد يحتاجها المواطن،
+      <span class="text-0056a7"
+        >كما يمكنك مراسلتنا فى حال عدم وجود إجابة لسؤالك.</span
+      >
+    </p> -->
+  </div>
+  <div class="">
+    <div class="mb-3" innerHtml="{{ 'ContactUs.Address' | translate }}">
+      <!-- <div class="fs-18 font-weight-bold">
+        <i class="fa fa-map-marker mr-2"></i>العنوان
+      </div>
+      <div class="">الرياض - فرع حي التعاون _ شارع دمياط</div> -->
+    </div>
+    <div class="mb-3" innerHtml="{{ 'ContactUs.Mobile' | translate }}">
+      <!-- <div class="fs-18 font-weight-bold">
+        <i class="fa fa-phone mr-2"></i>الهاتف
+      </div>
+      <div class="">
+        <div class="ltr text-left">
+          920012051 - 0533521928 - 0550952932 - 0533438755 - 0533630795
+        </div>
+      </div> -->
+    </div>
+    <div
+      class="mb-3"
+      innerHtml="{{ 'ContactUs.WorkHours' | translate }}"
+    >
+      <!-- <div class="fs-18 font-weight-bold">
+        <i class="fa fa-clock-o mr-2"></i>ساعات العمل
+      </div>
+      <div class="">
+        الأحد - الخميس : من 9 ص حتى 9 م
+        <br />
+        الجمعة : من 4 م حتى 9 م
+        <br />
+        السبت : من 10 ص حتى 9 م
+      </div> -->
+    </div>
+    <div class="mb-3" innerHtml="{{ 'ContactUs.Notes' | translate }}">
+      <!-- <div class="fs-18 font-weight-bold">
+        <i class="fa fa-envelope fas mr-2"></i>للاقتراحات والملاحظات
+      </div>
+      <div class="">
+        <a href="mailto:customercare@rahat_alosra.com"
+          >customercare@rahat_alosra.com</a
+        >
+      </div> -->
+    </div>
+    <div class="mb-3">
+      <a [routerLink]="['./branches']" class="btn btn-lg btn-primary"
+        ><i class="fa fa-map-o mr-2"></i
+        >{{ "ContactUs.BrowseBranches" | translate }}</a
+      >
+    </div>
+  </div>

@@ -1,0 +1,88 @@
+<p-messages *ngIf="packages?.length == 0" severity="info">
+  <ng-template pTemplate>
+    <i class="pi pi-ban"></i>
+    <div class="p-ml-2">{{ "Pricing.NoPackages" | translate }}</div>
+  </ng-template>
+</p-messages>
+<div *ngIf="packages && packages.length > 0" class="row custom-radios3">
+  <div class="col-lg-4 col-md-6 mb-43" *ngFor="let item of packages">
+    <input id="radio1" type="radio" name="select-location" />
+    <label
+      for="radio1"
+      class="cr2-label p-3 text-left"
+      [ngClass]="{ active: item.isSelected }"
+    >
+      <div (click)="onChoosePackage(item)">
+        <i class="package-check-circle"></i>
+        <div class="text-0056a7 fs-md-22 font-weight-bold mb-3">
+          {{ "Pricing.Package" | translate }}
+          {{ item.priceTypeName }}
+        </div>
+        <div *ngIf="item.discount && item.discount > 0">
+          <div>
+            {{ "Pricing.PriceBeforeDiscount" | translate }} :
+            {{ item.contractpricewithoutvat | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+          <div>
+            {{ "Pricing.Discount" | translate }} :
+            {{ item.discount | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+          <div>
+            {{ "Pricing.PriceAfterDiscount" | translate }} :
+            {{ item.amountafterdiscount | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+        </div>
+        <div *ngIf="!item.discount && item.discount <= 0">
+          <div>
+            {{ "Pricing.PackagePrice" | translate }}
+            {{ item.contractpricewithoutvat | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+        </div>
+        <div *ngIf="item.prePaid && item.prePaid > 0">
+          <div>
+            {{ "Pricing.AdvancedPayment" | translate }} :
+            {{ item.prePaid | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+          <div>
+            {{ "Pricing.MonthlyPaid" | translate }} :
+            {{ item.monthlyPaid | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+        </div>
+        <div
+          *ngIf="
+            item.activationAmount &&
+            item.activationAmount > 0 &&
+            item.activationAmount < item.contractpricewithoutvat
+          "
+        >
+          <div>
+            {{
+              "Pricing.ActivationContractValueBeforeVat"
+                | translate
+            }}
+            : {{ item.activationAmount | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+          <div>
+            {{ "Pricing.TotalPriceWithVat" | translate }} :
+            {{ item.contractAmount | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+        </div>
+        <div *ngIf="item.amountInsurance && item.amountInsurance != 0">
+          <div>
+            {{ "Pricing.Insurrance" | translate }} :
+            {{ item.amountInsurance | mathRound }}
+            {{ "Shared.SAR" | translate }}
+          </div>
+        </div>
+      </div>
+    </label>
+  </div>
+</div>

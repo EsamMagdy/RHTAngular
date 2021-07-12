@@ -1,0 +1,116 @@
+<div class="">
+  <div>
+    <div
+      class="
+        bg-grad-blue
+        clearfix
+        fs-18
+        p-2
+        rounded-10 rounded-top
+        text-center text-white
+      "
+    >
+      {{ "Contracts.ContractNumberDetails" | translate }} {{ lead?.code }}
+    </div>
+    <!--   
+                  <div
+                    *ngIf="individualContractReq?.wantToRenew"
+                    class="p-8 text-center"
+                  >
+                    <a class="btn bg-brand clearfix fs-18 mb-2 p-2 text-white"
+                      ><i class="fa fa-redo"></i>RenewContract</a
+                    >
+                  </div> -->
+    <div class="border mb-3 p-3">
+      <div class="text-md-left text-center">
+        <div class="bg-white">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i
+                >{{ "Dashboard.ContractNumber" | translate }} :
+                <span class="text-brand">
+                  <span class="font-secondary">{{ lead?.code }}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i
+                >{{ "Contracts.ContractStatus" | translate }} :
+                <span class="text-brand">
+                  <span class="font-secondary">{{ lead?.statusName }}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- @*<div class="col-md-6">
+                              <div class="mb-2">
+                                  <i class="info-icon-small"></i>مده العقد:  <span class="text-brand">
+                                      <span class="font-secondary">@Model.</span>
+                                  </span>
+                              </div>
+                          </div>*@ -->
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i>الجنسية المطلوبة:
+                <span class="text-brand">
+                  <span class="font-secondary">{{ lead?.nationality }}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i>المهنة المطلوبة:
+                <span class="text-brand">
+                  <span class="font-secondary">{{
+                    lead?.preferredProfession
+                  }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- /.row -->
+        <!-- /.row -->
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="
+        bg-grad-blue
+        clearfix
+        fs-18
+        p-2
+        rounded-10 rounded-top
+        text-center text-white
+      "
+    >
+      PricingDetails
+    </div>
+    <div class="border mb-3 p-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="info-icon-small"></i>{{'PricingDetails.Pricing'|translate}} :
+            <span class="text-brand">
+              {{ lead?.lastName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-2">
+            <i class="info-icon-small"></i>{{ "PricingDetails.VatAmount" | translate }} %:
+            <span class="text-brand">{{ lead?.description }} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

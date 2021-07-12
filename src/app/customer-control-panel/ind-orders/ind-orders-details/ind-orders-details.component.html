@@ -1,0 +1,275 @@
+<div class="">
+  <div>
+    <div
+      class="
+        bg-grad-blue
+        clearfix
+        fs-18
+        p-2
+        rounded-10 rounded-top
+        text-center text-white
+      "
+    >
+      {{ "IndividualContractRequest.ContractReqDetails" | translate }}
+      {{ individualContractReq?.contractRequestNumber }}
+    </div>
+    <!--   
+                  <div
+                    *ngIf="individualContractReq?.wantToRenew"
+                    class="p-8 text-center"
+                  >
+                    <a class="btn bg-brand clearfix fs-18 mb-2 p-2 text-white"
+                      ><i class="fa fa-redo"></i>RenewContract</a
+                    >
+                  </div> -->
+    <div class="border mb-3 p-3">
+      <div class="text-md-left text-center">
+        <div class="bg-white">
+          <div class="row">
+            <div
+              *ngIf="
+                individualContractReq?.statusCode == 1 &&
+                individualContractReq?.individualLaborStockId
+              "
+            >
+              <div class="col-md-3">
+                <div class="mb-2">
+                  <a class="btn btn-lg btn-primary" href=""
+                    ><i class="fa fa-credit-card mr-2"></i>
+                    {{ "Shared.PayOnline" | translate }}</a
+                  >
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="mb-2">
+                  <a
+                    class="btn btn-lg btn-primary"
+                    [routerLink]="['/dashboard/upload-attachments']"
+                    ><i class="fa fa-upload mr-2"></i>
+                    {{
+                      "IndividualContractRequest.UploadAttachments" | translate
+                    }}
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="mb-2">
+                  <button
+                    class="btn btn-lg btn-primary"
+                    [swal]="{
+                      title:
+                        'IndividualContractRequest.AskToDeleteIndivContractReq'
+                        | translate,
+                      confirmButtonText: 'Shared.Ok' | translate,
+                      showDenyButton: true,
+                      denyButtonText: 'Shared.Cancel' | translate
+                    }"
+                    (confirm)="cancelRequest()"
+                  >
+                    <i class="fa fa-upload mr-2"></i>
+                    {{ "IndividualContractRequest.CancelRequest" | translate }}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i
+                >{{ "IndividualContractRequest.ContractReqNumber" | translate }}
+                :
+                <span class="text-brand">
+                  <span class="font-secondary">{{
+                    individualContractReq?.contractRequestNumber
+                  }}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i
+                >{{ "IndividualContractRequest.ContractReqStatus" | translate }}
+                :
+                <span class="text-brand">
+                  <span class="font-secondary">{{
+                    individualContractReq?.statusCodeName
+                  }}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- @*<div class="col-md-6">
+                              <div class="mb-2">
+                                  <i class="info-icon-small"></i>مده العقد:  <span class="text-brand">
+                                      <span class="font-secondary">@Model.</span>
+                                  </span>
+                              </div>
+                          </div>*@ -->
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i
+                >{{ "Contracts.RequiredProfession" | translate }}:
+                <span class="text-brand">
+                  <span class="font-secondary">{{
+                    individualContractReq?.nationalityName
+                  }}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <i class="info-icon-small"></i
+                >{{ "Contracts.RequiredProfession" | translate }}:
+                <span class="text-brand">
+                  <span class="font-secondary">{{
+                    individualContractReq?.professionName
+                  }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- /.row -->
+        <!-- /.row -->
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="
+        bg-grad-blue
+        clearfix
+        fs-18
+        p-2
+        rounded-10 rounded-top
+        text-center text-white
+      "
+    >
+      {{ "PricingDetails.PricingDetails" | translate }}
+    </div>
+    <div class="border mb-3 p-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "PricingDetails.Pricing" | translate }} :
+            <span class="text-brand">
+              {{ individualContractReq?.pricingName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "PricingDetails.VatAmount" | translate }} %:
+            <span class="text-brand"
+              >{{ individualContractReq?.vatRate * 100 }} %</span
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "PricingDetails.VatAmountValue" | translate }} :
+            <span class="text-brand">
+              <span class="font-secondary">{{
+                individualContractReq?.vatAmount
+              }}</span>
+              {{ "Shared.Currency" | translate }}
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "Dashboard.FinalPrice" | translate }}:
+            <span class="text-brand">
+              <span class="font-secondary">{{
+                individualContractReq?.totalPrice | mathRound
+              }}</span>
+              {{ "Shared.Currency" | translate }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "Contracts.FinalPricePlusVat" | translate }}:
+            <span class="text-brand">
+              <span class="font-secondary">{{
+                individualContractReq?.finalPrice
+              }}</span>
+              {{ "Shared.Currency" | translate }}
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "Contracts.DeliveryCost" | translate }}:
+            <span class="text-brand">
+              <span class="font-secondary">{{
+                individualContractReq?.deliveryCost
+              }}</span>
+              {{ "Shared.Currency" | translate }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-6" *ngIf="individualContractReq?.deliveryCost">
+          <div class="mb-2">
+            <i class="info-icon-small"></i
+            >{{ "Contracts.FinalPrice" | translate }}:
+            <span class="text-brand">
+              <span class="font-secondary">{{
+                deservedAmount
+              }}</span>
+              {{ "Shared.Currency" | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="has-map">
+    <div class="panel-body">
+      <agm-map
+        [zoom]="12"
+        [latitude]="
+          individualContractReq.latitude != null
+            ? +individualContractReq.latitude
+            : 24.7136
+        "
+        [longitude]="
+          individualContractReq.longitude != null
+            ? +individualContractReq.longitude
+            : 46.6753
+        "
+      >
+        <agm-marker
+          [latitude]="
+            individualContractReq.latitude != null
+              ? +individualContractReq.latitude
+              : 24.7136
+          "
+          [longitude]="
+            individualContractReq.longitude != null
+              ? +individualContractReq.longitude
+              : 46.6753
+          "
+        ></agm-marker>
+        <agm-map-type-control>
+          <button mat-flat-button>Satellite</button>
+          <button mat-flat-button>RoadMap</button>
+        </agm-map-type-control>
+      </agm-map>
+    </div>
+  </div>
+</div>

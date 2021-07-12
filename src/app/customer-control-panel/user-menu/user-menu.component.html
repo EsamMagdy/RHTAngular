@@ -1,0 +1,78 @@
+<div class="bg-e6e6e6 rounded-10 p-3 mb-3">
+  <div class="font-secondary fs-14 p-3 text-center">
+    <div>{{ user.name }}</div>
+    <div>{{ "Dashboard.Mobile" | translate }} : {{ user.phoneNumber }}</div>
+    <div>{{ user.email }}</div>
+  </div>
+
+  <ul class="font-secondary fs-16 m-0 p-0 ssteps">
+    <li class="d-block">
+      <a
+        [routerLink]="['/dashboard']"
+        class="d-block px-3 py-2"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="fa fa-tachometer-alt mr-2"></i>
+        {{ "Dashboard.Dashboard" | translate }}</a
+      >
+    </li>
+    <li class="d-block">
+      <a
+        [routerLink]="['/dashboard', 'profile']"
+        class="d-block px-3 py-2"
+        routerLinkActive="active"
+      >
+        <i class="fa fa-user-circle mr-2"></i>
+        {{ "Dashboard.MyProfile" | translate }}
+      </a>
+    </li>
+    <li class="d-block">
+      <a
+        [routerLink]="['/dashboard', 'contracts']"
+        class="d-block px-3 py-2"
+        routerLinkActive="active"
+        ><i class="fa fa-list-ul mr-2"></i
+        >{{ "Dashboard.IndividualContract" | translate }}</a
+      >
+    </li>
+    <li class="d-block">
+      <a
+        [routerLink]="['/dashboard', 'ind-orders']"
+        class="d-block px-3 py-2"
+        routerLinkActive="active"
+      >
+        <i class="fa fa-info-circle mr-2"></i
+        >{{ "Dashboard.IndividualRequests" | translate }}
+      </a>
+    </li>
+    <li class="d-block">
+      <a
+        [routerLink]="['/dashboard', 'ticket']"
+        class="d-block px-3 py-2"
+        routerLinkActive="active"
+        ><i class="fa fa-question-circle mr-2"></i
+        >{{ "Dashboard.TechnicalSupport" | translate }}</a
+      >
+    </li>
+    <li class="d-block">
+      <a
+        [routerLink]="['/dashboard', 'other-orders']"
+        class="d-block px-3 py-2"
+        routerLinkActive="active"
+        ><i class="fa fa-info-circle mr-2"></i
+        >{{ "Dashboard.OthersRequests" | translate }}</a
+      >
+    </li>
+    <li class="d-block">
+      <a
+        (click)="onLogout()"
+        class="d-block px-3 py-2"
+        tabindex="-1"
+        style="cursor: pointer"
+      >
+        <i class="fa fa-power-off mr-2"></i>{{ "Shared.Logout" | translate }}</a
+      >
+    </li>
+  </ul>
+</div>

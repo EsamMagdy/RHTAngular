@@ -1,0 +1,84 @@
+<div
+  class="text-center fs-md-24 fs-18 font-weight-bold mb-md-4 mb-3 wow fadeInUp"
+  data-wow-delay="0.5s"
+  style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+>
+  {{ "Contract.ContractHeader" | translate }}
+</div>
+<div>
+  <div
+    class="
+      box-shadow
+      h-100
+      position-relative
+      rounded-10
+      overflow-hidden
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.5s"
+    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
+  >
+    <div class="p-4 fs-17">
+      <p-scrollPanel
+        [style]="{ width: '100%', height: '300px' }"
+        styleClass="custombar1"
+      >
+        <div
+          id="print-section"
+          class=""
+          [innerHtml]="templateBody | safeHtml"
+        ></div>
+      </p-scrollPanel>
+
+      <hr />
+
+      <div class="row justify-content-between">
+        <div class="col-md-6 mb-3">
+          <div class="custom-control custom-checkbox">
+            <input
+              (click)="checked = !checked"
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheck8"
+            />
+            <label class="custom-control-label" for="customCheck8">
+              {{ "Contract.Accept" | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-right text-center">
+          <button
+            [useExistingCss]="true"
+            printSectionId="print-section"
+            ngxPrint
+            class="btn btn-lg btn-primary"
+          >
+            {{ "Contract.SaveOrPrint" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div *ngIf="errorMessage">
+    <div
+      class="alert alert-danger wow fadeInUp"
+      data-wow-delay="0.5s"
+      role="alert"
+    >
+      {{ "Contract.Accept" | translate }}
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mt-4" data-wow-delay="0.2s">
+    <button
+      (click)="requestDetailPage()"
+      class="btn btn-lg btn-outline-primary"
+    >
+      {{ "Shared.Previous" | translate }}
+    </button>
+    <button (click)="attachmentsPage()" class="btn btn-lg btn-primary">
+      {{ "Shared.Next" | translate }}
+    </button>
+  </div>
+</div>

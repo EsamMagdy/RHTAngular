@@ -1,0 +1,111 @@
+<div
+  *ngIf="showEmployeePickSource"
+  class="bg-e6e6e6 rounded-10 p-3 mb-3 pl-5 position-relative"
+>
+  <span class="question-icon"><img src="/assets/img/question-icon.png" /></span>
+  <div class="fs-md-18 font-weight-bold mb-3">
+    {{ "Pricing.EmployeePickSourceHeader" | translate }}
+  </div>
+  <div class="fs-md-18 mb-4">
+    <div class="custom-control custom-radio custom-control-inline">
+      <input
+        type="radio"
+        id="customRadioInline1"
+        name="customRadioInline1"
+        class="custom-control-input"
+        [value]="EmployeePickSource.Website"
+        [(ngModel)]="employeePickSource"
+        (click)="employeePickSourceClick(EmployeePickSource.Website)"
+      />
+      <label class="custom-control-label" for="customRadioInline1"
+        >{{ "Pricing.ChooseFromWebSite" | translate }}
+      </label>
+    </div>
+    <div
+      *ngIf="housingBuildings.length > 0"
+      class="custom-control custom-radio custom-control-inline"
+    >
+      <input
+        type="radio"
+        id="customRadioInline2"
+        name="customRadioInline2"
+        class="custom-control-input"
+        (click)="employeePickSourceClick(EmployeePickSource.Company)"
+        [(ngModel)]="employeePickSource"
+        [value]="EmployeePickSource.Company"
+      />
+      <label class="custom-control-label" for="customRadioInline2">{{
+        "Pricing.ChooseFromCompany" | translate
+      }}</label>
+    </div>
+  </div>
+  <div *ngIf="showWebsite">
+    <div class="fs-md-18 font-weight-bold mb-3">
+      {{ "Pricing.WayToReceivingWorker" | translate }}
+    </div>
+    <div class="fs-md-18 mb-4">
+      <div
+        *ngIf="
+          recieveWorkerType == RecieveWorkerType.DeliveryOnly ||
+          recieveWorkerType == RecieveWorkerType.DeliveryAndFromHousing
+        "
+        class="custom-control custom-radio custom-control-inline"
+      >
+        <input
+          type="radio"
+          id="customRadioInline3"
+          name="howtoReceiveWorker"
+          class="custom-control-input"
+          (click)="howToRecieveWorkerClick(HowToRecieveWorker.Delivery)"
+          [(ngModel)]="howtoReceiveWorker"
+          [value]="HowToRecieveWorker.Delivery"
+        />
+        <label class="custom-control-label" for="customRadioInline3"
+          >{{ "Pricing.DeliverToHome" | translate }} (
+          {{ "Pricing.DeliveryExpenses" | translate }}
+          {{ deliveryCost }} {{ "Shared.SAR" | translate }} )
+        </label>
+      </div>
+      <div
+        *ngIf="
+          recieveWorkerType != RecieveWorkerType.DeliveryOnly &&
+          housingBuildings.length > 0
+        "
+        class="custom-control custom-radio custom-control-inline"
+      >
+        <input
+          type="radio"
+          id="customRadioInline4"
+          name="customRadioInline2"
+          class="custom-control-input"
+          (click)="howToRecieveWorkerClick(HowToRecieveWorker.FromBranch)"
+          [value]="HowToRecieveWorker.FromBranch"
+          [(ngModel)]="howtoReceiveWorker"
+        />
+        <label class="custom-control-label" for="customRadioInline4">{{
+          "Pricing.RecieveFromCompany" | translate
+        }}</label>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showCompany && housingBuildings.length > 0" class="row">
+    <div
+      class="col-lg-4 col-md-6 mb-3"
+      *ngFor="let housingBuilding of housingBuildings"
+      (click)="onChooseHousing(housingBuilding)"
+    >
+      <div
+        class="address-select"
+        [ngClass]="{ active: housingBuilding.isSelected }"
+      >
+        <div>
+          <a [href]="housingBuilding.mapUrl" target="_blank" class=""
+            ><i class="address-map-marker"></i
+          ></a>
+        </div>
+        <div>{{ housingBuilding.branchName }}</div>
+        <div><i class="address-check-circle"></i></div>
+      </div>
+    </div>
+  </div>
+</div>

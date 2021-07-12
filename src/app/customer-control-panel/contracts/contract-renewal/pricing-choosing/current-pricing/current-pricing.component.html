@@ -1,0 +1,297 @@
+<div class="border h-100 position-relative rounded-10 overflow-hidden">
+  <div class="p-0" style="/* height:540px */">
+    <div class="bg-grad-blue card-title fs-20 mb-0 p-2 text-center text-white">
+      {{ "PricingDetails.CurrentPricing" | translate }}
+    </div>
+    <div class="p-3">
+      <div class="mb-1 text-center">
+        {{ "Shared.Customer" | translate }} :<span class="color-darkred">{{
+          individualContractProcedure?.contactName
+        }}</span>
+      </div>
+      <div class="mb-3 text-center">
+        {{ "Dashboard.ContractNumber" | translate }} :
+        <span class="color-darkred">{{
+          individualContractProcedure?.oldContractName
+        }}</span>
+      </div>
+      <div class="p-2 rounded-10 box-shadow text-center">
+        <div class="">{{ "PricingDetails.Pricing" | translate }}</div>
+        <div class="text-0056a7 font-weight-bold fs-18 text-center">
+          {{ individualContractProcedure?.oldContractPricingName }}
+        </div>
+
+        <div class="mb-3 text-center">
+          {{ individualContractProcedure?.oldContractPricing.professionName }}
+          -
+          {{ individualContractProcedure?.oldContractPricing.nationalityName }}
+        </div>
+
+        <div>
+          {{ "PricingDetails.ContractPeriod" | translate }} :
+          <span class=""
+            >{{
+              individualContractProcedure?.oldContractPricing.contractMonths
+            }}
+            {{ "PricingDetails.Month" | translate }}</span
+          >
+        </div>
+        <div>
+          {{ "PricingDetails.VatAmount" | translate }} :
+          <span class="">
+            {{
+              individualContractProcedure?.oldContractPricing.everyMonth *
+                individualContractProcedure?.oldContractPricing.monthlyPaid +
+                individualContractProcedure?.oldContractPricing.prePaid *
+                  individualContractProcedure?.vatRate
+            }}
+          </span>
+          {{ "Shared.SAR" | translate }}
+        </div>
+
+        <div
+          *ngIf="
+            individualContractProcedure?.oldContractPricing.activationAmount &&
+            individualContractProcedure?.oldContractPricing.activationAmount >
+              0 &&
+            individualContractProcedure?.oldContractPricing.activationAmount <
+              individualContractProcedure?.oldContractPricing
+                .contractpricewithoutvat
+          "
+        >
+          {{ "PricingDetails.RenewalAmount" | translate }} :
+          <span class="">
+            {{ individualContractProcedure?.oldContractPricing.renewalAmount }}
+          </span>
+          {{ "Shared.Currency" | translate }}
+        </div>
+
+        <div>
+          {{ "PricingDetails.PricingWithVat" | translate }} :
+          <span class="">{{
+            individualContractProcedure?.oldContractPricing.finalPrice +
+              individualContractProcedure?.oldContractPricing.amountInsurance
+          }}</span>
+          {{ "Shared.SAR" | translate }}
+        </div>
+
+        <div
+          *ngIf="
+            individualContractProcedure?.oldContractPricing.discount ||
+            individualContractProcedure?.renewDiscount
+          "
+          class="mb-3"
+        >
+          {{ "PricingDetails.RenewDiscount" | translate }} :
+          <span class="">{{
+            individualContractProcedure?.renewDiscount +
+              individualContractProcedure?.oldContractPricing.discount
+          }}</span>
+          {{ "Shared.SAR" | translate }}
+        </div>
+
+        <h5 *ngIf="individualContractProcedure?.procedureId">
+          {{ "PricingDetails.AndRenewOnPricing" | translate }} :
+          <span class="">{{ individualContractProcedure?.pricingName }}</span>
+        </h5>
+        <div class="text-center my-3">
+          <a
+            id="PricingDetailsBtn"
+            class="btn btn-outline-primary"
+            (click)="displayResponsive = true"
+           
+            >{{ "Stepper.Details" | translate }}</a
+          >
+
+          <button
+            *ngIf="
+              !individualContractProcedure?.procedureId &&
+              individualContractProcedure?.pricing?.stateCode ==
+                CrmEntityState.Active
+            "
+            type="button"
+            class="btn-primary btn renew-new-pricing"
+          >
+            <i class="fa fa-check-circle" hidden></i>
+            {{ "Shared.Select" | translate }}
+        </button>
+
+          <a
+            *ngIf="individualContractProcedure?.procedureId"
+            class="btn-primary btn renew-new-pricing"
+            href="#"
+          >
+            {{ "Shared.Pay" | translate }}
+          </a>
+        </div>
+      </div>
+
+      <div class="box-shadow-grey text-center" id="OldPackage">
+        <div class="">
+          <div class="col-12 row"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="displayResponsive"
+  [style]="{ width: '50vw' }"
+  [responsive]="true"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [modal]="true"
+  [blockScroll]="true"
+  [resizable]="false"
+>
+  <div class="fs-20">
+    <div class="bg-004b8d font-secondary fs-20 p-1 rounded text-center">
+      {{ "PricingDetails.PricingDetails" | translate }}
+    </div>
+    <div class="p-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.Pricing" | translate }}:
+            <span class="color-darkred2">
+              {{ individualContractProcedure?.pricing?.name }}
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.ContractPeriod" | translate }}:
+            <span class="color-darkred2">
+              {{ individualContractProcedure?.pricing?.contractMonths }}
+              {{ "PricingDetails.Month" | translate }}</span
+            >
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.RequestDate" | translate }}:
+            <span class="color-darkred2">
+              <span class="font-secondary">{{ today }}</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.MonthlyPrice" | translate }}:
+            <span class="color-darkred2 font-secondary">{{
+              individualContractProcedure?.pricing?.monthlyPaid | mathRound
+            }}</span
+            ><sub> {{ "Shared.Currency" | translate }} </sub>
+          </div>
+        </div>
+        <div
+          class="col-md-12"
+          *ngIf="individualContractProcedure?.pricing?.amountInsurance"
+        >
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.Insurance" | translate }}:
+            <span class="color-darkred2 font-secondary">{{
+              individualContractProcedure?.pricing?.amountInsurance | mathRound
+            }}</span
+            ><sub>{{ "Shared.Currency" | translate }}</sub>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i>
+            {{ "PricingDetails.PricingWithoutVat" | translate }}:
+            <span class="color-darkred2">
+              <span class="font-secondary">{{
+                individualContractProcedure?.pricing?.everyMonth *
+                  individualContractProcedure?.pricing?.monthlyPaid +
+                  individualContractProcedure?.pricing?.prePaid +
+                  individualContractProcedure?.pricing?.amountInsurance
+                  | mathRound
+              }}</span> </span
+            ><sub>{{ "Shared.Currency" | translate }}</sub>
+          </div>
+        </div>
+        <div
+          class="col-md-12"
+          *ngIf="individualContractProcedure?.pricing?.discount"
+        >
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i> قيمة الخصم:
+            <span class="color-darkred2">
+              <span class="font-secondary">
+                {{ individualContractProcedure?.pricing?.discount }}
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i>
+            {{ "PricingDetails.VatRate" | translate }} :
+            <span class="color-darkred2">
+              <span class="font-secondary">
+                {{ individualContractProcedure?.pricing?.vatRate * 100 }}%</span
+              >
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i>
+            {{ "PricingDetails.VatAmountValue" | translate }} :
+            <span class="color-darkred2">
+              <span class="font-secondary">
+                {{
+                  individualContractProcedure?.pricing?.vatamount | mathRound
+                }}
+              </span> </span
+            ><sub>{{ "Shared.Currency" | translate }}</sub>
+          </div>
+        </div>
+        <div
+          class="col-md-12"
+          *ngIf="
+            individualContractProcedure?.pricing?.activationAmount &&
+            individualContractProcedure?.pricing?.activationAmount > 0 &&
+            individualContractProcedure?.pricing?.activationAmount <
+              individualContractProcedure?.pricing?.contractpricewithoutvat
+          "
+        >
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.RenewalAmount" | translate }} :
+            <span class="color-darkred2">
+              <span class="font-secondary">
+                {{
+                  individualContractProcedure?.pricing?.renewalAmount
+                    | mathRound
+                }}</span
+              > </span
+            ><sub>{{ "Shared.Currency" | translate }}</sub>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-2">
+            <i class="fa-fw fa-info-circle fa fs-12 mr-2"></i
+            >{{ "PricingDetails.FinalPriceWithVat" | translate }}:
+            <span class="color-darkred2">
+              <span class="font-secondary"
+                >{{
+                  individualContractProcedure?.pricing?.finalPrice +
+                    individualContractProcedure?.pricing?.amountInsurance
+                    | mathRound
+                }}
+              </span> </span
+            ><sub>{{ "Shared.Currency" | translate }}</sub>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

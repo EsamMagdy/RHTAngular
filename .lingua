@@ -1,0 +1,16 @@
+{
+  "translationFiles": [
+    {
+      "lang": "enter",
+      "uri": "src/assets/i18n/en.json"
+    },
+    {
+      "lang": "Enter",
+      "uri": "src/assets/i18n/ar.json"
+    },
+    {
+      "lang": "Ente",
+      "uri": "src/assets/i18n/ar.json"
+    }
+  ]
+}

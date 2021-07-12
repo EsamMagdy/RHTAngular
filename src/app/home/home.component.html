@@ -1,0 +1,216 @@
+<div class="home-slider py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 order-md-2 wow fadeInDown" data-wow-delay="0.125s">
+        <img
+          src="/assets/img/header-img.png"
+          class="img-fluid w-lg-100 w-75 mx-auto d-block mb-3 mb-md-0"
+        />
+      </div>
+      <div
+        class="col-md-6 d-flex flex-column justify-content-center order-md-1"
+      >
+        <div class="row no-gutters">
+          <div
+            class="col-lg-8 text-md-left text-center wow fadeInUp"
+            data-wow-delay="0"
+          >
+            <div
+              class="
+                text-white
+                fs-lg-30 fs-md-24 fs-18
+                font-weight-bold
+                text-shadow
+              "
+            >
+              {{ "HOME.SELECT" | translate }}
+            </div>
+            <div
+              class="
+                text-white
+                fs-lg-48 fs-md-36 fs-24
+                font-weight-bold
+                text-shadow
+              "
+            >
+              {{ "HOME.RecruitmentOfQualifiedWorkers" | translate }}
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="my-md-5 my-3 text-md-left text-center wow fadeInUp"
+          data-wow-delay="0.25s"
+        >
+          <a
+            [routerLink]="['/contact-us']"
+            class="
+              btn btn-lg btn-warning btn-contact
+              mr-md-5
+              ml-md-0
+              position-relative
+              mx-2
+            "
+            >{{ "Header.ContactUs" | translate }}
+            <img src="/assets/img/whatsapp-icon.png" class="d-none d-md-block"
+          /></a>
+          <a
+            [routerLink]="['/about']"
+            class="btn btn-lg btn-outline-light btn-about mx-2"
+            >{{ "Header.About" | translate }}</a
+          >
+        </div>
+
+        <div
+          class="row slider-actions text-center wow fadeInUp"
+          data-wow-delay="0.375s"
+        >
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <a
+              [routerLink]="['/services']"
+              class="
+                align-items-center
+                bg-grad-green
+                d-flex
+                flex-md-column flex-row
+                justify-content-center
+                px-3
+                py-4
+                rounded-20
+                w-100
+              "
+            >
+              <div>
+                <img
+                  src="/assets/img/t1.png"
+                  class="img-fluid mx-2"
+                  style="max-width: 15vw"
+                />
+              </div>
+              <div>
+                <div class="font-weight-bold fs-md-22 text-white">
+                  {{ "HOME.DomesticWorkers" | translate }}
+                </div>
+                <div class="text-white">
+                  {{ "HOME.IndividualPricing" | translate }}
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <a
+              [routerLink]="['/contact-us']"
+              class="
+                align-items-center
+                bg-grad-green
+                d-flex
+                flex-md-column flex-row
+                justify-content-center
+                px-3
+                py-4
+                rounded-20
+                w-100
+              "
+            >
+              <div>
+                <img
+                  src="/assets/img/t2.png"
+                  class="img-fluid mx-2"
+                  style="max-width: 15vw"
+                />
+              </div>
+              <div>
+                <div class="font-weight-bold fs-md-22 text-white">
+                  {{ "HOME.NeedHelp" | translate }}
+                </div>
+                <div class="text-white">{{ "HOME.SendNeeds" | translate }}</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- <div class="row slider-actions text-center wow fadeInUp" data-wow-delay="0.375s">
+          <div class="col-md-6 col-8 offset-2 offset-md-0 mb-md-0 mb-3"><a href="#">
+            <img src="/assets/img/x1.png"
+                class="img-fluid d-md-inline d-none"><img src="/assets/img/x1-2.png" class="img-fluid d-inline d-md-none"></a>
+          </div>
+          <div class="col-md-6 col-8 offset-2 offset-md-0"><a href="#">
+            <img src="/assets/img/x2.png"
+                class="img-fluid d-md-inline d-none"><img src="/assets/img/x2-2.png" class="img-fluid d-inline d-md-none"></a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pt-5">
+  <div class="row text-md-left text-center">
+    <div class="col-md-4 mb-5 mt-md-5 wow fadeInUp" data-wow-delay="0.5s">
+      <div class="">
+        <a href="//www.youtube.com/watch?v=t9hS78PMKJE" data-lity>
+          <img src="/assets/img/video-img.png" class="img-fluid"
+        /></a>
+      </div>
+    </div>
+    <div
+      class="col-md-8 mb-5 mt-md-5 wow fadeInUp"
+      data-wow-delay="0.75s"
+      innerHtml="{{ 'HOME.Content' | translate }}"
+    >
+      <!-- <div class="mb-3 h3 font-weight-bold"><span class="text-success">مرحباً بكم</span> في راحة الأسرة</div>
+      <div class="mb-3 fs-17">
+        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
+          حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+        </p>
+        <p>
+          إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو
+          مقسما
+          ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من
+          الأحيان
+          أن يطلع على صورة حقيقية لتصميم الموقع.</p>
+      </div> -->
+    </div>
+  </div>
+  <div class="row text-center">
+    <div
+      class="col-md-4 mb-4 wow fadeInUp"
+      data-wow-delay="0.5s"
+      innerHtml="{{ 'HOME.CustomerService' | translate }}"
+    >
+      <!-- <div class="border p-3 p-md-4 rounded-20 w-100">
+        <div class="mb-md-4 mb-3">
+          <img src="/assets/img/contact-icon.png"></div>
+        <div class="mb-md-4 mb-3 text-fd9f4b font-weight-bold fs-md-24 fs-18">خدمة عملاء متواصلة</div>
+        <div>يشمل المرض و رفض العمل و الهروب و عدم العمل بإحترافيه و البطء في التعامل مع الأسرة و عدم قابلية الأسرة
+          لها</div>
+      </div> -->
+    </div>
+    <div
+      class="col-md-4 mb-4 wow fadeInUp"
+      data-wow-delay="0.75s"
+      innerHtml="{{ 'HOME.Guarantee' | translate }}"
+    >
+      <!-- <div class="border h-100 p-3 p-md-4 rounded-20 w-100">
+        <div class="mb-md-4 mb-3"><img src="/assets/img/guarantee-icon.png"></div>
+        <div class="mb-md-4 mb-3 text-229942 font-weight-bold fs-md-24 fs-18">ضمان لمدة 3 أشهر</div>
+        <div>يشمل المرض و رفض العمل و الهروب و عدم العمل بإحترافيه و البطء في التعامل مع الأسرة و عدم قابلية الأسرة
+          لها</div>
+      </div> -->
+    </div>
+    <div
+      class="col-md-4 mb-4 wow fadeInUp"
+      data-wow-delay="1s"
+      innerHtml="{{ 'HOME.OfficeWorkingTimes' | translate }}"
+    >
+      <!-- <div class="border h-100 p-3 p-md-4 rounded-20 w-100">
+        <div class="mb-md-4 mb-3"><img src="/assets/img/working-icon.png"></div>
+        <div class="mb-md-4 mb-3 text-0056a7 font-weight-bold fs-md-24 fs-18">أوقات عمل المكتب</div>
+        <div>
+          <div class="font-weight-bold">الرياض - حي التعاون - شارع دمياط</div>
+          <div>الأحد - الخميس من 9ص حتى 9م</div>
+          <div>الجمعة من 4م حتى 9م</div>
+          <div>السبت من 10ص حتى 9م</div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
