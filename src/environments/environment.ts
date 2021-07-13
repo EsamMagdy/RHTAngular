@@ -4,7 +4,8 @@
 let lang=localStorage.getItem('lang')??'ar';
 export const environment = {
   production: false,
-  apiUrl:`https://rao.sa:8004/${lang}/api/`
+  // apiUrl:`http://localhost:65066/${lang}/api/`
+  apiUrl:`https://rao.sa:8019/${lang}/api/`
   // apiUrl:`https://rht.excprotection.com:8004/${lang}/api/`
   // apiUrl:`http://localhost:50/${lang}/api/`
 };

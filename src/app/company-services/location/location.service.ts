@@ -86,7 +86,7 @@ export class LocationService {
     let lang = localStorage.getItem('lang') ?? 'ar';
     return this.http
       .get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk&language=${lang}`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE&language=${lang}`
       )
       .pipe(
         map((resData: any) => {
@@ -131,6 +131,7 @@ export class LocationService {
       )
       .pipe(
         map((resData) => {
+          this.prevLocation.next(resData.data);
           return resData.data;
         })
       );

@@ -25,7 +25,8 @@ import { NgModule } from '@angular/core';
         IndOrdersRoutingModule,
         SharedModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk',
+            // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk'
+            apiKey: 'AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE'
 
         }),
         CustomerControlPanelSharedModule

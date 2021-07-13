@@ -26,7 +26,6 @@ export class CompanyServicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.setIndivContractReq();
     this.checkIfUserDataCompleted();
 

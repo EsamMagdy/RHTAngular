@@ -131,6 +131,14 @@
                     [longitude]="lng"
                     (mapReady)="mapReadyHandler($event)"
                   >
+                    <button
+                      id="ChangeLocation"
+                      class="map-button"
+                      type="button"
+                      (click)="setCurrentLocation()"
+                    >
+                    {{ 'Location.SetCurrentLocation' | translate }}
+                    </button>
                     <agm-marker
                       *ngIf="showMarker"
                       [latitude]="mlat"
@@ -149,13 +157,21 @@
                     ></agm-polygon>
                   </agm-map>
                   <p-message
-                  *ngIf="mapError"
-                  styleClass="p-mt-1"
-                  severity="error"
-                  text="{{ 'Location.LocationError' | translate }}"
-                  id="districtsError"
-                >
-                </p-message>
+                    *ngIf="mapError"
+                    styleClass="p-mt-1"
+                    severity="error"
+                    text="{{ 'Location.LocationError' | translate }}"
+                    id="districtsError"
+                  >
+                  </p-message>
+                  <p-message
+                    *ngIf="currentocationError"
+                    styleClass="p-mt-1"
+                    severity="error"
+                    text="{{ 'Location.CurrentLocationError' | translate }}"
+                    id="districtsError"
+                  >
+                  </p-message>
                 </div>
               </div>
             </div>
@@ -352,9 +368,11 @@
       <div
         class="d-flex justify-content-between mt-4 wow fadeInUp"
         data-wow-delay="0.2s"
+        [class.flex-row-reverse]="!showPrevButton"
         style="visibility: hidden; animation-delay: 0.2s; animation-name: none"
       >
         <button
+          [hidden]="!showPrevButton"
           (click)="savedLocationPage()"
           class="btn btn-lg btn-outline-primary"
         >

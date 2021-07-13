@@ -8,6 +8,13 @@
     (isAuthenticated && showNewAddress && prevLocation.length > 0)
   "
 ></app-new-location>
+<!-- <app-new-location
+  *ngIf="
+    !isAuthenticated ||
+    (isAuthenticated && showNewAddress && prevLocation.length > 0)
+  "
+  [savedLocation]="prevLocation" // not pass prevLocation
+></app-new-location> -->
 <div
   *ngIf="isAuthenticated && showNewAddress && prevLocation.length == 0"
   class="text-center"

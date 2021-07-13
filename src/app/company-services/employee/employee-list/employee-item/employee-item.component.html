@@ -27,7 +27,7 @@
                 : item?.image
             "
             alt=""
-            class="border mb-2 rounded-circle"
+            class="border mb-2 rounded-circle img-fluid"
           />
         </div>
         <div class="col-md-10">
@@ -110,7 +110,7 @@
       <i class="worker-check"></i>
     </div>
   </div>
-<app-employee-details-modal></app-employee-details-modal>
+  <app-employee-details-modal></app-employee-details-modal>
 
   <p-dialog
     *ngIf="!employees || employees.length == 0"
@@ -145,6 +145,4 @@
       </div>
     </div>
   </p-dialog>
-
- 
 </div>

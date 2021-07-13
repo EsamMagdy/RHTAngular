@@ -30,7 +30,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         // else
         //   url = req.url.replace('lang', 'ar');
         const modifiedReq = req.clone({
-          headers: req.headers.append('source', '3'),
+          headers: req.headers.append('source', '2'),
           // url: url
         });
 

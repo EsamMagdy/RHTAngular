@@ -10,7 +10,7 @@ import { FooterLoaderService } from 'src/app/shared/services/footerLoaderAfterVi
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
-  styleUrls: ['./location.component.css']
+  styleUrls: ['./location.component.css'],
 })
 export class LocationComponent implements OnInit {
   prevLocation: ContactPreviousLocation[] = [];
@@ -18,29 +18,32 @@ export class LocationComponent implements OnInit {
   showNewAddress: boolean = false;
   selectedLocation: ContactPreviousLocation;
 
-  getContactSavedAddressForIndiv = this.locationService
-    .getContactSavedAddressForIndiv();
+  getContactSavedAddressForIndiv =
+    this.locationService.getContactSavedAddressForIndiv();
   constructor(
     private locationService: LocationService,
     private authService: AuthService,
     private individualContractService: IndividualContractService,
     private localStorageService: LocalStorageService,
-    private footerLoaderService: FooterLoaderService) { 
-      this.footerLoaderService.footer.emit();
-    }
+    private footerLoaderService: FooterLoaderService
+  ) {
+    this.footerLoaderService.footer.emit();
+  }
 
   ngOnInit(): void {
-    let selectedLocationId = this.localStorageService.indivContractReqLocalStorage.selectedLocationId;
-
-
+    let selectedLocationId =
+      this.localStorageService.indivContractReqLocalStorage.selectedLocationId;
 
     this.individualContractService.step.next(ContractStepsEnum.SecondStep);
-    
+
     this.locationService.showNewAddress.subscribe(
       (showAddress) => (this.showNewAddress = showAddress)
     );
 
-    this.locationService.prevLocation.subscribe(s => this.prevLocation = s);
+    this.locationService.prevLocation.subscribe((resData) => {
+      debugger;
+      this.prevLocation = resData ?? [];
+    });
     this.authService.userSb.subscribe((user) => {
       this.isAuthenticated = !!user;
     });
@@ -51,17 +54,13 @@ export class LocationComponent implements OnInit {
           this.prevLocation = resData;
 
           this.prevLocation.forEach((x) => {
-
             x.isSelected =
-              selectedLocationId != null
-                && x.contactPreviouslocationId == selectedLocationId
-                ? true : false;
+              selectedLocationId != null &&
+              x.contactPreviouslocationId == selectedLocationId
+                ? true
+                : false;
           });
-
-        }
-        else
-          this.showNewAddress = true;
+        } else this.showNewAddress = true;
       });
   }
-
 }

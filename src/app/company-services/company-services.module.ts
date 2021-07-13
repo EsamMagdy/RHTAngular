@@ -62,7 +62,8 @@ import { CompletingDataComponent } from './completing-data/completing-data.compo
         CompanyServicesRoutingModule,
         ScrollPanelModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk',
+            // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk',
+            apiKey: 'AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE'
 
         }),
         SharedModule,
