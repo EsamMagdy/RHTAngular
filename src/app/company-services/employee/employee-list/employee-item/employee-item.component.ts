@@ -37,7 +37,7 @@ export class EmployeeItemComponent implements OnInit {
     private individualContractService: IndividualContractService,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let indContractReq = this.localStorageService.indivContractReqLocalStorage;
@@ -76,26 +76,28 @@ export class EmployeeItemComponent implements OnInit {
       .getAvaialableEmployees(nationalityId, professionId, pageSize)
       .subscribe((employees) => {
         debugger;
+        this.totalCount = employees.totalCount;
+        this.individualContractService.totalEmployeeCount.next(
+          employees.totalCountInPages
+        );
+
+        if (employees.totalCountInPages == 0) {
+          this.displayNoEmployeeModal = true;
+          this.scrollData = false;
+          return;
+        }
         employees.model.forEach((employee) => {
           employee.isSelected =
             this.employeeId == employee.employeeId ? true : false;
         });
         this.displayNoEmployeeModal = false;
         this.employees = employees.model;
-        this.totalCount = employees.totalCount;
         this.scrollData = true;
         // this.showEmployeeList = false;
         this.individualContractService.individualContractReq.employeFilteringData =
           new EmployeFilteringData();
         this.individualContractService.individualContractReq.employeFilteringData.employees =
           employees.model;
-        if (employees.totalCountInPages == 0) {
-          this.displayNoEmployeeModal = true;
-          this.scrollData = false;
-          this.individualContractService.totalEmployeeCount.next(
-            employees.totalCountInPages
-          );
-        }
       });
   }
   @HostListener('window:scroll', [])

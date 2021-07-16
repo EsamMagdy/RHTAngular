@@ -205,7 +205,9 @@
     "NoSavedLocation": "No Saved Address, please add new address",
     "LocationError": "You cannot select this location as it is outside the neighborhood",
     "SetCurrentLocation":"Set your current location",
-    "CurrentLocationError":"Your current location is outside the neighborhood"
+    "CurrentLocationError":"Your current location is outside the neighborhood",
+    "CurrentLocationOutOfBounds":"Your current location is out of bounds of Saudi Arabia",
+    "SelectLocation":"Choose your current location on map"
   },
   "OtherOrders": {
     "Details": "Details is required",

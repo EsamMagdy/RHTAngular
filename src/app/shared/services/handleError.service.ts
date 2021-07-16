@@ -38,7 +38,6 @@ export class HandleErrorService {
         let error = new Error();
         let errors: Error[] = [];
         message.forEach((resError) => {
-            debugger;
             switch (resError.code) {
                 case 101:
                     error.name = '' + 101;

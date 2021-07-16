@@ -9,10 +9,13 @@ import { City } from 'src/app/shared/models/city.model';
 import { ContactPreviousLocation } from 'src/app/shared/models/contactPreviousLocation.model';
 import { District } from 'src/app/shared/models/district.model';
 import { KeyValuePairs } from 'src/app/shared/models/keyValuePairs.model';
-import { ResponseDataCRM, ResponseDataCRMWithDeleting, ResponseDataCRMWithObjectData } from 'src/app/shared/models/responseDataCRM.model';
+import {
+  ResponseDataCRM,
+  ResponseDataCRMWithDeleting,
+  ResponseDataCRMWithObjectData,
+} from 'src/app/shared/models/responseDataCRM.model';
 import { IndividualContractService } from 'src/app/shared/services/individualContractReq.service';
 import { User } from 'src/app/shared/models/user.model';
-
 
 @Injectable({ providedIn: 'root' })
 export class LocationService {
@@ -23,16 +26,11 @@ export class LocationService {
     private http: HttpClient,
     private authService: AuthService,
     private localStorageService: LocalStorageService
-  ) {
-
-
-  }
+  ) {}
 
   getCities() {
     return this.http
-      .get<ResponseDataCRM<City>>(
-        environment.apiUrl + 'city/GetIndvCities'
-      )
+      .get<ResponseDataCRM<City>>(environment.apiUrl + 'city/GetIndvCities')
       .pipe(
         map((resData) => {
           return resData.data;
@@ -54,13 +52,12 @@ export class LocationService {
   getPolygon(districtId: string) {
     return this.http
       .get<ResponseDataCRMWithObjectData<{ value: string }>>(
-        environment.apiUrl + 'city/Get_PolygonPath?DistrictID=' +
-        districtId
+        environment.apiUrl + 'city/Get_PolygonPath?DistrictID=' + districtId
       )
       .pipe(
         map((resData) => {
-          debugger;
-          if (!resData.data.value) return null;
+          if (!resData.data.value || resData.data.value === 'undefined')
+            return null;
 
           let polygon = resData.data.value;
           let shap = polygon
@@ -127,7 +124,8 @@ export class LocationService {
     if (!userData) return null;
     return this.http
       .get<ResponseDataCRM<ContactPreviousLocation>>(
-        environment.apiUrl + `contact/GetContactSavedAddressForIndiv?ContactId=${userData.crmUserId}`
+        environment.apiUrl +
+          `contact/GetContactSavedAddressForIndiv?ContactId=${userData.crmUserId}`
       )
       .pipe(
         map((resData) => {

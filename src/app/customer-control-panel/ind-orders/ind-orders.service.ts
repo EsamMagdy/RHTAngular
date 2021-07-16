@@ -40,7 +40,6 @@ export class IndOrdersService {
     }
 
     cancelRequest(requestId: string) {
-        debugger;
         return this.http
             .get<ResponseDataCRMWithDeleting>(
                 environment.apiUrl +

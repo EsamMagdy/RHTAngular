@@ -67,8 +67,19 @@ export class NewLocationComponent implements OnInit {
   floorNumbers: KeyValuePairs[];
   mapError: boolean = false;
   geoCoder: any;
-  zoom = 0;
-  currentocationError=false;
+  zoom = 10;
+  currentLocationError = false;
+  currentLocationOutOfBounds = false;
+  countryRestriction = {
+    latLngBounds: {
+      east: 57,
+      north: 34,
+      south: 15,
+      west: 34,
+    },
+    strictBounds: true,
+  };
+
   constructor(
     private individualContractService: IndividualContractService,
     private router: Router,
@@ -115,6 +126,22 @@ export class NewLocationComponent implements OnInit {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
           // this.getCurrentAddress(this.lat, this.lng);
+          let bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(15, 34), //south west
+            new google.maps.LatLng(34, 57) //north east
+          );
+
+          if (
+            !bounds.contains(
+              new google.maps.LatLng(
+                position.coords.latitude,
+                position.coords.longitude
+              )
+            )
+          ) {
+            this.currentLocationOutOfBounds = true;
+            return;
+          }
           this.checkIfCurrentLocationInPolygin(position);
         });
       }
@@ -122,6 +149,10 @@ export class NewLocationComponent implements OnInit {
     });
   }
   checkIfCurrentLocationInPolygin(position: GeolocationPosition) {
+    if (this.paths.length == 0) {
+      this.setCurrentLocationMarker(position);
+      return;
+    }
     const bermudaTriangle = new google.maps.Polygon({ paths: this.paths });
     const latLng = new google.maps.LatLng(
       position.coords.latitude,
@@ -132,16 +163,19 @@ export class NewLocationComponent implements OnInit {
       bermudaTriangle
     );
     if (resultColor) {
-      this.lat = position.coords.latitude;
-      this.lng = position.coords.longitude;
-      this.mlat = +position.coords.latitude;
-      this.mlng = +position.coords.longitude;
-      this.showMarker = true;
-      this.zoom = 12;
+      this.setCurrentLocationMarker(position);
       alert('success');
     } else {
-      this.currentocationError=true;
+      this.currentLocationError = true;
     }
+  }
+  setCurrentLocationMarker(position: GeolocationPosition) {
+    this.lat = position.coords.latitude;
+    this.lng = position.coords.longitude;
+    this.mlat = +position.coords.latitude;
+    this.mlng = +position.coords.longitude;
+    this.showMarker = true;
+    this.zoom = 12;
   }
   getCurrentAddress(latitude: number, longitude: number) {
     this.geoCoder.geocode(
@@ -204,13 +238,17 @@ export class NewLocationComponent implements OnInit {
           this.showMarker = true;
           this.paths = [];
           this.location = null;
+          this.zoom = 12;
           this.getHousingTypes();
           this.getHousingFloors();
           return;
         }
+        console.log(triangleCoords);
+
         this.lat = triangleCoords[0].lat;
         this.lng = triangleCoords[triangleCoords.length - 1].lng;
         this.paths = triangleCoords;
+        this.zoom = 12;
         this.getAddress();
         this.getHousingTypes();
         this.getHousingFloors();
@@ -268,12 +306,12 @@ export class NewLocationComponent implements OnInit {
 
   onPolygonClick(event: google.maps.PolyMouseEvent) {
     this.mapError = false;
-    this.currentocationError = false;
+    this.currentLocationError = false;
+    this.currentLocationOutOfBounds = false;
+    this.showMarker = true;
     this.mlat = event.latLng.lat();
     this.mlng = event.latLng.lng();
-    this.showMarker = true;
   }
-  onPolyChange(event: any) {}
   onMapClick(event: any) {
     if (this.paths && this.paths.length > 0) {
       // alert('');
@@ -285,12 +323,14 @@ export class NewLocationComponent implements OnInit {
   }
   mapReadyHandler(map: google.maps.Map): void {
     // this.map = map;
+    console.log(map.getBounds());
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(
       document.getElementById('ChangeLocation')
     );
     let mapClickListener = map.addListener(
       'click',
       (e: google.maps.MouseEvent) => {
+        this.currentLocationError = false;
         if (this.paths && this.paths.length > 0) {
           // alert('لا يمكنك تحديد هذا الموقع حيث أنه خارج نظاق الحي');
           this.mapError = true;

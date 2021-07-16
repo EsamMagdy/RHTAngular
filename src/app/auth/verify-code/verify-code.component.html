@@ -110,7 +110,7 @@
 <div class="font-weight-bold fs-18 fs-md-36 text-white text-center">{{'Verification.Header'|translate}}</div>
 <div class="row mx-2">
   <div class="bg-white col-md-6 fs-18 mt-4 mx-auto p-5 rounded-20">
-    <div class="fs-24 mb-4">{{'Verification.EnterVerificationCode'|translate}}</div>
+    <div class="fs-24 text-center mb-4">{{'Verification.EnterVerificationCode'|translate}}</div>
     <form (ngSubmit)="onSubmit()" #verificationForm="ngForm">
       <div class="form-group row">
         <label for="inputPassword" class="col-sm-3 col-form-label"
@@ -155,17 +155,19 @@
           <button type="submit" class="btn btn-block btn-lg btn-primary">
             {{'Verification.Verfiy'|translate}}
           </button>
-          <div class="mt-3">
+          <div class="my-3 text-center">
             {{'Verification.NotRecieved'|translate}}
             <button
+            *ngIf="resendCodeButton"
               type="button"
               (click)="resendCode()"
-              [disabled]="resendCodeButton"
               class="btn btn-link m-0 p-0"
             >
               {{'Verification.Resend'|translate}}
             </button>
+            <span *ngIf="!resendCodeButton" class="btn-send">تم الارسال ({{counter}}) </span>
           </div>
+          <!-- <div class="alert alert-success">تم ارسال كود التحقق</div> -->
         </div>
       </div>
       <!-- <div class="form-group row">

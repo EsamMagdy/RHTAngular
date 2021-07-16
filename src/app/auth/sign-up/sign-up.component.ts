@@ -1,43 +1,40 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { AuthService } from "../auth.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
-    selector: 'app-sign-up',
-    templateUrl: './sign-up.component.html'
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
 })
 export class SignUpComponent implements OnInit {
-    submitted = false;
-    registrationMessage: string;
-    isRegister = true;
-    success = false;
-    error: string = null;
-    @ViewChild('registerForm') registerForm: NgForm;
-    constructor(private authService: AuthService,
-        private router: Router) { }
-    ngOnInit(): void { }
-    value3: string;
-    displayModal: boolean;
-    Register() {
-        this.submitted = true;
+  submitted = false;
+  registrationMessage: string;
+  isRegister = true;
+  success = false;
+  error: string = null;
+  @ViewChild('registerForm') registerForm: NgForm;
 
-        if (!this.registerForm.valid) return;
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {}
+  value3: string;
+  displayModal: boolean;
+  Register() {
+    this.submitted = true;
 
-        this.error = null;
+    if (!this.registerForm.valid) return;
 
-        this.authService
-            .register(this.registerForm.value)
-            .subscribe((resData) => {
+    this.error = null;
 
-                if (!resData.state && resData.message) {
-                    this.error = resData.message[0].value;
-                    return;
-                }
+    this.authService.register(this.registerForm.value).subscribe((resData) => {
+      if (!resData.state && resData.message) {
+        this.error = resData.message[0].value;
+        return;
+      }
 
-                this.router.navigate(['/auth/verify-code']);
-                this.submitted = false;
-                this.registerForm.reset();
-            });
-    }
+      this.router.navigate(['/auth/verify-code']);
+      this.submitted = false;
+      this.registerForm.reset();
+    });
+  }
 }

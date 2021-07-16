@@ -1,5 +1,8 @@
 import { LocalStorageService } from './../shared/services/localStorage.service';
-import { LocalStorage, LocalStorageKeys } from './../shared/models/localStorage.model';
+import {
+  LocalStorage,
+  LocalStorageKeys,
+} from './../shared/models/localStorage.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,10 +11,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginResData } from '../shared/models/loginData.model';
 import { RegisterData } from '../shared/models/registerData.model';
-import { ResponseDataCRMWithObjectData, ResponseDataCRMWithObjectDataForLogin } from '../shared/models/responseDataCRM.model';
+import {
+  ResponseDataCRMWithObjectData,
+  ResponseDataCRMWithObjectDataForLogin,
+} from '../shared/models/responseDataCRM.model';
 import { RegisterationData, User } from '../shared/models/user.model';
 import { VerificationCode } from '../shared/models/verificationCode.model';
-import { VerificationSignInCode } from '../shared/models/verificationSignInCode.model';
 import { HandleErrorService } from '../shared/services/handleError.service';
 import { ReGenrateCode } from '../shared/models/reGenrateCode.model';
 import { ResetPasswordModel } from '../shared/models/resetPassword.model';
@@ -20,11 +25,12 @@ import { ResetPasswordModel } from '../shared/models/resetPassword.model';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private handleErrorService: HandleErrorService) {
-  }
+    private handleErrorService: HandleErrorService
+  ) {}
   switchToLogin = new Subject<boolean>();
   isRegister = new Subject<boolean>();
   isVerfied = new Subject<boolean>();
@@ -55,8 +61,9 @@ export class AuthService {
       );
   }
   verifyCode(code: string) {
-    let user = this.localStorageService.registrationDataLocalStorage
-      ?? this.localStorageService.loginDataLocalStorage;
+    let user =
+      this.localStorageService.registrationDataLocalStorage ??
+      this.localStorageService.loginDataLocalStorage;
     user.code = code;
     return this.http
       .post<ResponseDataCRMWithObjectData<VerificationCode>>(
@@ -75,8 +82,9 @@ export class AuthService {
       );
   }
   verifySignInCode(code: string) {
-    let user = this.localStorageService.registrationDataLocalStorage
-      ?? this.localStorageService.loginDataLocalStorage;
+    let user =
+      this.localStorageService.registrationDataLocalStorage ??
+      this.localStorageService.loginDataLocalStorage;
     user.code = code;
     return this.http
       .post<ResponseDataCRMWithObjectData<VerificationCode>>(
@@ -94,60 +102,39 @@ export class AuthService {
         })
       );
   }
-  resendSignInCode() {
-    let user = this.localStorageService.loginDataLocalStorage ??
-      this.localStorageService.registrationDataLocalStorage;
-    return this.http
-      .post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
-        environment.apiUrl + 'Account/ReGenrateSignInCode',
-        user
-      )
-      .pipe(
-        // catchError(this.handleErrorService.handleError),
-      );
+  resendSignInCode(phoneNumber: string) {
+    return this.http.post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
+      environment.apiUrl + 'Account/ReGenrateSignInCode',
+      {
+        phoneNumber: phoneNumber,
+      }
+    );
   }
-  resendCode() {
-    let user = this.localStorageService.loginDataLocalStorage ??
-      this.localStorageService.registrationDataLocalStorage;
-    return this.http
-      .post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
-        environment.apiUrl + 'Account/ReGenrateCode?IsSMSEnabled=true',
-        user
-      )
-      .pipe(
-        // catchError(this.handleErrorService.handleError),
-        tap((resData) => {
-          if (!resData.state && resData.message) {
-            this.handleErrorService.handleErrorProjectWithMessage(resData.message);
-          }
-        })
-      );
+  resendCode(phoneNumber: string) {
+    return this.http.post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
+      environment.apiUrl + 'Account/ReGenrateCode?IsSMSEnabled=true',
+      { phoneNumber: phoneNumber }
+    );
   }
   forgotPassword(phoneNumber: string) {
-    this.localStorageService.resetPasswordLocalStorage = phoneNumber;
-    return this.http
-      .post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
-        environment.apiUrl + 'Account/ForgotPassword?IsSMSEnabled=true', {
-        phoneNumber: phoneNumber
-
+    this.localStorageService.phoneNumberLocalStorage = phoneNumber;
+    return this.http.post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
+      environment.apiUrl + 'Account/ForgotPassword?IsSMSEnabled=true',
+      {
+        phoneNumber: phoneNumber,
       }
-      )
-      .pipe(
-        // catchError(this.handleErrorService.handleError),
-
-      );
+    );
   }
   resetPassword(vm: ResetPasswordModel) {
-    debugger;
-    return this.http
-      .post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
-        environment.apiUrl + 'Account/ResetPassword', {
-        phoneNumber: this.localStorageService.resetPasswordLocalStorage,
+    return this.http.post<ResponseDataCRMWithObjectData<ReGenrateCode>>(
+      environment.apiUrl + 'Account/ResetPassword',
+      {
+        phoneNumber: this.localStorageService.phoneNumberLocalStorage,
         password: vm.password,
         confirmPassword: vm.confirmPassword,
-        code: vm.code
-
-      });
+        code: vm.code,
+      }
+    );
   }
   autoLogin() {
     let userData = this.localStorageService.userLocalStorage;
@@ -166,7 +153,7 @@ export class AuthService {
       '',
       userData.address,
       userData._token,
-      new Date(userData._tokenExpirationDate),
+      new Date(userData._tokenExpirationDate)
     );
 
     if (loaderUser.token) {
@@ -179,15 +166,11 @@ export class AuthService {
           new Date().getTime();
 
         this.autoLogout(expirationDuration);
-
-      }
-      else
-        this.autoLogout(0);
+      } else this.autoLogout(0);
     }
   }
   login(userName: string, password: string, rememberMe: boolean = false) {
-    debugger;
-    LocalStorage.removeAllLocalStorage()
+    LocalStorage.removeAllLocalStorage();
     return this.http
       .post<ResponseDataCRMWithObjectDataForLogin<LoginResData>>(
         environment.apiUrl + 'Account/login',
@@ -198,14 +181,8 @@ export class AuthService {
         }
       )
       .pipe(
-        // catchError(this.handleErrorService.handleError),
         tap((resData) => {
-          // if (!resData.state && resData.message) {
-          //     this.handleErrorService.handleErrorProjectWithMessage(resData.message as any);
-
-          // } else {
-          debugger;
-          if (resData.state && resData.data) {
+          if (resData.data) {
             let userRes = resData.data.user;
             this.user.phoneNumber = userName;
             this.user.password = password;
@@ -213,8 +190,6 @@ export class AuthService {
             this.user.id = userRes.id;
             this.user.phoneNumberConfirmed = userRes.phoneNumberConfirmed;
             this.localStorageService.loginDataLocalStorage = this.user;
-            // this.user.setTokenData(resData.data.token);
-            // this.handleAuth(resData.data.user);
             localStorage.removeItem(LocalStorageKeys.registerData);
           }
 
@@ -225,8 +200,7 @@ export class AuthService {
   autoLogout(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
-
-    }, 2147483647);//2147483647
+    }, 2147483647); //expirationDuration
   }
   logout() {
     this.userSb.next(null);
@@ -244,10 +218,10 @@ export class AuthService {
     this.user.crmUserId = user.crmUserId;
     this.user.phoneNumber = user.phoneNumber;
     this.user.password = user.password ?? this.user.password;
-    this.user.phoneNumberConfirmed = user.phoneNumberConfirmed ?? this.user.phoneNumberConfirmed;
+    this.user.phoneNumberConfirmed =
+      user.phoneNumberConfirmed ?? this.user.phoneNumberConfirmed;
     this.userSb.next(this.user);
-    if (this.user.expiresIn)
-      this.autoLogout(this.user.expiresIn);
+    if (this.user.expiresIn) this.autoLogout(this.user.expiresIn);
     localStorage.setItem('userData', JSON.stringify(this.user));
   }
   private handleError(errorRes: HttpErrorResponse) {
@@ -268,5 +242,4 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
-
 }

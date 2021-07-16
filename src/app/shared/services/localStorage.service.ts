@@ -38,10 +38,10 @@ export class LocalStorageService {
     set stepIdLocalStorage(stepId: string) {
         localStorage.setItem(LocalStorageKeys.stepId, stepId);
     }
-    get resetPasswordLocalStorage() {
-        return localStorage.getItem(LocalStorageKeys.resetPassword);
+    get phoneNumberLocalStorage() {
+        return localStorage.getItem(LocalStorageKeys.phoneNumber);
     }
-    set resetPasswordLocalStorage(phoneNumber: string) {
-        localStorage.setItem(LocalStorageKeys.resetPassword, phoneNumber);
+    set phoneNumberLocalStorage(phoneNumber: string) {
+        localStorage.setItem(LocalStorageKeys.phoneNumber, phoneNumber);
     }
 }

@@ -126,6 +126,7 @@ export class IndividualContractReq {
   totalPrice: number;
   vatAmount: number;
   vatGroup: VatGroup;
+  totalWithDeliveryCosts:number;
 }
 export class IndividualContractAttachment {
   identificationCardImage: any;

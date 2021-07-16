@@ -4,7 +4,7 @@
       <th class="font-weight-light">
         {{ "Dashboard.RequestNumber" | translate }}
       </th>
-      <th class="font-weight-normal">{{ "Dashboard.FinalPrice" | translate }}</th>
+      <th class="font-weight-normal">{{ "Contracts.FinalPrice" | translate }}</th>
       <th class="font-weight-normal">{{ "Dashboard.RequestStatus" | translate }}</th>
       <th class="font-weight-normal">{{ "Dashboard.RequestDate" | translate }}</th>
       <th class="font-weight-normal" style="width: 100px">{{ "Dashboard.Options" | translate }}</th>
@@ -30,7 +30,7 @@
           >{{ indContractReq.contractRequestNumber }}</a
         >
       </td>
-      <td class="font-secondary">{{ indContractReq.finalPrice }}</td>
+      <td class="font-secondary">{{ indContractReq.totalWithDeliveryCosts }}</td>
       <td>
         <span class="badge badge-danger">{{
           indContractReq.statusCodeName

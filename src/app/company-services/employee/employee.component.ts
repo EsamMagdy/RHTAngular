@@ -33,6 +33,7 @@ export class EmployeeComponent implements OnInit {
   EmployeePickSource = EmployeePickSourceEnum;
   HowToRecieveWorker = HowToRecieveWorker;
   employeesCount: number;
+
   constructor(
     private employeeService: EmployeeService,
     private individualContractService: IndividualContractService,
@@ -62,8 +63,8 @@ export class EmployeeComponent implements OnInit {
 
 
     this.individualContractReq = this.localStorageService.indivContractReqLocalStorage;
-    this.individualContractService.totalEmployeeCount.subscribe(s => {
-      this.employeesCount = s;
+    this.individualContractService.totalEmployeeCount.subscribe(employeeCount => {
+      this.employeesCount = employeeCount;
     });
 
 

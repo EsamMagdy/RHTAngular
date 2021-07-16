@@ -235,7 +235,6 @@ export class IndividualContractService {
       );
   }
   uploadAttachments(fieldName: string, imageBase: string, name: string) {
-    debugger;
     let contractId = this.indContReqCreated.individualContractRequestId;
     return this.http
       .post<ResponseDataCRMForContractTemplate<string>>(

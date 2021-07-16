@@ -15,7 +15,6 @@ export class CheckIDNumberDirective implements Validator {
   @Input('appCheckIDNumber') saudiNationality: string;
   constructor(private elRef: ElementRef, private renderer: Renderer2) { }
   validate(control: AbstractControl): { [key: string]: any } | null {
-    debugger;
 
     if (this.saudiNationality == 'hasValue') return null;
 

@@ -41,7 +41,6 @@ export class LocationComponent implements OnInit {
     );
 
     this.locationService.prevLocation.subscribe((resData) => {
-      debugger;
       this.prevLocation = resData ?? [];
     });
     this.authService.userSb.subscribe((user) => {

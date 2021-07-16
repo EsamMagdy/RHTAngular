@@ -38,20 +38,18 @@ export class PaymentComponent implements OnInit {
       Math.round(this.indContReq?.deliveryCost ?? 0);
 
     this.paymentService.getPaymentCardsAndMethodData().subscribe((resData) => {
-      debugger;
       this.paymentMethods = resData.paymentMethodMobileList;
     });
 
     this.paymentService
       .getCheckoutId(
         'VISA',
-        'D5099303-81A0-4E0F-A9F1-875E559D6098',
+        this.indContReq.individualContractRequestId,
         // this.indContReq.individualContractRequestId,
         3,
         true
       )
       .subscribe((resData) => {
-        debugger;
         this.checkoutId = resData.data.data;
         this.loadHyperPayScript();
       });
@@ -65,7 +63,6 @@ export class PaymentComponent implements OnInit {
     this.router.navigate(['/services/attachments']);
   }
   loadHyperPayScript(){
-    debugger;
     var s = window.document.createElement("script");
     s.id = "stripe-script";
     s.type = "text/javascript";

@@ -8,7 +8,7 @@ export class LocalStorageKeys {
     static stepId = "stepId";
     static registerData = "registerData";
     static loginData = "loginData";
-    static resetPassword = "resetPassword";
+    static phoneNumber = "phoneNumber";
 }
 
 export interface StepDataLocalStorage {
@@ -25,7 +25,7 @@ export class LocalStorage {
         stepId: LocalStorageKeys.stepId,
         registerData: LocalStorageKeys.registerData,
         loginData: LocalStorageKeys.loginData,
-        resetPassword: LocalStorageKeys.resetPassword
+        resetPassword: LocalStorageKeys.phoneNumber
     }
 
     static getKeyValue(key: string) {

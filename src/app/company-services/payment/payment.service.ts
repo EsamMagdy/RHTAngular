@@ -21,7 +21,6 @@ export class PaymentService {
   }
 
   getPaymentCardsAndMethodData() {
-      debugger;
     return this.http
       .post<ResponseDataCRMWithObjectData<PaymentMethod>>(
         environment.apiUrl +

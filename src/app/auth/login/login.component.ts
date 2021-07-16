@@ -36,11 +36,9 @@ export class LoginComponent implements OnInit {
       .login(this.logInForm.value.email, this.logInForm.value.password)
       .subscribe(
         (resData) => {
-          debugger;
           if (!resData.state && resData.message && resData.message[0].code == 101) {
             this.router.navigate(['/auth/verify-code']);
             return;
-
           }
 
           if (!resData.state && resData.message) {
@@ -54,17 +52,6 @@ export class LoginComponent implements OnInit {
 
           if ((phoneConfirmed || !phoneConfirmed) && code)
             this.router.navigate(['/auth/verify-code']);
-
-          // if (phoneConfirmed && !code && this.returnUrl) {
-          //   this.router.navigate(['/services/' + this.returnUrl], { queryParams: { stepId: this.individualContractService.individualContractReq.stepId } });
-          //   this.authService.user.setTokenData(resData.data.token);
-          //   this.authService.handleAuth(resData.data.user);
-          // }
-          // if (phoneConfirmed && !code && !this.returnUrl) {
-          //   this.authService.user.setTokenData(resData.data.token);
-          //   this.authService.handleAuth(resData.data.user);
-          //   this.router.navigate(['/']);
-          // }
 
           if (phoneConfirmed && !code)
             this.LoginWithCheckReturnURL(resData.data);

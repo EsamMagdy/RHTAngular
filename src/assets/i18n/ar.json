@@ -71,7 +71,7 @@
     "ResendCodeFailed": "حدوث خطا اثناء اعادة ارسال كود التحقق",
     "ResendCodeHeader": "اعادة ارسال كود التحقق",
     "ResendCodeSuccess": "تم اعادة كود التحقق بنجاح",
-    "SendCode": "ارسال الكود عبر الرسالةالنصية",
+    "SendCode": "ارسال الكود عبر الرسالة النصية",
     "TimeOutErrorMessage": "وسيتم التحويل بعد 5 ثوانى الى صفحة التحقق من الكود",
     "VerificationCodeRequired": "من فضلك ادخل كود التحقق",
     "VerificationCodeSuccess": "التاكد من كود التحقق",
@@ -127,7 +127,7 @@
     "ElderlyTreatment": "معاملة كبار السن",
     "Experienced": "ذو خبرة",
     "FilterResult": "فلترة النتائج",
-    "HouseKeeper": "خادمة منزلية",
+    "HouseKeeper": "عاملة منزلية",
     "ManualDriving": "إجادة القيادة اليدوية",
     "Married": "متزوج/ة",
     "MaximumDisplayNumber": "الحد الأقصى لعرض عدد العاملات",
@@ -205,7 +205,9 @@
     "Villa": "فيلا",
     "LocationError": "لا يمكنك تحديد هذا الموقع حيث أنه خارج نطاق الحي",
     "SetCurrentLocation":"تحديد موقعك الحالى",
-    "CurrentLocationError":"موقعك الحالى خارج نطاق الحى"
+    "CurrentLocationError":"موقعك الحالى خارج نطاق الحى",
+    "CurrentLocationOutOfBounds":"موقعك الحالى خارج حدود السعودية",
+    "SelectLocation":"برجاء تحديد موقعك الحالي على الخريطة"
   },
   "OtherOrders": {
     "Details": "من فضلك ادخل تفاصيل الطلب",
