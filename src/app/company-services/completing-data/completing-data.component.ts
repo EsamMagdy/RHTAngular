@@ -37,7 +37,7 @@ export class CompletingDataComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
+        this.individualContractService.step.next(ContractStepsEnum.SixthStep);
         this.individualContractReq = this.localStorageService.indivContractReqLocalStorage;
 
         this.profileService.getDetails().subscribe(data => {

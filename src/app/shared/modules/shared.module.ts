@@ -54,6 +54,8 @@ import { NgwWowModule } from 'ngx-wow';
 import {GalleriaModule} from 'primeng/galleria';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { FileName } from '../pipes/fileUploadName.pipe';
+import { CheckImageDirective } from '../directive/image.directive';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,12 +65,14 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   declarations: [
     SafeHtmlPipe,
     MathRound,
+    FileName,
     CheckPasswordDirective,
     PreventNumberInInputTextDirective,
     CheckEmailDirective,
     CheckMobileDirective,
     CheckIDNumberDirective,
-    AlertComponent
+    AlertComponent,
+    CheckImageDirective
 ],
   imports: [
     NgwWowModule,
@@ -115,6 +119,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AnimateOnScrollModule,
     SafeHtmlPipe,
     MathRound,
+    FileName,
     CheckPasswordDirective,
     PreventNumberInInputTextDirective,
     CheckEmailDirective,
@@ -148,7 +153,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NgxSpinnerModule,
     CardModule,
     NgxPaginationModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    CheckImageDirective
   ]
 })
 export class SharedModule {

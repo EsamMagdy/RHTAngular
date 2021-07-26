@@ -12,23 +12,25 @@ import { FooterLoaderService } from '../shared/services/footerLoaderAfterView.se
 @Component({
   selector: 'app-company-services',
   templateUrl: './company-services.component.html',
-  styleUrls: ['./company-services.component.css']
+  styleUrls: ['./company-services.component.css'],
 })
 export class CompanyServicesComponent implements OnInit {
   stepId: string;
   individualContractReq: IndividualContractReq;
-  constructor(private individualContractService: IndividualContractService,
+  constructor(
+    private individualContractService: IndividualContractService,
     private router: Router,
     private route: ActivatedRoute,
     private localStorageService: LocalStorageService,
-    private footerLoaderService: FooterLoaderService) {
+    private footerLoaderService: FooterLoaderService
+  ) {
     this.footerLoaderService.footer.emit();
   }
 
   ngOnInit(): void {
     this.setIndivContractReq();
     this.checkIfUserDataCompleted();
-
+    this.localStorageService.indivContractCreatedLocalStorage = false;
     this.route.data.subscribe((data: Data) => {
       let stepData = data['indivContract'];
       if (stepData) {
@@ -36,21 +38,19 @@ export class CompanyServicesComponent implements OnInit {
         this.localStorageService.indivContractReqLocalStorage = indvContReq;
         this.individualContractService.individualContractReq = indvContReq;
         this.individualContractService.step.next(indvContReq.currentStep);
-
-      }
-      else {
+      } else {
         this.individualContractService.createStep();
       }
-
     });
-
   }
 
   setIndivContractReq() {
-    this.individualContractReq = this.localStorageService.indivContractReqLocalStorage;
+    this.individualContractReq =
+      this.localStorageService.indivContractReqLocalStorage;
     // let indvContractReq = JSON.parse(localStorage.getItem(LocalStorageKeys.indvContractReq)) as IndividualContractReq;
     let indvContractReq = this.localStorageService.indivContractReqLocalStorage;
-    this.individualContractService.individualContractReq = indvContractReq ?? new IndividualContractReq();
+    this.individualContractService.individualContractReq =
+      indvContractReq ?? new IndividualContractReq();
   }
 
   checkIfUserDataCompleted() {
@@ -58,15 +58,12 @@ export class CompanyServicesComponent implements OnInit {
 
     if (!userId) return;
 
-
     this.individualContractService
       .isUserDataCompleted(userId)
-      .subscribe(resData => {
+      .subscribe((resData) => {
         if (resData.data.value)
           this.individualContractService.userDataCompleted.next(true);
-        else
-          this.individualContractService.userDataCompleted.next(false);
+        else this.individualContractService.userDataCompleted.next(false);
       });
   }
-
 }

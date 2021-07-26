@@ -41,12 +41,32 @@
             aria-label="File browser example"
             #identificationImage
             type="file"
+            accept="image/*"
             name="identificationImage"
             ngModel
+            (change)="chooseImage(identificationImage)"
           />
 
-          <span class="file-custom"></span>
+          <span
+            [class.file-name-custom]="
+              identificationCardImage?.nativeElement?.value
+            "
+            class="file-custom"
+            >{{
+              identificationCardImage?.nativeElement?.value | fileName
+            }}</span
+          >
         </label>
+        <p-message
+          *ngIf="
+            !identificationImage.value &&
+            identificationImage?.classList.contains('ng-dirty')
+          "
+          styleClass="p-mt-1"
+          severity="error"
+          text="{{ 'Shared.CorrectImage' | translate }}"
+        >
+        </p-message>
       </div>
       <div class="col-md-3 text-md-right text-center">
         <button
@@ -83,10 +103,27 @@
             type="file"
             id="file"
             aria-label="File browser example"
+            accept="image/*"
             #familyImage
+            ngModel
+            (change)="chooseImage(familyImage)"
           />
-          <span class="file-custom"></span>
+          <span
+            [class.file-name-custom]="familyCardImage?.nativeElement?.value"
+            class="file-custom"
+            >{{ familyCardImage?.nativeElement?.value | fileName }}</span
+          >
         </label>
+        <p-message
+          *ngIf="
+            !familyImage.value &&
+            familyImage?.classList.contains('ng-dirty')
+          "
+          styleClass="p-mt-1"
+          severity="error"
+          text="{{ 'Shared.CorrectImage' | translate }}"
+        >
+        </p-message>
       </div>
       <div class="col-md-3 text-md-right text-center">
         <button
@@ -115,7 +152,7 @@
   >
     <div class="row">
       <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
-       {{ 'Attachments.NationalAddressImage' | translate }}
+        {{ "Attachments.NationalAddressImage" | translate }}
       </div>
       <div class="col-md-6 text-md-left text-center">
         <label class="file">
@@ -123,15 +160,34 @@
             type="file"
             id="file"
             aria-label="File browser example"
-            #nationalAddressImage
+            accept="image/*"
+            #nAddressImage
+            ngModel
+            (change)="chooseImage(nAddressImage)"
           />
-          <span class="file-custom"></span>
+          <span
+            [class.file-name-custom]="
+              nationalAddressImage?.nativeElement?.value
+            "
+            class="file-custom"
+            >{{ nationalAddressImage?.nativeElement?.value | fileName }}</span
+          >
         </label>
+        <p-message
+          *ngIf="
+            !nAddressImage.value &&
+            nAddressImage?.classList.contains('ng-dirty')
+          "
+          styleClass="p-mt-1"
+          severity="error"
+          text="{{ 'Shared.CorrectImage' | translate }}"
+        >
+        </p-message>
       </div>
       <div class="col-md-3 text-md-right text-center">
         <button
           class="btn btn-lg btn-warning"
-          (click)="onPrieviewImage(nationalAddressImage)"
+          (click)="onPrieviewImage(nAddressImage)"
         >
           {{ "Attachments.Review" | translate }}
         </button>
@@ -155,7 +211,7 @@
   >
     <div class="row">
       <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
-        {{ 'Attachments.CustomerSalaryImage' | translate }}
+        {{ "Attachments.CustomerSalaryImage" | translate }}
       </div>
       <div class="col-md-6 text-md-left text-center">
         <label class="file">
@@ -163,15 +219,32 @@
             type="file"
             id="file"
             aria-label="File browser example"
-            #customerSalaryImage
+            accept="image/*"
+            #custSalaryImage
+            ngModel
+            (change)="chooseImage(custSalaryImage)"
           />
-          <span class="file-custom"></span>
+          <span
+            [class.file-name-custom]="customerSalaryImage?.nativeElement?.value"
+            class="file-custom"
+            >{{ customerSalaryImage?.nativeElement?.value | fileName }}</span
+          >
         </label>
+        <p-message
+          *ngIf="
+            !custSalaryImage?.value&&
+            custSalaryImage?.classList?.contains('ng-dirty')
+          "
+          styleClass="p-mt-1"
+          severity="error"
+          text="{{ 'Shared.CorrectImage' | translate }}"
+        >
+        </p-message>
       </div>
       <div class="col-md-3 text-md-right text-center">
         <button
           class="btn btn-lg btn-warning"
-          (click)="onPrieviewImage(customerSalaryImage)"
+          (click)="onPrieviewImage(custSalaryImage)"
         >
           {{ "Attachments.Review" | translate }}
         </button>

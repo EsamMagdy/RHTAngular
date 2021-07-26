@@ -1,30 +1,37 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AttachmentsFieldName } from 'src/app/shared/models/attachments.model';
-import { ContractStepsEnum, IndividualContractAttachment, StepTypeEnum } from 'src/app/shared/models/individualContractReq.model';
+import {
+  ContractStepsEnum,
+  IndividualContractAttachment,
+  StepTypeEnum,
+} from 'src/app/shared/models/individualContractReq.model';
 import { IndividualContractService } from 'src/app/shared/services/individualContractReq.service';
 
 @Component({
   selector: 'app-attachments',
   templateUrl: './attachments.component.html',
-  styleUrls: ['./attachments.component.css']
+  styleUrls: ['./attachments.component.css'],
 })
 export class AttachmentsComponent implements OnInit {
   @ViewChild('identificationImage') identificationCardImage: ElementRef;
   @ViewChild('familyImage') familyCardImage: ElementRef;
-  @ViewChild('nationalAddressImage') nationalAddressImage: ElementRef;
-  @ViewChild('customerSalaryImage') customerSalaryImage: ElementRef;
+  @ViewChild('nAddressImage') nationalAddressImage: ElementRef;
+  @ViewChild('custSalaryImage') customerSalaryImage: ElementRef;
   attachments: { [key: string]: any } = {};
   previewImage: any;
   images: any = [];
-
   displayBasic2: boolean;
+  isImage: boolean = true;
+
   constructor(
     private router: Router,
     private individualContractService: IndividualContractService
-  ) { }
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.individualContractService.step.next(ContractStepsEnum.EighthStep);
+  }
 
   contractlPage() {
     this.router.navigate(['/services/contract'], {
@@ -32,11 +39,26 @@ export class AttachmentsComponent implements OnInit {
         stepId: this.individualContractService.individualContractReq.stepId,
       },
     });
-    this.individualContractService.updateStepData(ContractStepsEnum.SixthStep, StepTypeEnum.Previous);
-    this.individualContractService.step.next(ContractStepsEnum.SixthStep);
+    this.individualContractService.updateStepData(
+      ContractStepsEnum.SeventhStep,
+      StepTypeEnum.Previous
+    );
+    this.individualContractService.step.next(ContractStepsEnum.SeventhStep);
+  }
+  chooseImage(image: any) {
+    debugger;
+    if (!image.files || !image.files[0]) return;
+    let file = image.files[0];
+
+    const fileType = file['type'];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    console.log(image);
+    if (!validImageTypes.includes(fileType)) {
+      file = null;
+      image.value = null;
+    }
   }
   paymentPage() {
-
     this.chkValidation(
       this.identificationCardImage,
       AttachmentsFieldName.IdentificationCardImage,
@@ -60,22 +82,36 @@ export class AttachmentsComponent implements OnInit {
 
     this.individualContractService.individualContractReq.attachments = <
       IndividualContractAttachment
-      >this.attachments;
+    >this.attachments;
     this.router.navigate(['/services/payment'], {
       queryParams: {
         stepId: this.individualContractService.individualContractReq.stepId,
       },
     });
-    this.individualContractService.updateStepData(ContractStepsEnum.EighthStep, StepTypeEnum.Next);
-    this.individualContractService.step.next(ContractStepsEnum.EighthStep);
+    this.individualContractService.updateStepData(
+      ContractStepsEnum.NinthStep,
+      StepTypeEnum.Next
+    );
+    this.individualContractService.step.next(ContractStepsEnum.NinthStep);
   }
   onPrieviewImage(imageSelected: any) {
     if (!imageSelected.files || !imageSelected.files[0]) return;
 
     const file = imageSelected.files[0];
+    console.log(file);
+
     this.priviewImage(file);
   }
-
+  checkImage(image: any) {
+    this.isImage = true;
+    let file = image.target;
+    const fileType = file.files[0]['type'];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    if (!validImageTypes.includes(fileType)) {
+      file.value = null;
+      this.isImage = false;
+    }
+  }
   priviewImage(imageSelected: any) {
     this.images[0] = this.previewImage;
     this.displayBasic2 = true;
@@ -84,18 +120,23 @@ export class AttachmentsComponent implements OnInit {
     reader.readAsDataURL(imageSelected);
   }
 
-  private async chkValidation(element: ElementRef, image: any, imageName: string) {
+  private async chkValidation(
+    element: ElementRef,
+    image: any,
+    imageName: string
+  ) {
     if (element.nativeElement.files && element.nativeElement.files[0]) {
       this.attachments[image] = element.nativeElement.files[0];
       this.attachments[imageName] = element.nativeElement.files[0].name;
-      let imageBase64 = await this.getBase64(element.nativeElement.files[0]) as string;
+      let imageBase64 = (await this.getBase64(
+        element.nativeElement.files[0]
+      )) as string;
       let s = imageBase64.split(',')[1];
       // let regex=new RegExp("^[\w/\:.-]+;base64,");
       // imageBase64=regex.exec(imageBase64);
       this.individualContractService
         .uploadAttachments(imageName, s, element.nativeElement.files[0].name)
-        .subscribe(s => {
-        });
+        .subscribe((s) => {});
     }
   }
   getBase64(file: any): Promise<any> {
@@ -103,7 +144,7 @@ export class AttachmentsComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
+      reader.onerror = (error) => reject(error);
     });
     // let reader = new FileReader();
     // reader.readAsDataURL(file);
@@ -115,5 +156,5 @@ export class AttachmentsComponent implements OnInit {
     //   console.log('Error: ', error);
     // };
   }
-
+  submit() {}
 }

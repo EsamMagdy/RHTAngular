@@ -56,6 +56,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.individualContractService.step.next(ContractStepsEnum.ThirdStep);
     this.setPricingData();
     // let stepData = JSON.parse(localStorage.getItem(LocalStorageKeys.stepData));
     // let currentStep = stepData['currentStep'];

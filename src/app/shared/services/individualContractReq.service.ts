@@ -1,8 +1,15 @@
 import { Subject } from 'rxjs';
 import { StringKeyValuePairs } from 'src/app/shared/models/keyValuePairs.model';
-import { LocalStorageKeys, StepDataLocalStorage } from './../models/localStorage.model';
+import {
+  LocalStorageKeys,
+  StepDataLocalStorage,
+} from './../models/localStorage.model';
 import { User } from './../models/user.model';
-import { ContractStepsEnum, IndividualContractAttachment, StepTypeEnum } from './../models/individualContractReq.model';
+import {
+  ContractStepsEnum,
+  IndividualContractAttachment,
+  StepTypeEnum,
+} from './../models/individualContractReq.model';
 import { StepData } from './../models/StepDataVm.model';
 import { environment } from './../../../environments/environment';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -32,7 +39,6 @@ import { AttachmentsFieldName } from '../models/attachments.model';
 
 @Injectable({ providedIn: 'root' })
 export class IndividualContractService {
-
   individualContractReq = new IndividualContractReq();
   totalEmployeeCount = new Subject<number>();
   indContReqCreated: IndividualContractReq;
@@ -45,7 +51,8 @@ export class IndividualContractService {
     private http: HttpClient,
     private authService: AuthService,
     private router: Router,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService
+  ) {
     this.step.next(1);
 
     // this.individualContractReq.stepId = Guid.newGuid();
@@ -54,9 +61,11 @@ export class IndividualContractService {
   }
 
   get indivContractReq() {
-    let stepId = this.individualContractReq.stepId ?? this.localStorageService.indivContractReqLocalStorage.stepId;
+    let stepId =
+      this.individualContractReq.stepId ??
+      this.localStorageService.indivContractReqLocalStorage.stepId;
     let indiv = new IndividualContractReq();
-    this.getStepDetails(stepId).subscribe(stepData => {
+    this.getStepDetails(stepId).subscribe((stepData) => {
       indiv = JSON.parse(stepData.data) as IndividualContractReq;
       return indiv;
     });
@@ -64,8 +73,12 @@ export class IndividualContractService {
   }
   getStepDetails(stepId: string) {
     // let stepId = stepId ?? this.localStorageService.indivContractReqLocalStorage.stepId;
-    return this.http.get<ResponseDataCRMWithObjectData<StepData>>
-      (environment.apiUrl + `IndividualContractRequest/GetStepById?id=${stepId}`).pipe(
+    return this.http
+      .get<ResponseDataCRMWithObjectData<StepData>>(
+        environment.apiUrl +
+          `IndividualContractRequest/GetStepById?id=${stepId}`
+      )
+      .pipe(
         map((resData) => {
           return resData.data;
         })
@@ -81,11 +94,14 @@ export class IndividualContractService {
     // let data = JSON.stringify(this.individualContractReq);
     // localStorage.setItem(LocalStorageKeys.indvContractReq, data);
 
-    this.localStorageService.indivContractReqLocalStorage = this.individualContractReq;
+    this.localStorageService.indivContractReqLocalStorage =
+      this.individualContractReq;
 
     let newStepData = new StepData();
     newStepData.id = this.individualContractReq.stepId;
-    newStepData.data = JSON.stringify(this.localStorageService.indivContractReqLocalStorage);
+    newStepData.data = JSON.stringify(
+      this.localStorageService.indivContractReqLocalStorage
+    );
     this.addStepData(newStepData).subscribe();
   }
   updateStepData(currentStep: ContractStepsEnum, stepType: StepTypeEnum) {
@@ -94,40 +110,59 @@ export class IndividualContractService {
 
     // let data = JSON.stringify(this.individualContractReq);
     // localStorage.setItem(LocalStorageKeys.indvContractReq, data);
-    this.localStorageService.indivContractReqLocalStorage = this.individualContractReq;
+    this.localStorageService.indivContractReqLocalStorage =
+      this.individualContractReq;
 
-    let newData = this.individualContractReq
-      ?? JSON.parse(localStorage.getItem(LocalStorageKeys.indvContractReq)) as IndividualContractReq;
+    let newData =
+      this.individualContractReq ??
+      (JSON.parse(
+        localStorage.getItem(LocalStorageKeys.indvContractReq)
+      ) as IndividualContractReq);
 
     // let data = JSON.parse(localStorage.getItem(LocalStorageKeys.StepData)) as StepDataLocalStorage;
-    this.getStepDetails(newData.stepId).subscribe(stepData => {
-      stepData.data = JSON.stringify(this.localStorageService.indivContractReqLocalStorage);
-      return this.http.post<number>(environment.apiUrl + `IndividualContractRequest/UpdateStepData`
-        , stepData).subscribe();
+    this.getStepDetails(newData.stepId).subscribe((stepData) => {
+      stepData.data = JSON.stringify(
+        this.localStorageService.indivContractReqLocalStorage
+      );
+      return this.http
+        .post<number>(
+          environment.apiUrl + `IndividualContractRequest/UpdateStepData`,
+          stepData
+        )
+        .subscribe();
     });
     // return this.http.post<number>(environment.apiUrl + `IndividualContractRequest/UpdateStepData`
     //   , stepData);
   }
   addStepData(stepData: StepData) {
-    return this.http.post<ResponseDataCRMWithObjectData<StepData>>
-      (environment.apiUrl + `IndividualContractRequest/AddStepData`,
-        stepData);
+    return this.http.post<ResponseDataCRMWithObjectData<StepData>>(
+      environment.apiUrl + `IndividualContractRequest/AddStepData`,
+      stepData
+    );
   }
 
   async completeIndivReq(indivContRequstID: string) {
-    let indivContRequst = await this.getIdivContDetails(indivContRequstID).toPromise();
+    let indivContRequst = await this.getIdivContDetails(
+      indivContRequstID
+    ).toPromise();
   }
   getIdivContDetails(id: string) {
-    return this.http.get<ResponseDataCRMWithObjectData<IndividualContractReq>>
-      (environment.apiUrl + `IndividualContractRequest/GetDetails?id=${id}`).pipe(
+    return this.http
+      .get<ResponseDataCRMWithObjectData<IndividualContractReq>>(
+        environment.apiUrl + `IndividualContractRequest/GetDetails?id=${id}`
+      )
+      .pipe(
         map((resData) => {
           return resData.data;
         })
       );
   }
   checkAvailableLabor(nationalityId: string, professionId: string) {
-    return this.http.get<ResponseDataCRMWithObjectData<IndividualLaborStock>>
-      (environment.apiUrl + `IndividualContractRequest/CheckAvailableLabor?nationalityId=${nationalityId}&professionId=${professionId}`)
+    return this.http
+      .get<ResponseDataCRMWithObjectData<IndividualLaborStock>>(
+        environment.apiUrl +
+          `IndividualContractRequest/CheckAvailableLabor?nationalityId=${nationalityId}&professionId=${professionId}`
+      )
       .pipe(
         map((resData) => {
           return resData.data;
@@ -138,14 +173,17 @@ export class IndividualContractService {
     this.individualContractReq.address = location.addressNotes;
     this.individualContractReq.partmentNumber = location.apartmentNumber;
     this.individualContractReq.houseNo = location.houseNumber;
-    this.individualContractReq.floorNo = location.floorNumber.value == null ? 0 : location.floorNumber.key;
-    this.individualContractReq.houseType = location.houseType.value == null ? 0 : location.houseType.key;
+    this.individualContractReq.floorNo =
+      location.floorNumber.value == null ? 0 : location.floorNumber.key;
+    this.individualContractReq.houseType =
+      location.houseType.value == null ? 0 : location.houseType.key;
     this.individualContractReq.cityId = location.city.cityId;
     this.individualContractReq.city = location.city;
 
     this.individualContractReq.districtId = location.district.districtId;
     this.individualContractReq.district = location.district;
-    this.individualContractReq.selectedLocationId = location.contactPreviouslocationId;
+    this.individualContractReq.selectedLocationId =
+      location.contactPreviouslocationId;
 
     this.individualContractReq.latitude = location.mLatitude;
     this.individualContractReq.longitude = location.mLongitude;
@@ -162,7 +200,8 @@ export class IndividualContractService {
   getContactWithPreviousLocation(userId: string) {
     return this.http
       .get<ResponseDataCRMWithObjectData<IndvReqContact>>(
-        environment.apiUrl + `IndividualContractRequest/GetWithPreviousLocation?userId=${userId}`
+        environment.apiUrl +
+          `IndividualContractRequest/GetWithPreviousLocation?userId=${userId}`
       )
       .pipe(
         map((resData) => {
@@ -188,7 +227,6 @@ export class IndividualContractService {
     delete indConReq.stepId;
     delete indConReq.recieveEmployeeFromHousing;
 
-
     indConReq.contactId = this.localStorageService.userLocalStorage.crmUserId;
     indConReq.pricingId = this.individualContractReq.pricing.id;
     return this.http
@@ -207,6 +245,7 @@ export class IndividualContractService {
       );
   }
   async getContractTemplate() {
+    debugger;
     let indConReq = await this.createNewContractRequest().toPromise();
     this.indContReqCreated = { ...indConReq };
 
@@ -217,6 +256,9 @@ export class IndividualContractService {
       )
       .pipe(
         map((resData) => {
+          debugger;
+          this.localStorageService.indivContractCreatedLocalStorage = true;
+          this.localStorageService.indivContractReqLocalStorage = null;
           return resData.data;
         })
       );
@@ -236,23 +278,20 @@ export class IndividualContractService {
   }
   uploadAttachments(fieldName: string, imageBase: string, name: string) {
     let contractId = this.indContReqCreated.individualContractRequestId;
-    return this.http
-      .post<ResponseDataCRMForContractTemplate<string>>(
-        environment.apiUrl + 'IndividualContractRequest/UploadAttachments',
-        {
-          Id: contractId,
-          ImageBase: imageBase,
-          Name: name,
-          FieldName: fieldName
-        }
-      );
+    return this.http.post<ResponseDataCRMForContractTemplate<string>>(
+      environment.apiUrl + 'IndividualContractRequest/UploadAttachments',
+      {
+        Id: contractId,
+        ImageBase: imageBase,
+        Name: name,
+        FieldName: fieldName,
+      }
+    );
   }
 
   isUserDataCompleted(userId: string) {
-    return this.http
-      .get<ResponseDataCRMWithDeleting>(
-        environment.apiUrl + `contact/IsProfileCompleted_M/${userId}`,
-
-      );
+    return this.http.get<ResponseDataCRMWithDeleting>(
+      environment.apiUrl + `contact/IsProfileCompleted_M/${userId}`
+    );
   }
 }

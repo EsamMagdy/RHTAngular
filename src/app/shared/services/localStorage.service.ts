@@ -5,6 +5,7 @@ import { LocalStorageKeys } from './../models/localStorage.model';
 import { Injectable } from "@angular/core";
 import { UserData } from '../models/userData.model';
 import { RegisterData } from '../models/registerData.model';
+import { IndividualContract } from '../models/individualContract.model';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
@@ -13,6 +14,12 @@ export class LocalStorageService {
     }
     set indivContractReqLocalStorage(indivContractReq: IndividualContractReq) {
         localStorage.setItem(LocalStorageKeys.indvContractReq, JSON.stringify(indivContractReq));
+    }
+    get indivContractCreatedLocalStorage() {
+        return JSON.parse(localStorage.getItem(LocalStorageKeys.indvContractCreated));
+    }
+    set indivContractCreatedLocalStorage(indivContractCreated: boolean) {
+        localStorage.setItem(LocalStorageKeys.indvContractCreated, JSON.stringify(indivContractCreated));
     }
     get languageLocalStorage() {
         return localStorage.getItem(LocalStorageKeys.language);

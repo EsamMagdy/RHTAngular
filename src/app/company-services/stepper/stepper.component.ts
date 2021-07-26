@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StepperComponent implements OnInit {
   step: number;
-  showCompletedData = false
+  showCompletedData = false;
   constructor(private individualContractService: IndividualContractService,
     private localStorageService: LocalStorageService) { }
 

@@ -40,6 +40,7 @@ export class EmployeeComponent implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService) { }
   ngOnInit(): void {
+    this.individualContractService.step.next(ContractStepsEnum.ForthStep);
     let indContractReq = this.localStorageService.indivContractReqLocalStorage;
     this.professionId = indContractReq.professionId;
     this.nationalityId = indContractReq.nationalityId;

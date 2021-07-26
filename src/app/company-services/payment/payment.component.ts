@@ -30,6 +30,7 @@ export class PaymentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.individualContractService.step.next(ContractStepsEnum.NinthStep);
     console.log(this.individualContractService.indContReqCreated);
 
     this.indContReq = this.individualContractService.indContReqCreated;

@@ -1,7 +1,7 @@
 {
-  "Language":{
-    "Style":"/assets/css/rtl/ar-style.css",
-    "Bootstrap":"/assets/css/rtl/bootstrap.min.css"
+  "Language": {
+    "Style": "/assets/css/rtl/ar-style.css",
+    "Bootstrap": "/assets/css/rtl/bootstrap.min.css"
   },
   "HOME": {
     "Content": " <div class='mb-3 h3 font-weight-bold'><span class='text-success'>مرحباً بكم</span> في راحة الأسرة</div><div class='mb-3 fs-17'><p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</p><p>إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدومقسماولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير منالأحيانأن يطلع على صورة حقيقية لتصميم الموقع.</p></div>",
@@ -82,7 +82,8 @@
     "Code": "الكود",
     "CodeRequired": "من فضلك ادخل الكود",
     "NewPassword": "كلمة المرور الجديدة",
-    "NewPasswordConfirmation": "تاكيد كلمة المرور الجديدة"
+    "NewPasswordConfirmation": "تاكيد كلمة المرور الجديدة",
+    "SentSuccesfully":"تم الارسال"
   },
   "ContactUs": {
     "Address": "<div class='fs-18 font-weight-bold'><i class='fa fa-map-marker mr-2'></i>العنوان</div><div class=''>الرياض - فرع حي التعاون _ شارع دمياط</div></div>",
@@ -183,8 +184,8 @@
     "ContractReqStatus": "حالة الطلب",
     "ContractReqNumber": "رقم الطلب",
     "UploadAttachments": "رفع المرفقات",
-    "CancelRequest":"الغاء الطلب",
-    "AskToDeleteIndivContractReq":"هل تريد حذف هذا الطلب ؟"
+    "CancelRequest": "الغاء الطلب",
+    "AskToDeleteIndivContractReq": "هل تريد حذف هذا الطلب ؟"
   },
   "Location": {
     "Address": "العنوان",
@@ -204,10 +205,10 @@
     "NotFound": "لا يوجد",
     "Villa": "فيلا",
     "LocationError": "لا يمكنك تحديد هذا الموقع حيث أنه خارج نطاق الحي",
-    "SetCurrentLocation":"تحديد موقعك الحالى",
-    "CurrentLocationError":"موقعك الحالى خارج نطاق الحى",
-    "CurrentLocationOutOfBounds":"موقعك الحالى خارج حدود السعودية",
-    "SelectLocation":"برجاء تحديد موقعك الحالي على الخريطة"
+    "SetCurrentLocation": "تحديد موقعك الحالى",
+    "CurrentLocationError": "موقعك الحالى خارج نطاق الحى",
+    "CurrentLocationOutOfBounds": "موقعك الحالى خارج حدود السعودية",
+    "SelectLocation": "برجاء تحديد موقعك الحالي على الخريطة"
   },
   "OtherOrders": {
     "Details": "من فضلك ادخل تفاصيل الطلب",
@@ -294,7 +295,7 @@
     "RenewDiscount": "الخصم بعد التجديد",
     "AndRenewOnPricing": "وتم تجديده علي باقة",
     "WayToRecieveWorker": "من فضلك اختر طريقة استلام العاملة",
-    "TotalAfterDiscount":"الاجمالى بعد الخصم"
+    "TotalAfterDiscount": "الاجمالى بعد الخصم"
   },
   "Shared": {
     "AskToDelete": "هل تريد حذف هذا العنوان ؟ ",
@@ -333,8 +334,9 @@
     "Refresh": "اعادة تحميل الصفحة",
     "PowerdBy": "© 2021. شركة الحماية المتميزة",
     "PayOnline": "ادفع اونلاين",
-    "NoRecordsFound":"لا توجد بيانات",
-    "NoResultsFound":"لم يتم العثور على نتائج"
+    "NoRecordsFound": "لا توجد بيانات",
+    "NoResultsFound": "لم يتم العثور على نتائج",
+    "CorrectImage":"من فضلك اختر صورة"
   },
   "Stepper": {
     "Attachments": "المرفقات",
@@ -351,8 +353,8 @@
     "SeventhStep": "الخطوة 7",
     "SixthStep": "الخطوة 6",
     "ThirdStep": "الخطوة 3",
-    "EighthStep":"الخطوة 8",
-    "CompletingData":"استكمال البيانات"
+    "EighthStep": "الخطوة 8",
+    "CompletingData": "استكمال البيانات"
   },
   "CustomerTicket": {
     "ContractNumberRequired": "من فضلك ادخل رقم العقد",
@@ -369,7 +371,7 @@
     "TicketDetails": "تفاصيل التذكرة",
     "EnterTicketDetails": "اكتب تفاصيل التذكرة هنا",
     "SendTicket": "إرسال التذكرة",
-    "TicketItemRequired":"من فضلك ادخل نوع التذكرة"
+    "TicketItemRequired": "من فضلك ادخل نوع التذكرة"
   },
   "Verification": {
     "EnterVerificationCode": "أدخل كود التحقق المرسل على جوالك",
@@ -441,7 +443,7 @@
     "TicketStatus": "حالة التذكرة",
     "TicketDate": "تاريخ التذكرة",
     "NoRecordsFound": "لم يعثر على أية سجلات",
-    "NewTicket":"تذكرة جديدة"
+    "NewTicket": "تذكرة جديدة"
   },
   "Profile": {
     "Header": "حسابي و بياناتي الشخصية",
@@ -469,8 +471,8 @@
     "FinalPricePlusVat": "السعر الإجمالي + الضريبة",
     "ChooseAnotherPricing": " أو يمكنك اختيار باقة أخري",
     "Pricing": "السعر",
-    "NewContract":"عقد جديد",
-    "DeliveryCost":"رسوم توصيل",
-    "FinalPrice":"السعر النهائى"
+    "NewContract": "عقد جديد",
+    "DeliveryCost": "رسوم توصيل",
+    "FinalPrice": "السعر النهائى"
   }
 }

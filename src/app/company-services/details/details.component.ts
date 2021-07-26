@@ -25,6 +25,7 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.individualContractService.step.next(ContractStepsEnum.FifthStep);
     this.individualContractReq = this.localStorageService.indivContractReqLocalStorage;
     this.employee = this.individualContractReq.employee;
   }

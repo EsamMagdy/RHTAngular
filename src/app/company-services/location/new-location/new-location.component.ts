@@ -93,6 +93,7 @@ export class NewLocationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.individualContractService.step.next(ContractStepsEnum.FirstStep);
     this.setLocationData();
 
     // this.mapsAPILoader.load().then(() => {

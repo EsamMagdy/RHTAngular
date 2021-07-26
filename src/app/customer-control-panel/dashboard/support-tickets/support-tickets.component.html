@@ -68,8 +68,8 @@
             lastTicket.ticketNumber
           }}</span>
         </td>
-        <td class="font-secondary">{{ lastTicket.contact }}</td>
-        <td class="font-secondary">{{ lastTicket.clientClosedCode }}</td>
+        <td class="font-secondary">{{ lastTicket?.contract }}</td>
+        <td class="font-secondary">{{ lastTicket?.clientClosedCode }}</td>
         <td>{{ lastTicket.problemTypeName }}</td>
         <td *ngIf="lastTicket.status != 100000009">
           <span class="badge badge-danger">{{ lastTicket.statusName }}</span>

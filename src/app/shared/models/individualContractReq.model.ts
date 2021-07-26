@@ -126,7 +126,7 @@ export class IndividualContractReq {
   totalPrice: number;
   vatAmount: number;
   vatGroup: VatGroup;
-  totalWithDeliveryCosts:number;
+  totalWithDeliveryCosts: number;
 }
 export class IndividualContractAttachment {
   identificationCardImage: any;
@@ -174,6 +174,7 @@ export enum ContractStepsEnum {
   SixthStep = 6,
   SeventhStep = 7,
   EighthStep = 8,
+  NinthStep = 9,
 }
 export enum StepTypeEnum {
   Next = 1,
@@ -285,6 +286,5 @@ export enum StatusCodeIndContractReq {
   Approved = 100000000,
   Canceled = 100000001,
   ConfirmedByFinance = 100000004,
-  PaymentIsPendingConfirmation = 100000006
+  PaymentIsPendingConfirmation = 100000006,
 }
-
