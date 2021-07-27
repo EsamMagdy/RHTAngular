@@ -7,6 +7,7 @@ import {
   StepTypeEnum,
 } from 'src/app/shared/models/individualContractReq.model';
 import { IndividualContractService } from 'src/app/shared/services/individualContractReq.service';
+import { AttachmentsService } from './attachments.service';
 
 @Component({
   selector: 'app-attachments',
@@ -26,7 +27,8 @@ export class AttachmentsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private individualContractService: IndividualContractService
+    private individualContractService: IndividualContractService,
+    public attachmentsService: AttachmentsService
   ) {}
 
   ngOnInit(): void {
@@ -44,19 +46,6 @@ export class AttachmentsComponent implements OnInit {
       StepTypeEnum.Previous
     );
     this.individualContractService.step.next(ContractStepsEnum.SeventhStep);
-  }
-  chooseImage(image: any) {
-    debugger;
-    if (!image.files || !image.files[0]) return;
-    let file = image.files[0];
-
-    const fileType = file['type'];
-    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-    console.log(image);
-    if (!validImageTypes.includes(fileType)) {
-      file = null;
-      image.value = null;
-    }
   }
   paymentPage() {
     this.chkValidation(
@@ -128,7 +117,7 @@ export class AttachmentsComponent implements OnInit {
     if (element.nativeElement.files && element.nativeElement.files[0]) {
       this.attachments[image] = element.nativeElement.files[0];
       this.attachments[imageName] = element.nativeElement.files[0].name;
-      let imageBase64 = (await this.getBase64(
+      let imageBase64 = (await this.attachmentsService.getImageInBase64(
         element.nativeElement.files[0]
       )) as string;
       let s = imageBase64.split(',')[1];
@@ -139,13 +128,13 @@ export class AttachmentsComponent implements OnInit {
         .subscribe((s) => {});
     }
   }
-  getBase64(file: any): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+  // getBase64(file: any): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => resolve(reader.result);
+  //     reader.onerror = (error) => reject(error);
+  //   });
     // let reader = new FileReader();
     // reader.readAsDataURL(file);
     // reader.onload = function () {
@@ -155,6 +144,5 @@ export class AttachmentsComponent implements OnInit {
     // reader.onerror = function (error) {
     //   console.log('Error: ', error);
     // };
-  }
-  submit() {}
+  // }
 }

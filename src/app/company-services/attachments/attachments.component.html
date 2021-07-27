@@ -44,7 +44,7 @@
             accept="image/*"
             name="identificationImage"
             ngModel
-            (change)="chooseImage(identificationImage)"
+            (change)="attachmentsService.chooseImage(identificationImage)"
           />
 
           <span
@@ -106,7 +106,7 @@
             accept="image/*"
             #familyImage
             ngModel
-            (change)="chooseImage(familyImage)"
+            (change)="attachmentsService.chooseImage(familyImage)"
           />
           <span
             [class.file-name-custom]="familyCardImage?.nativeElement?.value"
@@ -116,8 +116,7 @@
         </label>
         <p-message
           *ngIf="
-            !familyImage.value &&
-            familyImage?.classList.contains('ng-dirty')
+            !familyImage.value && familyImage?.classList.contains('ng-dirty')
           "
           styleClass="p-mt-1"
           severity="error"
@@ -163,7 +162,7 @@
             accept="image/*"
             #nAddressImage
             ngModel
-            (change)="chooseImage(nAddressImage)"
+            (change)="attachmentsService.chooseImage(nAddressImage)"
           />
           <span
             [class.file-name-custom]="
@@ -222,7 +221,7 @@
             accept="image/*"
             #custSalaryImage
             ngModel
-            (change)="chooseImage(custSalaryImage)"
+            (change)="attachmentsService.chooseImage(custSalaryImage)"
           />
           <span
             [class.file-name-custom]="customerSalaryImage?.nativeElement?.value"
@@ -232,7 +231,7 @@
         </label>
         <p-message
           *ngIf="
-            !custSalaryImage?.value&&
+            !custSalaryImage?.value &&
             custSalaryImage?.classList?.contains('ng-dirty')
           "
           styleClass="p-mt-1"

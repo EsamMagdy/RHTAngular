@@ -50,7 +50,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private localStorageService: LocalStorageService,
     private translateService: TranslateService
-  ) { }
+  ) {}
   ngAfterViewInit(): void {
     // $('#myModal').modal('show');
   }
@@ -156,13 +156,13 @@ export class PricingComponent implements OnInit, AfterViewInit {
             this.router.navigate(['/auth'], { queryParams: { returnUrl: s } });
           });
         },
-        reject: (type: any) => { },
+        reject: (type: any) => {},
       });
       return;
     }
     if (
       this.employeePickSource.employeePickSource ===
-      EmployeePickSourceEnum.Website &&
+        EmployeePickSourceEnum.Website &&
       this.employeePickSource.howtoReceiveWorker === HowToRecieveWorker.Delivery
     ) {
       this.router.navigate(['/services/employee'], {
@@ -178,10 +178,12 @@ export class PricingComponent implements OnInit, AfterViewInit {
     }
     if (
       this.employeePickSource.employeePickSource ===
-      EmployeePickSourceEnum.Company ||
+        EmployeePickSourceEnum.Company ||
       this.employeePickSource.howtoReceiveWorker ===
-      HowToRecieveWorker.FromBranch
+        HowToRecieveWorker.FromBranch
     ) {
+      this.individualContractService.individualContractReq.employee = null;
+      this.individualContractService.individualContractReq.employeeId = null;
       this.router.navigate(['/services/details'], {
         queryParams: {
           stepId: this.individualContractService.individualContractReq.stepId,
@@ -209,7 +211,10 @@ export class PricingComponent implements OnInit, AfterViewInit {
         .subscribe((v) => this.error.push(v));
       // s.push('من فضلك اختر طريقة اختيار العاملة');
     }
-    if (this.employeePickSource && !this.employeePickSource.employeePickSource) {
+    if (
+      this.employeePickSource &&
+      !this.employeePickSource.employeePickSource
+    ) {
       this.translateService
         .get('PricingDetails.WayToRecieveWorker')
         .subscribe((v) => this.error.push(v));
@@ -218,7 +223,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     if (
       this.employeePickSource &&
       this.employeePickSource.employeePickSource ==
-      this.EmployeePickSource.Website
+        this.EmployeePickSource.Website
     ) {
       if (!this.employeePickSource.howtoReceiveWorker) {
         this.translateService
@@ -228,7 +233,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
       }
       if (
         this.employeePickSource.howtoReceiveWorker ===
-        HowToRecieveWorker.FromBranch &&
+          HowToRecieveWorker.FromBranch &&
         !this.employeePickSource.recieveEmployeeFromHousing
       ) {
         this.translateService
@@ -240,12 +245,12 @@ export class PricingComponent implements OnInit, AfterViewInit {
     if (
       this.employeePickSource &&
       this.employeePickSource.employeePickSource ==
-      this.EmployeePickSource.Company &&
+        this.EmployeePickSource.Company &&
       !this.employeePickSource.recieveEmployeeFromHousing
     ) {
       this.translateService
-      .get('PricingDetails.ChooseCompanyBranch')
-      .subscribe((v) => this.error.push(v));
+        .get('PricingDetails.ChooseCompanyBranch')
+        .subscribe((v) => this.error.push(v));
       // s.push('من فضلك اختر فرع الشركة');
     }
 
