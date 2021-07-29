@@ -113,9 +113,11 @@ export class NewLocationComponent implements OnInit {
     this.locationService.prevLocation.subscribe((resData) => {
       if (resData.length == 0) this.showPrevButton = false;
     });
+
     this.authService.userSb.subscribe((user) => {
       this.showPrevButton = !!user;
     });
+    
   }
   setCurrentLocation() {
     this.mapsAPILoader.load().then(() => {

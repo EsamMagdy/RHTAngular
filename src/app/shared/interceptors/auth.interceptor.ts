@@ -10,19 +10,24 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { exhaustMap, take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private translateService: TranslateService,
-    private getSignature: GetSignature) { }
+    private getSignature: GetSignature
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return this.authService.userSb.pipe(
       take(1),
       exhaustMap((user) => {
-        
-        if (req.url.indexOf('https://maps.googleapis.com') !== -1) return next.handle(req);
+        debugger;
+        // if (req.url.indexOf(environment.apiUrl) === -1) return next.handle(req);
+
+        if (!req.url.includes(environment.apiUrl)) return next.handle(req);
 
         // let url = '';
         // let lang = localStorage.getItem('lang');
@@ -37,19 +42,21 @@ export class AuthInterceptorService implements HttpInterceptor {
 
         if (!user) return next.handle(modifiedReq);
 
-        let apikey = "UGFzc05BU0FQSUBOYXNBUElVc2VyMTIzQFBhc3M6TmFzQVBJVXNlcjEyM0B1c2Vy#";
+        // let apikey =
+        //   'UGFzc05BU0FQSUBOYXNBUElVc2VyMTIzQFBhc3M6TmFzQVBJVXNlcjEyM0B1c2Vy#';
+
         let timex = Math.floor(1000 + Math.random() * 9000);
         let sign = this.getSignature.getSignature(req.url, timex);
         const modifiedReqAuth = req.clone({
           headers: new HttpHeaders({
-            "Accept": 'application/json, text/plain, /',
-            "content-type": 'application/json',
-            "cache-control": "no-cache",
-            'source': '2',
-            'Authorization': 'bearer ' + user.token,
-            'TimeX': timex.toString(),
-            'SignAuth': apikey.toString() + "" + sign.toString(),
-          })
+            Accept: 'application/json, text/plain, /',
+            'content-type': 'application/json',
+            'cache-control': 'no-cache',
+            source: '2',
+            Authorization: 'bearer ' + user.token,
+            TimeX: timex.toString(),
+            SignAuth: environment.signAuth.toString() + '' + sign.toString(),
+          }),
         });
 
         // modifiedReq.headers.append('Authorization', 'bearer ' + user.token);
