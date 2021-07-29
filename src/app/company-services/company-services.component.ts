@@ -30,7 +30,13 @@ export class CompanyServicesComponent implements OnInit {
   ngOnInit(): void {
     this.setIndivContractReq();
     this.checkIfUserDataCompleted();
-    this.localStorageService.indivContractCreatedLocalStorage = false;
+    // let indContract = this.localStorageService.indivContractCreatedLocalStorage;
+    // if (indContract) {
+    //   this.router.navigate(['/']);
+    //   return;
+    // }
+    // this.localStorageService.indivContractCreatedLocalStorage = false;
+
     this.route.data.subscribe((data: Data) => {
       let stepData = data['indivContract'];
       if (stepData) {

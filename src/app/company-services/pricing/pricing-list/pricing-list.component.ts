@@ -10,7 +10,6 @@ export class PricingListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('pricing list');
     
   }
 

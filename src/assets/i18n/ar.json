@@ -336,7 +336,9 @@
     "PayOnline": "ادفع اونلاين",
     "NoRecordsFound": "لا توجد بيانات",
     "NoResultsFound": "لم يتم العثور على نتائج",
-    "CorrectImage":"من فضلك اختر صورة"
+    "CorrectImage":"من فضلك اختر صورة",
+    "RahatALOsraCopyRights":"راحة الأسرة للاستقدام",
+    "DesignDevelopment":"تصميم و تطوير"
   },
   "Stepper": {
     "Attachments": "المرفقات",

@@ -6,12 +6,10 @@ declare let $: any;
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent implements OnInit, AfterViewInit {
+export class EmployeeListComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
   
-  }
-  ngAfterViewInit(): void {
   }
 
 

@@ -93,13 +93,10 @@ export class NewLocationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.individualContractService.step.next(ContractStepsEnum.FirstStep);
+    this.individualContractService.step.next(ContractStepsEnum.SecondStep);
     this.setLocationData();
 
-    // this.mapsAPILoader.load().then(() => {
-    //   this.setCurrentLocation();
-    //   this.geoCoder = new google.maps.Geocoder();
-    // });
+
 
     this.lang = this.localStorageService.languageLocalStorage;
 
@@ -111,7 +108,6 @@ export class NewLocationComponent implements OnInit {
         );
         this.onChangeCity(this.selectedCity);
       }
-      // this.showLoader = false;
     });
 
     this.locationService.prevLocation.subscribe((resData) => {
@@ -123,10 +119,8 @@ export class NewLocationComponent implements OnInit {
   }
   setCurrentLocation() {
     this.mapsAPILoader.load().then(() => {
-      // this.setCurrentLocation();
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
-          // this.getCurrentAddress(this.lat, this.lng);
           let bounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(15, 34), //south west
             new google.maps.LatLng(34, 57) //north east
@@ -235,7 +229,6 @@ export class NewLocationComponent implements OnInit {
           this.lat = 24.7136;
           this.lng = 46.6753;
           this.showMap = true;
-          this.showMarker = false;
           this.showMarker = true;
           this.paths = [];
           this.location = null;
@@ -244,7 +237,6 @@ export class NewLocationComponent implements OnInit {
           this.getHousingFloors();
           return;
         }
-        console.log(triangleCoords);
 
         this.lat = triangleCoords[0].lat;
         this.lng = triangleCoords[triangleCoords.length - 1].lng;

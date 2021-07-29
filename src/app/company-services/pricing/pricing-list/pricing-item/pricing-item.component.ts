@@ -21,8 +21,8 @@ export class PricingItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('pricing item');
     this.setPricingData();
+    
     this.packageService.packages.subscribe((packages) => {
       if (!packages || packages.length == 0) {
         this.packages = [];

@@ -16,7 +16,8 @@
       </div>
       <div class="col-md-12 mb-2">
         <i class="info-icon-small"></i
-        >{{ "PricingDetails.RequestDate" | translate }} : {{ requestDate }}
+        >{{ "PricingDetails.RequestDate" | translate }} :
+        {{ requestDate | currentDate }}
       </div>
       <div class="col-md-12 mb-2">
         <i class="info-icon-small"></i>
@@ -82,18 +83,29 @@
         >{{ "Pricing.TotalPriceWithVat" | translate }} :
         {{ pricing.contractAmount }} {{ "Shared.SAR" | translate }}
       </div>
+
       <div
         *ngIf="
           indivContractReq.deliveryCost &&
           indivContractReq.howtoReceiveWorker == HowToRecieveWorker.Delivery
         "
+        class="col-md-12 mb-2"
       >
-        <div class="col-md-12 mb-2">
-          <i class="info-icon-small"></i
-          >{{ "PricingDetails.DeliveryCharge" | translate }} :
-          {{ indivContractReq.deliveryCost }} {{ "Shared.SAR" | translate }}
-        </div>
+        <i class="info-icon-small"></i
+        >{{ "PricingDetails.DeliveryCharge" | translate }} :
+        {{ indivContractReq.deliveryCost }} {{ "Shared.SAR" | translate }}
       </div>
+      <div
+      *ngIf="
+        indivContractReq.deliveryCost &&
+        indivContractReq.howtoReceiveWorker == HowToRecieveWorker.Delivery
+      "
+      class="col-md-12 mb-2"
+    >
+      <i class="info-icon-small"></i
+      >{{ "Contracts.FinalPrice" | translate }} :
+      {{ totalWithDeliveryCosts }} {{ "Shared.SAR" | translate }}
+    </div>
     </div>
   </div>
 </div>

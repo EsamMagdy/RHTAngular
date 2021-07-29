@@ -229,6 +229,8 @@ export class IndividualContractService {
 
     indConReq.contactId = this.localStorageService.userLocalStorage.crmUserId;
     indConReq.pricingId = this.individualContractReq.pricing.id;
+    console.log(indConReq);
+    debugger;
     return this.http
       .post<ResponseDataCRMWithObjectData<IndividualContractReq>>(
         environment.apiUrl + 'IndividualContractRequest/Create',
@@ -259,6 +261,8 @@ export class IndividualContractService {
           debugger;
           this.localStorageService.indivContractCreatedLocalStorage = true;
           this.localStorageService.indivContractReqLocalStorage = null;
+          console.log(resData);
+          
           return resData.data;
         })
       );

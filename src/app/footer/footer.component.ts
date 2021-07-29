@@ -9,6 +9,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   showFooter = false;
   makeItFixed = false;
+  year: number;
 
   constructor(
     private footerLoaderService: FooterLoaderService,
@@ -16,6 +17,8 @@ export class FooterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.year = new Date().getFullYear();
+
     this.footerLoaderService.footer.subscribe(() => {
       this.showFooter = true;
       // this.changeDetector.detectChanges();

@@ -336,7 +336,9 @@
     "PayOnline": "Pay Online",
     "NoRecordsFound":"No records found.",
     "NoResultsFound":"No results found",
-    "CorrectImage":"Choose an Image"
+    "CorrectImage":"Choose an Image",
+    "RahatALOsraCopyRights":"Rahat AL Osra For  for recruitment",
+    "DesignDevelopment":"Design and Development"
   },
   "Stepper": {
     "Attachments": "Attachments",

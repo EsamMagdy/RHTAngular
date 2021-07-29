@@ -91,16 +91,16 @@ export class AttachmentsComponent implements OnInit {
 
     this.priviewImage(file);
   }
-  checkImage(image: any) {
-    this.isImage = true;
-    let file = image.target;
-    const fileType = file.files[0]['type'];
-    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-    if (!validImageTypes.includes(fileType)) {
-      file.value = null;
-      this.isImage = false;
-    }
-  }
+  // checkImage(image: any) {
+  //   this.isImage = true;
+  //   let file = image.target;
+  //   const fileType = file.files[0]['type'];
+  //   const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+  //   if (!validImageTypes.includes(fileType)) {
+  //     file.value = null;
+  //     this.isImage = false;
+  //   }
+  // }
   priviewImage(imageSelected: any) {
     this.images[0] = this.previewImage;
     this.displayBasic2 = true;

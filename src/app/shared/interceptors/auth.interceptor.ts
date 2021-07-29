@@ -21,6 +21,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     return this.authService.userSb.pipe(
       take(1),
       exhaustMap((user) => {
+        
         if (req.url.indexOf('https://maps.googleapis.com') !== -1) return next.handle(req);
 
         // let url = '';

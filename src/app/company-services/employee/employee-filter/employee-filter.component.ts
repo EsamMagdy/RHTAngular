@@ -65,9 +65,9 @@ export class EmployeeFilterComponent implements OnInit {
         });
         newAge = newAge.slice(0, -1);
 
-        if (!this.filterDataForm.value.pageSize)
-            filterData.pageSize = 10;
-
+        // if (!this.filterDataForm.value.pageSize)
+        //     filterData.pageSize = 10;
+        filterData.pageSize = 4;
         filterData.age = newAge;
         filterData.nationalityId = nationalityId;
         filterData.professionId = professionId;
@@ -82,7 +82,7 @@ export class EmployeeFilterComponent implements OnInit {
         this.filterDataForm.reset();
         this.age = [18, 50];
         this.maxNumberToDisplay = 5;
-        this.employeeService.showAllEmployee.next(true);
+        this.employeeService.showAllEmployeeOnClearFilter.next(true);
         // this.employeeService.getemplyeeFilter(filterData).subscribe();
     }
 

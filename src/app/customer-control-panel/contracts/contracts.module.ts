@@ -16,6 +16,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ContractRenewalPricingDetailsComponent } from './contract-renewal/pricing-details/pricing-details.component';
 import { PricingChoosingComponent } from './contract-renewal/pricing-choosing/pricing-choosing.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,7 @@ import { PricingChoosingComponent } from './contract-renewal/pricing-choosing/pr
         SharedModule,
         AgmCoreModule.forRoot({
             // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk'
-            apiKey: 'AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE'
+            apiKey: environment.googleMapKey
 
         }),
         CustomerControlPanelSharedModule ,

@@ -30,6 +30,7 @@ import { NgxPrintModule } from 'ngx-print';
 import { PaymentComponent } from './payment/payment.component';
 import { NoEmployeeModalComponent } from './employee/no-employee/no-employee.component';
 import { CompletingDataComponent } from './completing-data/completing-data.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     declarations: [
@@ -63,7 +64,7 @@ import { CompletingDataComponent } from './completing-data/completing-data.compo
         ScrollPanelModule,
         AgmCoreModule.forRoot({
             // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk',
-            apiKey: 'AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE'
+            apiKey: environment.googleMapKey
 
         }),
         SharedModule,

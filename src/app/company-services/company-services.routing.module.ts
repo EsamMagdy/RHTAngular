@@ -28,32 +28,35 @@ const routes: Routes = [
       {
         path: 'new-location',
         component: NewLocationComponent,
-        canActivate: [CompanyServiceGuard],
+        // canActivate: [CompanyServiceGuard],
       },
       {
         path: 'saved-location',
         component: SavedLocationComponent,
-        canActivate: [CompanyServiceGuard],
+        // canActivate: [CompanyServiceGuard],
       },
       {
         path: 'pricing',
         component: PricingComponent,
-        canActivate: [CompanyServiceGuard],
+        // canActivate: [CompanyServiceGuard],
       },
       {
         path: 'employee',
         component: EmployeeComponent,
-        canActivate: [AuthGurad, CompanyServiceGuard],
+        canActivate: [AuthGurad],
+        // canActivate: [AuthGurad, CompanyServiceGuard],
       },
       {
         path: 'details',
         component: DetailsComponent,
-        canActivate: [AuthGurad, CompanyServiceGuard],
+        canActivate: [AuthGurad],
+        // canActivate: [AuthGurad, CompanyServiceGuard],
       },
       {
         path: 'complete-data',
         component: CompletingDataComponent,
-        canActivate: [AuthGurad, CompanyServiceGuard],
+        canActivate: [AuthGurad],
+        // canActivate: [AuthGurad, CompanyServiceGuard],
       },
       {
         path: 'contract',

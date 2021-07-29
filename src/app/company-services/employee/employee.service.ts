@@ -17,19 +17,20 @@ import { environment } from 'src/environments/environment';
 export class EmployeeService {
   employeesFilteredList = new Subject<ObjectWithPaging<Employee>>();
   showEmployeeList = new Subject<boolean>();
-  showAllEmployee = new Subject<boolean>();
+  showAllEmployeeOnClearFilter = new Subject<boolean>();
   EmployeeDetails = new Subject<Employee>();
   constructor(private http: HttpClient) {}
 
   getAvaialableEmployees(
     nationalityId: string,
     professionId: string,
-    pageSize: number
+    pageSize: number,
+    pageNumber: number
   ) {
     return this.http
       .get<ResponseDataCRMWithPaging<Employee>>(
         environment.apiUrl +
-          `IndividualContractRequest/AvailableEmployee?nationalityId=${nationalityId}&professionId=${professionId}&pageSize=${pageSize}`
+          `IndividualContractRequest/AvailableEmployee?nationalityId=${nationalityId}&professionId=${professionId}&pageSize=${pageSize}&pageNumber=${pageNumber}`
       )
       .pipe(
         map((resData) => {

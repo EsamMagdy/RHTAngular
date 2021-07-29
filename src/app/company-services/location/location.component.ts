@@ -32,7 +32,7 @@ export class LocationComponent implements OnInit {
 
   ngOnInit(): void {
     let selectedLocationId =
-      this.localStorageService.indivContractReqLocalStorage.selectedLocationId;
+      this.localStorageService.indivContractReqLocalStorage?.selectedLocationId;
 
     this.individualContractService.step.next(ContractStepsEnum.SecondStep);
 

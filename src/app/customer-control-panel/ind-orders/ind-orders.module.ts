@@ -10,6 +10,7 @@ import { SharedModule } from "src/app/shared/modules/shared.module";
 import { IndOrdersRoutingModule } from "./ind-orders-routing.module";
 import { IndOrdersListComponent } from './ind-orders-list/ind-orders-list.component';
 import { NgModule } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,7 @@ import { NgModule } from '@angular/core';
         SharedModule,
         AgmCoreModule.forRoot({
             // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk'
-            apiKey: 'AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE'
+            apiKey: environment.googleMapKey
 
         }),
         CustomerControlPanelSharedModule

@@ -56,6 +56,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FileName } from '../pipes/fileUploadName.pipe';
 import { CheckImageDirective } from '../directive/image.directive';
+import { CurrentDatePipe } from '../pipes/getCurrentDate.pipe';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -72,7 +73,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CheckMobileDirective,
     CheckIDNumberDirective,
     AlertComponent,
-    CheckImageDirective
+    CheckImageDirective,
+    CurrentDatePipe
 ],
   imports: [
     NgwWowModule,
@@ -154,7 +156,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CardModule,
     NgxPaginationModule,
     SweetAlert2Module,
-    CheckImageDirective
+    CheckImageDirective,
+    CurrentDatePipe
   ]
 })
 export class SharedModule {

@@ -1,6 +1,6 @@
-<footer 
-[class.fixed-bottom]="makeItFixed"
-*ngIf="showFooter"
+<footer
+  [class.fixed-bottom]="makeItFixed"
+  *ngIf="showFooter"
   class="mt-4 bg-grad-blue text-center p-4 text-white fs-17 custom-footer"
   style="
     background-image: -moz-linear-gradient(
@@ -20,5 +20,21 @@
     );
   "
 >
-  {{ 'Shared.PowerdBy' | translate }}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-left">
+        ©<span>{{ year }}</span>
+        {{ "Shared.RahatALOsraCopyRights" | translate }}
+      </div>
+      <div class="col-md-6 text-center text-md-right">
+        <a href="http://excp.sa/" target="_blank" class="text-white">
+          {{ "Shared.DesignDevelopment" | translate }}
+          <img
+            src="/assets/img/excp-logo.svg"
+            style="width: 20px; height: 20px"
+        /></a>
+      </div>
+    </div>
+  </div>
+  <!-- {{ 'Shared.PowerdBy' | translate }} -->
 </footer>
