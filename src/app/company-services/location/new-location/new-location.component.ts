@@ -1,4 +1,3 @@
-import { Languages } from './../../../shared/models/languages.model';
 import { LocalStorageService } from './../../../shared/services/localStorage.service';
 import {
   StepTypeEnum,
@@ -6,7 +5,6 @@ import {
   HousingType,
 } from './../../../shared/models/individualContractReq.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { TranslationData } from './../../../shared/models/application/translation.model';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,24 +14,23 @@ import { KeyValuePairs } from 'src/app/shared/models/keyValuePairs.model';
 import { IndividualContractService } from 'src/app/shared/services/individualContractReq.service';
 import { LocationService } from '../location.service';
 import { LocationFormData } from '../locationForm.model';
-import { User } from 'src/app/shared/models/user.model';
 import { ContractStepsEnum } from 'src/app/shared/models/individualContractReq.model';
 import { FooterLoaderService } from 'src/app/shared/services/footerLoaderAfterView.service';
 import { ContactPreviousLocation } from 'src/app/shared/models/contactPreviousLocation.model';
-import { MapsAPILoader } from '@agm/core';
+import { NewLocationService } from './new-location.service';
+import { NewLocation } from './new-location.model';
 @Component({
   selector: 'app-new-location',
   templateUrl: './new-location.component.html',
   styleUrls: ['./new-location.component.css'],
+  providers: [NewLocationService],
 })
 export class NewLocationComponent implements OnInit {
   @ViewChild('locationForm') locationForm: NgForm;
   @Input('savedLocation') prevLocation: ContactPreviousLocation[];
+  newLocation: NewLocation = {} as NewLocation;
   showPrevButton = true;
   indContractReq: IndividualContractReq;
-  Language = Languages;
-  lang: string;
-  translation = TranslationData;
   locationFormData: LocationFormData;
   selectedCity: City;
   selectedDistrict: District;
@@ -42,23 +39,6 @@ export class NewLocationComponent implements OnInit {
   selectedHouseNumber: string;
   selectedApartmentNumber: string;
   selectedAddress: string;
-  showApartmentNumber = false;
-  options: any;
-  lat = 0;
-  mlat = 0;
-  lng = 0;
-  mlng = 0;
-  showMarker = false;
-  isAuthenticated = false;
-  user: User;
-  showMap = false;
-  showLoader = true;
-  location = '';
-  locationSaved = this.individualContractService.individualContractReq;
-  paths: {
-    lat: number;
-    lng: number;
-  }[] = [];
 
   submitted: boolean = false;
   cities: City[];
@@ -66,8 +46,6 @@ export class NewLocationComponent implements OnInit {
   housingType: KeyValuePairs[];
   floorNumbers: KeyValuePairs[];
   mapError: boolean = false;
-  geoCoder: any;
-  zoom = 10;
   currentLocationError = false;
   currentLocationOutOfBounds = false;
   countryRestriction = {
@@ -87,19 +65,22 @@ export class NewLocationComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private footerLoaderService: FooterLoaderService,
     private authService: AuthService,
-    private mapsAPILoader: MapsAPILoader
+    public newLocationService: NewLocationService
   ) {
     this.footerLoaderService.footer.emit();
   }
 
   ngOnInit(): void {
-    this.individualContractService.step.next(ContractStepsEnum.SecondStep);
     this.setLocationData();
 
+    this.getCities();
 
+    this.authService.userSb.subscribe((user) => {
+      this.showPrevButton = !!user; // show/hidden prevoius button based on user logging
+    });
+  }
 
-    this.lang = this.localStorageService.languageLocalStorage;
-
+  getCities() {
     this.locationService.getCities().subscribe((cities) => {
       this.cities = cities;
       if (this.indContractReq) {
@@ -109,90 +90,21 @@ export class NewLocationComponent implements OnInit {
         this.onChangeCity(this.selectedCity);
       }
     });
-
-    this.locationService.prevLocation.subscribe((resData) => {
-      if (resData.length == 0) this.showPrevButton = false;
-    });
-
-    this.authService.userSb.subscribe((user) => {
-      this.showPrevButton = !!user;
-    });
-    
   }
-  setCurrentLocation() {
-    this.mapsAPILoader.load().then(() => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          let bounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(15, 34), //south west
-            new google.maps.LatLng(34, 57) //north east
-          );
+  async setCurrentLocation() {
+    debugger;
+    let isCurrentLocationBoundry =
+      await this.newLocationService.setCurrentLocation();
 
-          if (
-            !bounds.contains(
-              new google.maps.LatLng(
-                position.coords.latitude,
-                position.coords.longitude
-              )
-            )
-          ) {
-            this.currentLocationOutOfBounds = true;
-            return;
-          }
-          this.checkIfCurrentLocationInPolygin(position);
-        });
-      }
-      this.geoCoder = new google.maps.Geocoder();
-    });
-  }
-  checkIfCurrentLocationInPolygin(position: GeolocationPosition) {
-    if (this.paths.length == 0) {
-      this.setCurrentLocationMarker(position);
+    if (!isCurrentLocationBoundry) {
+      this.newLocation.currentLocationOutOfBoundsEM = true;
       return;
     }
-    const bermudaTriangle = new google.maps.Polygon({ paths: this.paths });
-    const latLng = new google.maps.LatLng(
-      position.coords.latitude,
-      position.coords.longitude
-    );
-    const resultColor = google.maps.geometry.poly.containsLocation(
-      latLng,
-      bermudaTriangle
-    );
-    if (resultColor) {
-      this.setCurrentLocationMarker(position);
-      alert('success');
-    } else {
-      this.currentLocationError = true;
-    }
-  }
-  setCurrentLocationMarker(position: GeolocationPosition) {
-    this.lat = position.coords.latitude;
-    this.lng = position.coords.longitude;
-    this.mlat = +position.coords.latitude;
-    this.mlng = +position.coords.longitude;
-    this.showMarker = true;
-    this.zoom = 12;
-  }
-  getCurrentAddress(latitude: number, longitude: number) {
-    this.geoCoder.geocode(
-      { location: { lat: latitude, lng: longitude } },
-      (results: any, status: any) => {
-        if (status === 'OK') {
-          if (results[0]) {
-            this.zoom = 12;
-            this.location = results[0].formatted_address;
-            console.log(latitude + ' ' + longitude);
-          } else {
-            window.alert('No results found');
-          }
-        } else {
-          window.alert('Geocoder failed due to: ' + status);
-        }
-      }
-    );
+
+    this.newLocation = await this.newLocationService.checkIfCurrentLocationInPolygin(this.newLocation.paths);
   }
   setLocationData() {
+    this.individualContractService.step.next(ContractStepsEnum.SecondStep);
     this.indContractReq = this.localStorageService.indivContractReqLocalStorage;
 
     if (!this.indContractReq) return;
@@ -205,8 +117,8 @@ export class NewLocationComponent implements OnInit {
     this.submitted = false;
     if (!city) return;
 
-    this.mlat = 0;
-    this.mlng = 0;
+    this.newLocation.markerLatitude = 0;
+    this.newLocation.markerLongitude = 0;
 
     this.locationService.getDistrict(city.cityId).subscribe((districts) => {
       this.districts = districts;
@@ -221,55 +133,27 @@ export class NewLocationComponent implements OnInit {
   onChangeDistrict(district: any) {
     this.submitted = false;
 
-    this.mlat = 0;
-    this.mlng = 0;
-
     this.locationService
       .getPolygon(district.districtId)
       .subscribe((triangleCoords) => {
-        if (!triangleCoords) {
-          this.lat = 24.7136;
-          this.lng = 46.6753;
-          this.showMap = true;
-          this.showMarker = true;
-          this.paths = [];
-          this.location = null;
-          this.zoom = 12;
-          this.getHousingTypes();
-          this.getHousingFloors();
-          return;
-        }
-
-        this.lat = triangleCoords[0].lat;
-        this.lng = triangleCoords[triangleCoords.length - 1].lng;
-        this.paths = triangleCoords;
-        this.zoom = 12;
-        this.getAddress();
+        this.newLocation = this.newLocationService.setNewLocationModel(triangleCoords);
+        if (triangleCoords) this.getAddress();
         this.getHousingTypes();
         this.getHousingFloors();
-        this.showMap = true;
 
-        if (this.indContractReq.latitude && this.indContractReq.longitude) {
-          this.mlat = +this.indContractReq.latitude;
-          this.mlng = +this.indContractReq.longitude;
-          this.showMarker = true;
-        }
-        if (
-          this.indContractReq &&
-          this.indContractReq.districtId != district.districtId
-        ) {
-          this.mlat = 0;
-          this.mlng = 0;
-          this.showMarker = false;
-        }
+        this.checkIfLatLongSavedBefore(district);
       });
   }
 
   getAddress() {
+    this.newLocation.address = '';
     this.locationService
-      .getAddressByLatAndLong(this.lat, this.lng)
+      .getAddressByLatAndLong(
+        this.newLocation.latitude,
+        this.newLocation.longitude
+      )
       .subscribe((data) => {
-        this.location = data.formatted_address;
+        this.newLocation.address = data.formatted_address;
       });
   }
   getHousingTypes() {
@@ -283,7 +167,6 @@ export class NewLocationComponent implements OnInit {
       }
     });
   }
-
   getHousingFloors() {
     this.locationService.getHousingFloors().subscribe((data) => {
       this.floorNumbers = data;
@@ -295,46 +178,28 @@ export class NewLocationComponent implements OnInit {
   }
   onChangeHouseType(housingType: KeyValuePairs) {
     if (housingType.key === HousingType.Apartment)
-      this.showApartmentNumber = true;
-    else this.showApartmentNumber = false;
+      this.newLocation.showApartmentNumber = true;
+    else this.newLocation.showApartmentNumber = false;
   }
 
   onPolygonClick(event: google.maps.PolyMouseEvent) {
-    this.mapError = false;
-    this.currentLocationError = false;
-    this.currentLocationOutOfBounds = false;
-    this.showMarker = true;
-    this.mlat = event.latLng.lat();
-    this.mlng = event.latLng.lng();
-  }
-  onMapClick(event: any) {
-    if (this.paths && this.paths.length > 0) {
-      // alert('');
-      return;
-    }
-    this.mlat = event.latLng.lat();
-    this.mlng = event.latLng.lng();
-    this.showMarker = true;
+    this.newLocation = { ...this.newLocationService.onPolygonClick(event) };
   }
   mapReadyHandler(map: google.maps.Map): void {
-    // this.map = map;
-    console.log(map.getBounds());
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(
       document.getElementById('ChangeLocation')
     );
     let mapClickListener = map.addListener(
       'click',
       (e: google.maps.MouseEvent) => {
-        this.currentLocationError = false;
-        if (this.paths && this.paths.length > 0) {
-          // alert('لا يمكنك تحديد هذا الموقع حيث أنه خارج نظاق الحي');
-          this.mapError = true;
+        this.newLocation.currentLocationOutsideTheNeighborhoodEM = false;
+        if (this.newLocation.paths && this.newLocation.paths.length > 0) {
+          this.newLocation.locationOutsideTheNeighborhoodEM = true;
           return;
         }
-        console.log(e.latLng.lat(), e.latLng.lng());
-        this.mlat = e.latLng.lat();
-        this.mlng = e.latLng.lng();
-        this.showMarker = true;
+        this.newLocation.markerLatitude = e.latLng.lat();
+        this.newLocation.markerLongitude = e.latLng.lng();
+        this.newLocation.showMarker = true;
       }
     );
   }
@@ -346,45 +211,28 @@ export class NewLocationComponent implements OnInit {
     this.individualContractService.step.next(ContractStepsEnum.SecondStep);
     this.router.navigate(['/services']);
   }
-  navigateToSavedAddress() {
-    this.individualContractService.updateStepData(
-      ContractStepsEnum.FirstStep,
-      StepTypeEnum.Previous
-    );
-    this.individualContractService.step.next(ContractStepsEnum.SecondStep);
-    this.router.navigate(['/services']);
-  }
-  nextPage() {
-    if (!this.locationForm.valid || !this.mlat) {
+  pricingPage() {
+    if (!this.locationForm.valid || !this.newLocation.markerLatitude) {
       this.submitted = true;
       return;
     }
 
-    let location = {
-      ...this.locationForm.value,
-      mLatitude: this.mlat,
-      mLongitude: this.mlng,
-    };
 
-    this.individualContractService.setLoactionData(location);
-    let user = this.localStorageService.userLocalStorage;
-    if (user)
-      this.locationService.addNewLocation(location, user.crmUserId).subscribe();
-
-    let stepId = this.individualContractService.individualContractReq.stepId;
-
-    // this.individualContractService.step.next(2);
-    this.individualContractService.step.next(ContractStepsEnum.ThirdStep);
-
-    this.individualContractService.updateStepData(
-      ContractStepsEnum.ThirdStep,
-      StepTypeEnum.Next
-    );
-
-    this.router.navigate(['/services/pricing'], {
-      queryParams: {
-        stepId: stepId,
-      },
-    });
+    this.newLocationService.pricingPage(this.locationForm.value);
+  }
+  checkIfLatLongSavedBefore(district: any) {
+    if (this.indContractReq.latitude && this.indContractReq.longitude) {
+      this.newLocation.markerLatitude = +this.indContractReq.latitude;
+      this.newLocation.markerLongitude = +this.indContractReq.longitude;
+      this.newLocation.showMarker = true;
+    }
+    if (
+      this.indContractReq &&
+      this.indContractReq.districtId != district.districtId
+    ) {
+      this.newLocation.markerLatitude = 0;
+      this.newLocation.markerLongitude = 0;
+      this.newLocation.showMarker = false;
+    }
   }
 }

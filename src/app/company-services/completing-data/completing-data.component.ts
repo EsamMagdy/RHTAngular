@@ -43,29 +43,39 @@ export class CompletingDataComponent implements OnInit {
         this.profileService.getDetails().subscribe(data => {
             this.contact = data;
             // this.idNumber = data?.identificationNo;
-            this.profileService.getCities().subscribe(cities => {
-                this.cities = cities;
-                if (this.contact.cityId) {
-                    this.selectedCity = cities.find(s => s.key == this.contact.cityId);
-                    this.profileService.getAllRegions(this.selectedCity.key).subscribe(regions => {
-                        this.regions = regions;
-                        this.selectedRegions = regions.find(s => s.key == this.contact.regionId);
-                    });
-                }
-            });
+            this.getCities();
 
-            this.profileService.getNationalities().subscribe(nationalities => {
-                this.nationalities = nationalities;
-                if (this.contact.nationalityId)
-                    this.selectedNationalities = nationalities.find(s => s.key == this.contact.nationalityId);
+            this.getNationalities();
 
-            });
+            this.getGenders();
 
-            this.profileService.getGender().subscribe(genders => {
-                this.genders = genders;
-                if (this.contact.genderId)
-                    this.selectedGenders = genders.find(s => +s.key == this.contact.genderId);
-            });
+        });
+    }
+    getCities() {
+        this.profileService.getCities().subscribe(cities => {
+            this.cities = cities;
+            if (this.contact.cityId) {
+                this.selectedCity = cities.find(s => s.key == this.contact.cityId);
+                this.profileService.getAllRegions(this.selectedCity.key).subscribe(regions => {
+                    this.regions = regions;
+                    this.selectedRegions = regions.find(s => s.key == this.contact.regionId);
+                });
+            }
+        });
+    }
+    getNationalities() {
+        this.profileService.getNationalities().subscribe(nationalities => {
+            this.nationalities = nationalities;
+            if (this.contact.nationalityId)
+                this.selectedNationalities = nationalities.find(s => s.key == this.contact.nationalityId);
+
+        });
+    }
+    getGenders() {
+        this.profileService.getGender().subscribe(genders => {
+            this.genders = genders;
+            if (this.contact.genderId)
+                this.selectedGenders = genders.find(s => +s.key == this.contact.genderId);
         });
     }
     onChangeCity(city: any) {

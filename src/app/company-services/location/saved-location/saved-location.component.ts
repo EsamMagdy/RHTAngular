@@ -135,21 +135,5 @@ export class SavedLocationComponent implements OnInit {
   private setSelectedLocation() {
     this.individualContractService.setLoactionData(this.locationSelected);
 
-    // this.individualContractService.individualContractReq.longitude = this.locationSelected.longitude;
-    // this.individualContractService.individualContractReq.latitude = this.locationSelected.latitude;
-    // this.individualContractService.individualContractReq.locationFormData = {
-    //   ...this.locationSelected,
-    // };
-    // this.individualContractService.individualContractReq.selectedLocationId = this.locationSelected.contactPreviouslocationId;
-    // this.individualContractService.individualContractReq.houseNo = this.locationSelected.houseNumber;
-    // this.individualContractService.individualContractReq.houseType = this.locationSelected.houseType.key;
-    // this.individualContractService.individualContractReq.floorNo = this.locationSelected.floorNumber.key;
-    // this.individualContractService.individualContractReq.cityId = this.locationSelected.city.cityId;
-    // this.individualContractService.individualContractReq.districtId = this.locationSelected.district.districtId;
-    // this.individualContractService.individualContractReq.address = this.locationSelected.addressNotes;
-    // this.individualContractService.individualContractReq.partmentNumber = this
-    //   .locationSelected.apartmentNumber
-    //   ? this.locationSelected.apartmentNumber
-    //   : null;
   }
 }
