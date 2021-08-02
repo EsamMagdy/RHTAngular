@@ -72,7 +72,7 @@ export class AttachmentsComponent implements OnInit {
     this.individualContractService.individualContractReq.attachments = <
       IndividualContractAttachment
     >this.attachments;
-    this.router.navigate(['/services/payment'], {
+    this.router.navigate(['/services/payment-landing-page'], {
       queryParams: {
         stepId: this.individualContractService.individualContractReq.stepId,
       },

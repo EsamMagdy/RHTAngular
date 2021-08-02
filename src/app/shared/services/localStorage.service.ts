@@ -18,7 +18,7 @@ export class LocalStorageService {
     get indivContractCreatedLocalStorage() {
         return JSON.parse(localStorage.getItem(LocalStorageKeys.indvContractCreated));
     }
-    set indivContractCreatedLocalStorage(indivContractCreated: boolean) {
+    set indivContractCreatedLocalStorage(indivContractCreated: IndividualContractReq) {
         localStorage.setItem(LocalStorageKeys.indvContractCreated, JSON.stringify(indivContractCreated));
     }
     get languageLocalStorage() {

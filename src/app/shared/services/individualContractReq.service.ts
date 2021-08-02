@@ -76,7 +76,7 @@ export class IndividualContractService {
     return this.http
       .get<ResponseDataCRMWithObjectData<StepData>>(
         environment.apiUrl +
-          `IndividualContractRequest/GetStepById?id=${stepId}`
+        `IndividualContractRequest/GetStepById?id=${stepId}`
       )
       .pipe(
         map((resData) => {
@@ -161,7 +161,7 @@ export class IndividualContractService {
     return this.http
       .get<ResponseDataCRMWithObjectData<IndividualLaborStock>>(
         environment.apiUrl +
-          `IndividualContractRequest/CheckAvailableLabor?nationalityId=${nationalityId}&professionId=${professionId}`
+        `IndividualContractRequest/CheckAvailableLabor?nationalityId=${nationalityId}&professionId=${professionId}`
       )
       .pipe(
         map((resData) => {
@@ -201,7 +201,7 @@ export class IndividualContractService {
     return this.http
       .get<ResponseDataCRMWithObjectData<IndvReqContact>>(
         environment.apiUrl +
-          `IndividualContractRequest/GetWithPreviousLocation?userId=${userId}`
+        `IndividualContractRequest/GetWithPreviousLocation?userId=${userId}`
       )
       .pipe(
         map((resData) => {
@@ -230,7 +230,6 @@ export class IndividualContractService {
     indConReq.contactId = this.localStorageService.userLocalStorage.crmUserId;
     indConReq.pricingId = this.individualContractReq.pricing.id;
     console.log(indConReq);
-    debugger;
     return this.http
       .post<ResponseDataCRMWithObjectData<IndividualContractReq>>(
         environment.apiUrl + 'IndividualContractRequest/Create',
@@ -250,7 +249,7 @@ export class IndividualContractService {
     debugger;
     let indConReq = await this.createNewContractRequest().toPromise();
     this.indContReqCreated = { ...indConReq };
-
+    this.localStorageService.indivContractCreatedLocalStorage = this.indContReqCreated;
     return this.http
       .post<ResponseDataCRMForContractTemplate<string>>(
         environment.apiUrl + 'IndividualContractRequest/RequestTemplate',
@@ -259,10 +258,10 @@ export class IndividualContractService {
       .pipe(
         map((resData) => {
           debugger;
-          this.localStorageService.indivContractCreatedLocalStorage = true;
+
           this.localStorageService.indivContractReqLocalStorage = null;
           console.log(resData);
-          
+
           return resData.data;
         })
       );

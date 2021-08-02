@@ -27,10 +27,10 @@ import { SliderModule } from 'primeng/slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PricingDetailsComponent } from './details/pricing-details/pricing-details.component';
 import { NgxPrintModule } from 'ngx-print';
-import { PaymentComponent } from './payment/payment.component';
 import { NoEmployeeModalComponent } from './employee/no-employee/no-employee.component';
 import { CompletingDataComponent } from './completing-data/completing-data.component';
 import { environment } from 'src/environments/environment';
+import { PaymentLandingPageComponent } from './payment-landing-page/payment-landing-page.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +53,7 @@ import { environment } from 'src/environments/environment';
         PricingDetailsComponent,
         EmployeeDetailsComponent,
         AttachmentsComponent,
-        PaymentComponent,
+        PaymentLandingPageComponent,
         EmployeeDetailsModalComponent,
         NoEmployeeModalComponent,
         CompletingDataComponent

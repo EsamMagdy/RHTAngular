@@ -48,7 +48,6 @@ export class UploadAttachmentsComponent implements OnInit {
       requestId = 'D73D3F92-EC4B-425A-ABE9-86BF18D259C1'; // don't forget to delete
 
       this.indOrdersService.getAttachments(requestId).subscribe((response) => {
-        debugger;
         let data = response.data;
 
         this.renderer.setValue(

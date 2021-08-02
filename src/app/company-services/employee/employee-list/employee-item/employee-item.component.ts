@@ -72,7 +72,6 @@ export class EmployeeItemComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    debugger;
     if (!this.scrollData) return;
     if (this.bottomReached()) {
       this.pageNumber += 1;
@@ -104,7 +103,6 @@ export class EmployeeItemComponent implements OnInit {
     this.workerService
       .getAvaialableEmployees(nationalityId, professionId, pageSize, pageNumber)
       .subscribe((employees) => {
-        debugger;
         // this.totalCount = employees.totalCount;
         this.individualContractService.totalEmployeeCount.next(
           employees.totalCountInPages
@@ -121,7 +119,6 @@ export class EmployeeItemComponent implements OnInit {
             this.employeeId == employee.employeeId ? true : false;
         });
         this.displayNoEmployeeModal = false;
-        debugger;
         this.employees.push(...employees.model);
         this.totalCount = this.employees.length;
         this.scrollData = true;

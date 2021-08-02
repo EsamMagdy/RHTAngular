@@ -92,7 +92,6 @@ export class NewLocationComponent implements OnInit {
     });
   }
   async setCurrentLocation() {
-    debugger;
     let isCurrentLocationBoundry =
       await this.newLocationService.setCurrentLocation();
 

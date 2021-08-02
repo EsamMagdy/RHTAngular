@@ -83,7 +83,7 @@
     "CodeRequired": "من فضلك ادخل الكود",
     "NewPassword": "كلمة المرور الجديدة",
     "NewPasswordConfirmation": "تاكيد كلمة المرور الجديدة",
-    "SentSuccesfully":"تم الارسال"
+    "SentSuccesfully": "تم الارسال"
   },
   "ContactUs": {
     "Address": "<div class='fs-18 font-weight-bold'><i class='fa fa-map-marker mr-2'></i>العنوان</div><div class=''>الرياض - فرع حي التعاون _ شارع دمياط</div></div>",
@@ -336,9 +336,9 @@
     "PayOnline": "ادفع اونلاين",
     "NoRecordsFound": "لا توجد بيانات",
     "NoResultsFound": "لم يتم العثور على نتائج",
-    "CorrectImage":"من فضلك اختر صورة",
-    "RahatALOsraCopyRights":"راحة الأسرة للاستقدام",
-    "DesignDevelopment":"تصميم و تطوير"
+    "CorrectImage": "من فضلك اختر صورة",
+    "RahatALOsraCopyRights": "راحة الأسرة للاستقدام",
+    "DesignDevelopment": "تصميم و تطوير"
   },
   "Stepper": {
     "Attachments": "المرفقات",
@@ -398,7 +398,7 @@
     "NationalAddressImage": " صورة العنوان الوطني",
     "CustomerSalaryImage": "صورة تعريف الراتب"
   },
-  "Payment": {
+  "PaymentLandingPage": {
     "Header": "الدفع و التمتع بخدماتنا",
     "DearCustomer": "عزيزي العميل",
     "RequestRegisterd": "تم تسجيل طلبك رقم",
@@ -476,5 +476,12 @@
     "NewContract": "عقد جديد",
     "DeliveryCost": "رسوم توصيل",
     "FinalPrice": "السعر النهائى"
+  },
+  "Payment": {
+    "Header": "الدفع و التمتع بخدماتنا",
+    "DearCustomer": "عزيزي العميل",
+    "Content1": "من فضلك ادفع المبلغ المستحق",
+    "Content2": "من خلال التالي"
+
   }
 }

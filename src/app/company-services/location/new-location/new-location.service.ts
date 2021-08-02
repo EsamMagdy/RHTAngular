@@ -154,7 +154,6 @@ export class NewLocationService {
   }
 
   onPolygonClick(event: google.maps.PolyMouseEvent) {
-    debugger;
     this.location.locationOutsideTheNeighborhoodEM = false;
     this.location.currentLocationOutsideTheNeighborhoodEM = false;
     this.location.currentLocationOutOfBoundsEM = false;

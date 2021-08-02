@@ -46,12 +46,12 @@ import { CheckPasswordDirective } from '../directive/checkPasswordDirective.dire
 import { CheckEmailDirective } from '../directive/checkEmailDirective.directive';
 import { CheckMobileDirective } from '../directive/checkMobile.directive';
 import { AlertComponent } from '../components/alert/alert.component';
-import {CarouselModule} from 'primeng/carousel';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { CarouselModule } from 'primeng/carousel';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { NgwWowModule } from 'ngx-wow';
-import {GalleriaModule} from 'primeng/galleria';
+import { GalleriaModule } from 'primeng/galleria';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FileName } from '../pipes/fileUploadName.pipe';
@@ -74,8 +74,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CheckIDNumberDirective,
     AlertComponent,
     CheckImageDirective,
-    CurrentDatePipe
-],
+    CurrentDatePipe,
+  ],
   imports: [
     NgwWowModule,
     AnimateOnScrollModule.forRoot(),
@@ -157,9 +157,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NgxPaginationModule,
     SweetAlert2Module,
     CheckImageDirective,
-    CurrentDatePipe
+    CurrentDatePipe,
   ]
 })
 export class SharedModule {
- 
+
 }

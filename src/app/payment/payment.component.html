@@ -1,0 +1,73 @@
+<div class="inner-slider2 py-md-5 py-4">
+  <div class="container">
+    <div class="my-md-4 text-center text-white">
+      <div class="fs-md-36 fs-18 font-weight-bold">حجز عمالة منزلية</div>
+      <div>الرئيسية // خدمات الشركة</div>
+    </div>
+  </div>
+</div>
+<div class="container pt-5">
+  <div
+    class="
+      text-center
+      fs-md-24 fs-18
+      font-weight-bold
+      mb-md-4 mb-3
+      wow
+      fadeInUp
+    "
+    data-wow-delay="0.5s"
+  >
+    الدفع و التمتع بخدماتنا
+  </div>
+
+  <div class="text-center wow fadeInUp" data-wow-delay="0.5s">
+    <div class="fs-md-22 mt-4">
+      {{ "Payment.DearCustomer" | translate }} : {{ indContReq?.contactName }}
+    </div>
+    <div class="fs-md-22 mt-4 font-weight-bold">
+      {{ "Payment.Content1" | translate }}
+      <span class="text-warning">{{ deservedAmount }} </span
+      >{{ "Shared.SAR" | translate }}
+      {{ "Payment.Content2" | translate }}
+    </div>
+    <div class="payment">
+      <!-- <a
+        *ngFor="let item of paymentMethods"
+        [href]="'#' + item.brandName"
+        [id]="item.brandName"
+        class="paymenticons"
+        ><img [src]="item.imageUrl" style="width: 80px; height: 40px"
+      /></a> -->
+      <div *ngFor="let paymentMethods of paymentMethods">
+        <img
+        (click)="paymentMethodClick(paymentMethods.brandName)"
+          class="paymenticons"
+          [src]="
+            paymentMethods?.imageUrl
+              ? 'https://rao.sa:8002/Images/' + paymentMethods.imageUrl
+              : ''
+          "
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="alert alert-success mt-3 d-inline-block" role="alert">
+        يمكنك الآن الدفع عن طريق بطاقة مدى بعد التأكد من تفعيلها
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-danger d-inline-block" role="alert">
+        تأكد من وجود علامة القفل بجانب رايط الموقع
+      </div>
+    </div>
+  </div>
+</div>
+
+<form
+  [action]="'http://localhost:4200/#/payment/payment-status'"
+  class="paymentWidgets payform"
+  [attr.data-brands]="paymentMethod"
+></form>

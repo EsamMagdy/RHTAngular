@@ -34,3 +34,12 @@ export interface ResponseDataCRMWithDeleting {
   data: { value: boolean; data: string };
   message: string;
 }
+export interface ResponseData<T> {
+  state: boolean;
+  data: T;
+  message: string;
+}
+export interface ResponseDataBool {
+  value: boolean;
+  data: string;
+}

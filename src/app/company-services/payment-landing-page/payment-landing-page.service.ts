@@ -8,7 +8,7 @@ import {
 } from 'src/app/shared/models/responseDataCRM.model';
 import { LocalStorageService } from 'src/app/shared/services/localStorage.service';
 import { environment } from 'src/environments/environment';
-import { PaymentMethod } from './payment.model';
+import { PaymentMethod } from './payment-landing-page.model';
 
 @Injectable({ providedIn: 'root' })
 export class PaymentService {
@@ -24,7 +24,7 @@ export class PaymentService {
     return this.http
       .post<ResponseDataCRMWithObjectData<PaymentMethod>>(
         environment.apiUrl +
-          `InAppPayment/PaymentCardsAndMethodData?CrmUserId=${this.userId}&Mode=true`,
+        `InAppPayment/PaymentCardsAndMethodData?CrmUserId=${this.userId}&Mode=true`,
         {}
       )
       .pipe(
@@ -49,6 +49,33 @@ export class PaymentService {
           entityType: entityType,
           isTestPayment: isTestPayment,
           userId: this.userId,
+        }
+      )
+      .pipe(
+        map((resData) => {
+          return resData;
+        })
+      );
+  }
+  requestCheckoutStatus(
+    cardBrand: string,
+    contractId: string,
+    isTestPayment: boolean,
+    paymentType: number,
+    checkOutId: string,
+    mode:boolean
+  ) {
+    return this.http
+      .post<any>(
+        environment.apiUrl + `InAppPayment/RequestCheckoutStatus`,
+        {
+          cardBrand: cardBrand,
+          contractId: contractId,
+          isTestPayment: isTestPayment,
+          userId: this.userId,
+          type: paymentType,
+          id: checkOutId,
+          mode:mode
         }
       )
       .pipe(

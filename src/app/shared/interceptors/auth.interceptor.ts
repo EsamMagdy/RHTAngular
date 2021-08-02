@@ -24,7 +24,6 @@ export class AuthInterceptorService implements HttpInterceptor {
     return this.authService.userSb.pipe(
       take(1),
       exhaustMap((user) => {
-        debugger;
         // if (req.url.indexOf(environment.apiUrl) === -1) return next.handle(req);
 
         if (!req.url.includes(environment.apiUrl)) return next.handle(req);

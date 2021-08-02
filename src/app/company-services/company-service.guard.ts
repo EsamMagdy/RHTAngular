@@ -24,7 +24,6 @@ export class CompanyServiceGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    debugger;
     let indContract = this.localStorageService.indivContractCreatedLocalStorage;
 
     if (!indContract) return true;

@@ -83,7 +83,7 @@
     "CodeRequired": "Code is required",
     "NewPassword": "New Password",
     "NewPasswordConfirmation": "New Password Confirmation",
-    "SentSuccesfully":"Sent Succesfully"
+    "SentSuccesfully": "Sent Succesfully"
   },
   "ContactUs": {
     "Address": "<div class='fs-18 font-weight-bold'><i class='fa fa-map-marker mr-2'></i>Address</div><div class=''>Riyadh - Al-Taawon District Branch - Damietta Street</div></div>",
@@ -205,10 +205,10 @@
     "Villa": "Villa",
     "NoSavedLocation": "No Saved Address, please add new address",
     "LocationError": "You cannot select this location as it is outside the neighborhood",
-    "SetCurrentLocation":"Set your current location",
-    "CurrentLocationError":"Your current location is outside the neighborhood",
-    "CurrentLocationOutOfBounds":"Your current location is out of bounds of Saudi Arabia",
-    "SelectLocation":"Choose your current location on map"
+    "SetCurrentLocation": "Set your current location",
+    "CurrentLocationError": "Your current location is outside the neighborhood",
+    "CurrentLocationOutOfBounds": "Your current location is out of bounds of Saudi Arabia",
+    "SelectLocation": "Choose your current location on map"
   },
   "OtherOrders": {
     "Details": "Details is required",
@@ -295,7 +295,7 @@
     "RenewDiscount": "Renew Discount",
     "AndRenewOnPricing": "It was renewed on a package",
     "WayToRecieveWorker": "Plz Choose the Way To Recieve Worker",
-    "TotalAfterDiscount":"Total After Discount"
+    "TotalAfterDiscount": "Total After Discount"
   },
   "Shared": {
     "AskToDelete": "Do you want to delete this Address ?",
@@ -334,11 +334,11 @@
     "Refresh": "Refresh",
     "PowerdBy": "© 2021. شركة الحماية المتميزة",
     "PayOnline": "Pay Online",
-    "NoRecordsFound":"No records found.",
-    "NoResultsFound":"No results found",
-    "CorrectImage":"Choose an Image",
-    "RahatALOsraCopyRights":"Rahat AL Osra For  for recruitment",
-    "DesignDevelopment":"Design and Development"
+    "NoRecordsFound": "No records found.",
+    "NoResultsFound": "No results found",
+    "CorrectImage": "Choose an Image",
+    "RahatALOsraCopyRights": "Rahat AL Osra For  for recruitment",
+    "DesignDevelopment": "Design and Development"
   },
   "Stepper": {
     "Attachments": "Attachments",
@@ -373,7 +373,7 @@
     "TicketDetails": "Ticket Details",
     "EnterTicketDetails": "Enter Ticket Details",
     "SendTicket": "Send Ticket",
-    "TicketItemRequired":"Ticket Item required"
+    "TicketItemRequired": "Ticket Item required"
   },
   "Verification": {
     "EnterVerificationCode": "Enter the verification code sent to your mobile phone",
@@ -398,7 +398,7 @@
     "NationalAddressImage": "National Address Image",
     "CustomerSalaryImage": "Customer Salary Image"
   },
-  "Payment": {
+  "PaymentLandingPage": {
     "Header": "Pay and enjoy our services",
     "DearCustomer": "Dear Customer",
     "RequestRegisterd": "Request has been registered with number",
@@ -474,7 +474,12 @@
     "ChooseAnotherPricing": "or choose another pricing",
     "Pricing": "Pricing",
     "NewContract": "New Contract",
-    "DeliveryCost":"Delivery Cost",
-    "FinalPrice":"Final Price"
+    "DeliveryCost": "Delivery Cost",
+    "FinalPrice": "Final Price"
+  },
+  "Payment": {
+    "Header":"",
+    "DearCustomer": "",
+    "PayContent":"من فضلك ادفع المبلغ المستحق {{value}} ر.س من خلال التالي"
   }
 }
