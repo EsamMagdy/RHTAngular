@@ -12,7 +12,8 @@ import { AuthComponent } from './auth.component';
         RouterModule.forChild([
             {
                 path: "auth",
-                redirectTo: "auth/login"
+                redirectTo: "auth/login",
+                pathMatch:'full'
             },
             {
                 path: 'auth',
