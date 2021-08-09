@@ -19,7 +19,11 @@
       <div class="col-md-6 mb-2">
         <i class="info-icon-small"></i
         >{{ "PricingDetails.Religion" | translate }} :
-        {{ employee.candidate.religionName }}
+        {{
+          employee.candidate.religionName != null
+            ? employee.candidate.religionName
+            : ("Employee.ReligionNotpecified" | translate)
+        }}
       </div>
       <div class="col-md-6 mb-2">
         <i class="info-icon-small"></i>{{ "PricingDetails.Sex" | translate }} :
