@@ -4,11 +4,15 @@
 let lang=localStorage.getItem('lang')??'ar';
 export const environment = {
   production: false,
-  apiUrl:`https://rao.sa:8004/${lang}/api/`,
+  // apiUrl:`https://rao.sa:8004/${lang}/api/`,  // live
   googleMapKey:'AIzaSyAlKMP7a65UobHAwUnPVTgZ49U-QmGaqpE',
-  signAuth: 'UGFzc05BU0FQSUBOYXNBUElVc2VyMTIzQFBhc3M6TmFzQVBJVXNlcjEyM0B1c2Vy#'
+  signAuth: 'UGFzc05BU0FQSUBOYXNBUElVc2VyMTIzQFBhc3M6TmFzQVBJVXNlcjEyM0B1c2Vy#',
+  defaultValues:{
+
+    
+  },
   // apiUrl:`http://localhost:65066/${lang}/api/`
-  // apiUrl:`https://rao.sa:8019/${lang}/api/`
+  apiUrl:`https://rao.sa:8019/${lang}/api/`  // test
   // apiUrl:`https://rht.excprotection.com:8004/${lang}/api/`
   // apiUrl:`http://localhost:50/${lang}/api/`
 };

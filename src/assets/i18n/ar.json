@@ -338,7 +338,8 @@
     "NoResultsFound": "لم يتم العثور على نتائج",
     "CorrectImage": "من فضلك اختر صورة",
     "RahatALOsraCopyRights": "راحة الأسرة للاستقدام",
-    "DesignDevelopment": "تصميم و تطوير"
+    "DesignDevelopment": "تصميم و تطوير",
+    "Save2": "حفظ"
   },
   "Stepper": {
     "Attachments": "المرفقات",
@@ -481,7 +482,18 @@
     "Header": "الدفع و التمتع بخدماتنا",
     "DearCustomer": "عزيزي العميل",
     "Content1": "من فضلك ادفع المبلغ المستحق",
-    "Content2": "من خلال التالي"
-
+    "Content2": "من خلال التالي",
+    "PayNow":"إدفع الآن",
+    "PaymentStatus": {
+      "PayAndEnjoyOurServices": "الدفع و التمتع بخدمتنا المميزة",
+      "PayOnline": "إدفع أونلاين",
+      "SuccessfulPayment": "تم الدفع بنجاح",
+      "WalletPaiedAmount":"القيمة المدفوعة من المحفظة",
+      "PointsPaiedAmount":"اقيمة المدفوعة من النقاط",
+      "PaymentFaild":"عذرًا ... لم تنجح محاولة الدفع أونلاين",
+      "ReasonHyperPay":"السبب : هايبر باي",
+      "PleaseTryAgain":"الرجاء المحاولة مرة أخرى",
+      "ContractValue":"قيمة العقد"
+    }
   }
 }

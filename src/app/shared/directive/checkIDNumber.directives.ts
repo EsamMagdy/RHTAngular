@@ -15,8 +15,9 @@ export class CheckIDNumberDirective implements Validator {
   @Input('appCheckIDNumber') saudiNationality: string;
   constructor(private elRef: ElementRef, private renderer: Renderer2) { }
   validate(control: AbstractControl): { [key: string]: any } | null {
+    debugger;
 
-    if (this.saudiNationality == 'hasValue') return null;
+    // if (this.saudiNationality == 'hasValue') return null;
 
     if (!this.saudiNationality) {
       this.renderer.setProperty(this.elRef.nativeElement, 'value', '');
@@ -25,7 +26,7 @@ export class CheckIDNumberDirective implements Validator {
 
 
 
-    let isSaudi = this.saudiNationality == '1e0ff838-292f-e311-b3fd-00155d010303';
+    let isSaudi = this.saudiNationality == '1e0ff838-292f-e311-b3fd-00155d010303'; 
     let re: RegExp = null;
     re = isSaudi
       ? /^1\d*$/

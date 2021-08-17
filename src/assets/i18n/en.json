@@ -338,7 +338,8 @@
     "NoResultsFound": "No results found",
     "CorrectImage": "Choose an Image",
     "RahatALOsraCopyRights": "Rahat AL Osra For  for recruitment",
-    "DesignDevelopment": "Design and Development"
+    "DesignDevelopment": "Design and Development",
+    "Save2": "حفظ"
   },
   "Stepper": {
     "Attachments": "Attachments",
@@ -478,8 +479,21 @@
     "FinalPrice": "Final Price"
   },
   "Payment": {
-    "Header":"",
-    "DearCustomer": "",
-    "PayContent":"من فضلك ادفع المبلغ المستحق {{value}} ر.س من خلال التالي"
+    "Header": "Pay and enjoy our services",
+    "DearCustomer": "Dear Customer",
+    "Content1": "Please, pay amount",
+    "Content2": "Through the following",
+    "PayNow":"Pay Now",
+    "PaymentStatus": {
+      "PayAndEnjoyOurServices": "Pay and enjoy our services",
+      "PayOnline": "Pay Online",
+      "SuccessfulPayment": "Payment Succeeded",
+      "WalletPaiedAmount":"Paid Amount From Wallet",
+      "PointsPaiedAmount":"Paid Amount From Points",
+      "PaymentFaild":"Sorry ... your online payment attempt was unsuccessful",
+      "ReasonHyperPay":"Reason: Hyper Pay ",
+      "PleaseTryAgain":"Please Try Again",
+      "ContractValue":"Contract Value"
+    }
   }
 }

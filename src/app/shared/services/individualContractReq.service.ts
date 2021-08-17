@@ -59,7 +59,9 @@ export class IndividualContractService {
     // this.individualContractReq.contactId =
     //   'E0076C58-816F-EB11-A81E-000D3A47A306';
   }
-
+  get totalEmployeesCount() {
+    return this.totalEmployeeCount.asObservable();
+  }
   get indivContractReq() {
     let stepId =
       this.individualContractReq.stepId ??
@@ -105,6 +107,7 @@ export class IndividualContractService {
     this.addStepData(newStepData).subscribe();
   }
   updateStepData(currentStep: ContractStepsEnum, stepType: StepTypeEnum) {
+    debugger;
     this.individualContractReq.currentStep = currentStep;
     this.individualContractReq.stepType = stepType;
 
@@ -229,7 +232,6 @@ export class IndividualContractService {
 
     indConReq.contactId = this.localStorageService.userLocalStorage.crmUserId;
     indConReq.pricingId = this.individualContractReq.pricing.id;
-    console.log(indConReq);
     return this.http
       .post<ResponseDataCRMWithObjectData<IndividualContractReq>>(
         environment.apiUrl + 'IndividualContractRequest/Create',
@@ -260,7 +262,6 @@ export class IndividualContractService {
           debugger;
 
           this.localStorageService.indivContractReqLocalStorage = null;
-          console.log(resData);
 
           return resData.data;
         })
