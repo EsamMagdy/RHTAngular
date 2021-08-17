@@ -1,0 +1,118 @@
+<div class="inner-slider2 py-md-5 py-4">
+  <div class="container">
+    <div class="my-md-4 text-center text-white">
+      <div class="fs-md-36 fs-18 font-weight-bold">حجز عمالة منزلية</div>
+      <div>الرئيسية // خدمات الشركة</div>
+    </div>
+  </div>
+</div>
+<section *ngIf="requestCheckoutStatus&&paymentSuccess" class="py-md-5 py-4">
+  <div class="container">
+    <div class="bg-feefd6 rounded-16">
+      <div class="no-gutters row">
+        <div class="col-12">
+          <div class="p-4">
+            <div class="bg-darkred fs-24 p-1 text-center text-white">
+              {{ "Payment.PaymentStatus.PayAndEnjoyOurServices" | translate }}
+            </div>
+            <div class="bg-white p-4 text-center">
+              <div
+                class="
+                  bg-c8ae84
+                  color-darkred
+                  fs-20
+                  mb-3
+                  p-2
+                  rounded
+                  text-center text-white
+                "
+              >
+                <i class="fas fa-credit-card mr-2"></i>
+                {{ "Payment.PaymentStatus.PayOnline" | translate }}
+              </div>
+              <div
+                class="
+                  align-items-center
+                  d-flex
+                  flex-column flex-md-row
+                  justify-content-center
+                  my-lg-5
+                "
+              >
+                <div class="text-center text-md-right">
+                  <img
+                    src="/assets/img/success-img.png"
+                    class=""
+                    style="width: 200px; margin: 30px 30px 0; max-width: 70%"
+                  />
+                </div>
+                <div class="text-center text-md-left">
+                  <div class="color-limegreen fs-24 mt-3">
+                    {{ "Payment.PaymentStatus.SuccessfulPayment" | translate }}
+                  </div>
+                  <div class="fs-24">
+                    <span class="color-darkorange font-secondary">
+                      {{ "Dashboard.ContractNumber" | translate }}
+                      {{ requestCheckoutStatus?.contractNum }}</span
+                    >
+                  </div>
+                  <div class="fs-24">
+                    <span class="color-darkorange font-secondary">
+                      {{ "Payment.PaymentStatus.ContractValue" | translate }}
+                      {{ requestCheckoutStatus?.contractAmount }}</span
+                    >
+                  </div>
+                  <div
+                    class="fs-24"
+                    *ngIf="requestCheckoutStatus?.walletPaiedAmount"
+                  >
+                    {{ "Payment.PaymentStatus.WalletPaiedAmount" | translate }}
+                    <span class="color-darkorange font-secondary">
+                      {{ requestCheckoutStatus?.walletPaiedAmount }}</span
+                    >
+                  </div>
+                  <div
+                    class="fs-24"
+                    *ngIf="requestCheckoutStatus?.pointsPaiedAmount"
+                  >
+                    {{ "Payment.PaymentStatus.PointsPaiedAmount" | translate }}
+                    <span class="color-darkorange font-secondary">
+                      {{ requestCheckoutStatus?.pointsPaiedAmount }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div *ngIf="requestCheckoutStatus&&!paymentSuccess" class="py-5">
+  <img class="d-block mx-auto mb-4" src="assets/images/logo.png" alt="" />
+  <div class="my-5 row text-center text-md-left">
+    <div class="col-md-5 text-md-right">
+      <img src="/assets/img/error-img.png" class="img-fluid" />
+    </div>
+    <div class="col-md-6 justify-content-left align-self-center">
+      <div class="fs-20 text-danger">
+        {{ "Payment.PaymentStatus.PaymentFaild" | translate }}
+      </div>
+
+      <div
+        *ngIf="requestCheckoutStatus?.data"
+        class="d-inline-block error-alert fs-18 my-2"
+      >
+        {{ requestCheckoutStatus?.data.data }}
+      </div>
+      <div class="fs-20">
+        {{ "Payment.PaymentStatus.PleaseTryAgain" | translate }}
+      </div>
+
+      <a [routerLink]="['/payment']" class="btn btn-lg btn-primary mt-2 rounded"
+        ><i class="fa fa-coins mr-2"></i>{{ "Payment.PayNow" | translate }}</a
+      >
+    </div>
+  </div>
+</div>

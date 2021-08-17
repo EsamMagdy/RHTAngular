@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentService } from 'src/app/company-services/payment-landing-page/payment-landing-page.service';
 import { IndividualContractReq } from 'src/app/shared/models/individualContractReq.model';
 import { FooterLoaderService } from 'src/app/shared/services/footerLoaderAfterView.service';
 import { LocalStorageService } from 'src/app/shared/services/localStorage.service';
+import { PaymentService } from '../payment.service';
 
 @Component({
   selector: 'app-payment-status',
@@ -12,9 +12,10 @@ import { LocalStorageService } from 'src/app/shared/services/localStorage.servic
 })
 export class PaymentStatusComponent implements OnInit {
   checkOutId: string;
-  requestCheckoutStatus: any;
+  requestCheckoutStatus: any = null;
   indContReq: IndividualContractReq;
   deservedAmount: number;
+  paymentSuccess = false;
 
   constructor(private paymentService: PaymentService,
     private route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class PaymentStatusComponent implements OnInit {
     private footerLoaderService: FooterLoaderService,) { }
 
   ngOnInit() {
+    debugger;
     this.footerLoaderService.footer.emit();
     this.indContReq = this.localStorageService.indivContractCreatedLocalStorage;
 
@@ -32,17 +34,17 @@ export class PaymentStatusComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       debugger;
       this.checkOutId = data['id'];
-      console.log(this.checkOutId);
+      let cardBrand = this.paymentService.cardBrand;
 
-
-      this.paymentService.requestCheckoutStatus("VISA",
+      this.paymentService.requestCheckoutStatus(cardBrand,
         this.localStorageService.indivContractCreatedLocalStorage.individualContractRequestId,
         true,
         3,
         this.checkOutId,
         true
       ).subscribe(resData => {
-        this.requestCheckoutStatus = resData;
+        this.paymentSuccess = resData.state;
+        this.requestCheckoutStatus = resData.data;
       });
     });
   }

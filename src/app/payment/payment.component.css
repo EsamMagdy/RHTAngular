@@ -1,4 +1,26 @@
 .payment{
+    gap: 1rem;
     display: flex;
     justify-content: center;
+}
+
+.bg-e1e1e1{
+    background-color: #e1e1e1;
+}
+
+
+.custom-control{
+    padding-top: 0;
+}
+
+.custom-control-label{
+    width: 80px;
+}
+
+.custom-control-label::before{
+    top: 1.7px !important
+}
+
+.circle{
+    border-radius: 5rem;
 }

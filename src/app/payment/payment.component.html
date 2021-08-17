@@ -1,4 +1,4 @@
-<div class="inner-slider2 py-md-5 py-4">
+<div class="inner-slider2 py-md-5 py-4 mb-2">
   <div class="container">
     <div class="my-md-4 text-center text-white">
       <div class="fs-md-36 fs-18 font-weight-bold">حجز عمالة منزلية</div>
@@ -23,7 +23,8 @@
 
   <div class="text-center wow fadeInUp" data-wow-delay="0.5s">
     <div class="fs-md-22 mt-4">
-      {{ "Payment.DearCustomer" | translate }} : {{ indContReq?.contactName }}
+      {{ "Payment.DearCustomer" | translate }} : 
+      {{ indContReq?.contactName }}
     </div>
     <div class="fs-md-22 mt-4 font-weight-bold">
       {{ "Payment.Content1" | translate }}
@@ -40,8 +41,8 @@
         ><img [src]="item.imageUrl" style="width: 80px; height: 40px"
       /></a> -->
       <div *ngFor="let paymentMethods of paymentMethods">
-        <img
-        (click)="paymentMethodClick(paymentMethods.brandName)"
+        <!-- <img
+          (click)="paymentMethodClick(paymentMethods.brandName)"
           class="paymenticons"
           [src]="
             paymentMethods?.imageUrl
@@ -49,7 +50,38 @@
               : ''
           "
           alt=""
-        />
+        /> -->
+
+        <div class="p-2 bg-e1e1e1 circle my-2">
+          <div
+            class="
+              custom-control custom-radio
+              d-flex
+              align-items-center
+              bg-e1e1e1
+            "
+          >
+            <input
+              type="radio"
+              class="custom-control-input"
+              [id]="paymentMethods.brandName"
+              name="paymentMethods"
+              hidden
+              (click)="paymentMethodClick(paymentMethods.brandName)"
+            />
+            <label class="custom-control-label" [for]="paymentMethods.brandName"
+              ><img
+                class="img-fluid"
+                [src]="paymentMethods?.imageUrl ? paymentMethods.imageUrl : ''"
+                alt=""
+            /></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="contractCancelErrorMessage">
+      <div class="alert alert-danger mt-3 d-inline-block" role="alert">
+        {{ contractCancelErrorMessage }}
       </div>
     </div>
 
@@ -66,8 +98,14 @@
   </div>
 </div>
 
-<form
+<div id="paymentCard"></div>
+<!-- <form
   [action]="'http://localhost:4200/#/payment/payment-status'"
   class="paymentWidgets payform"
   [attr.data-brands]="paymentMethod"
-></form>
+></form> -->
+<!-- <script>
+  var wpwlOptions = {
+      locale: "ar"
+  }
+</script> -->
