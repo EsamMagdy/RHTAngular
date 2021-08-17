@@ -50,7 +50,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private localStorageService: LocalStorageService,
     private translateService: TranslateService
-  ) {}
+  ) { }
   ngAfterViewInit(): void {
     // $('#myModal').modal('show');
   }
@@ -134,6 +134,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     });
   }
   workerPage() {
+    debugger;
     this.checkValidation();
     this.errors = this.error;
     this.error = [];
@@ -156,13 +157,13 @@ export class PricingComponent implements OnInit, AfterViewInit {
             this.router.navigate(['/auth'], { queryParams: { returnUrl: s } });
           });
         },
-        reject: (type: any) => {},
+        reject: (type: any) => { },
       });
       return;
     }
     if (
       this.employeePickSource.employeePickSource ===
-        EmployeePickSourceEnum.Website &&
+      EmployeePickSourceEnum.Website &&
       this.employeePickSource.howtoReceiveWorker === HowToRecieveWorker.Delivery
     ) {
       this.router.navigate(['/services/employee'], {
@@ -178,9 +179,9 @@ export class PricingComponent implements OnInit, AfterViewInit {
     }
     if (
       this.employeePickSource.employeePickSource ===
-        EmployeePickSourceEnum.Company ||
+      EmployeePickSourceEnum.Company ||
       this.employeePickSource.howtoReceiveWorker ===
-        HowToRecieveWorker.FromBranch
+      HowToRecieveWorker.FromBranch
     ) {
       this.individualContractService.individualContractReq.employee = null;
       this.individualContractService.individualContractReq.employeeId = null;
@@ -223,7 +224,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     if (
       this.employeePickSource &&
       this.employeePickSource.employeePickSource ==
-        this.EmployeePickSource.Website
+      this.EmployeePickSource.Website
     ) {
       if (!this.employeePickSource.howtoReceiveWorker) {
         this.translateService
@@ -233,7 +234,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
       }
       if (
         this.employeePickSource.howtoReceiveWorker ===
-          HowToRecieveWorker.FromBranch &&
+        HowToRecieveWorker.FromBranch &&
         !this.employeePickSource.recieveEmployeeFromHousing
       ) {
         this.translateService
@@ -245,7 +246,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     if (
       this.employeePickSource &&
       this.employeePickSource.employeePickSource ==
-        this.EmployeePickSource.Company &&
+      this.EmployeePickSource.Company &&
       !this.employeePickSource.recieveEmployeeFromHousing
     ) {
       this.translateService
@@ -255,68 +256,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     }
 
     this.errorMessage = this.error;
-    // if (!this.pricing)
-    //   this.error.push({
-    //     severity: 'error',
-    //     summary: 'Error',
-    //     detail: 'Please Choose Package',
-    //   });
-    // if (!this.employeePickSource)
-    //   this.error.push({
-    //     severity: 'error',
-    //     summary: 'Error',
-    //     detail: `Please Choose How To ${this.filterData.profession.value}`,
-    //   });
-    // if (this.employeePickSource && !this.employeePickSource.employeePickSource)
-    //   this.error.push({
-    //     severity: 'error',
-    //     summary: 'Error',
-    //     detail: `Please Choose How To ${this.filterData.profession.value}`,
-    //   });
-    // if (
-    //   this.employeePickSource &&
-    //   this.employeePickSource.employeePickSource ==
-    //   this.EmployeePickSource.Website
-    // ) {
-    //   if (!this.employeePickSource.howtoReceiveWorker)
-    //     this.error.push({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: 'Please choose a delivery method',
-    //     });
-    //   if (
-    //     this.employeePickSource.howtoReceiveWorker ===
-    //     HowToRecieveWorker.FromBranch &&
-    //     !this.employeePickSource.recieveEmployeeFromHousing
-    //   )
-    //     this.error.push({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: 'Please choose a housing building',
-    //     });
-    // }
-    // if (
-    //   this.employeePickSource &&
-    //   this.employeePickSource.employeePickSource ==
-    //   this.EmployeePickSource.Company &&
-    //   !this.employeePickSource.recieveEmployeeFromHousing
-    // )
-    //   this.error.push({
-    //     severity: 'error',
-    //     summary: 'Error',
-    //     detail: 'Please choose a housing building',
-    //   });
+
   }
-  setIndividualContractReqValues() {
-    // this.individualContractService.individualContractReq.professionId =
-    //   '' + this.filterData.profession.key;
-    // this.individualContractService.individualContractReq.professionName = this.filterData.profession.value;
-    // this.individualContractService.individualContractReq.nationalityId = this.filterData.nationality.nationalityId;
-    // this.individualContractService.individualContractReq.nationalityId ==
-    //   this.filterData.nationality.nationalityName;
-    // this.individualContractService.individualContractReq.pricing = this.pricing;
-    // this.individualContractService.individualContractReq.employeePickSource = this.employeePickSource.employeePickSource;
-    // this.individualContractService.individualContractReq.howtoReceiveWorker = this.employeePickSource.howtoReceiveWorker;
-    // this.individualContractService.individualContractReq.recieveEmployeeFromHousing = this.employeePickSource.recieveEmployeeFromHousing;
-  }
+
 }
