@@ -4,7 +4,6 @@
       <div class="fs-md-36 fs-18 font-weight-bold">
         {{ "Attachments.Header" | translate }}
       </div>
-     
     </div>
   </div>
 </div>
@@ -38,263 +37,400 @@
       {{ "Attachments.UploadOrSkip" | translate }}
     </div> -->
     <div
-    class="
-      box-shadow
-      h-100
-      position-relative
-      rounded-10
-      overflow-hidden
-      p-4
-      mb-4
-      wow
-      fadeInUp
-    "
-    data-wow-delay="0.5s"
-    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
-  >
-    <div class="row">
-      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
-        {{ "Attachments.IdentificationNumberImage" | translate }}
-      </div>
-      <div class="col-md-6 text-md-left text-center">
-        <label class="file">
-          <input
-            type="file"
-            id="file"
-            aria-label="File browser example"
-            #identificationImage
-            type="file"
-            accept="image/*"
-            name="identificationImage"
-            ngModel
-            (change)="indOrdersService.attachmentsService.chooseImage(identificationImage)"
-          />
+      class="
+        box-shadow
+        h-100
+        position-relative
+        rounded-10
+        overflow-hidden
+        p-4
+        mb-4
+        wow
+        fadeInUp
+      "
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      <div class="row align-items-center">
+        <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+          {{ "Attachments.IdentificationNumberImage" | translate }}
+        </div>
+        <div class="col-md-7 text-md-left text-center">
+          <label class="file m-md-0">
+            <input
+              type="file"
+              id="file"
+              aria-label="File browser example"
+              #identificationImage
+              type="file"
+              accept="image/*"
+              name="identificationImage"
+              ngModel
+              (change)="
+                attachmentsService.chooseImage(
+                  identificationImage,
+                  Attachments.IdentificationCardImage
+                )
+              "
+            />
 
-          <span
-            [class.file-name-custom]="
-              identificationCardImage?.nativeElement?.value
+            <span
+              [class.file-name-custom]="
+                identificationCardImage?.nativeElement?.value
+              "
+              class="file-custom"
+              >{{
+                identificationCardImage?.nativeElement?.value | fileName
+              }}</span
+            >
+          </label>
+          <p-message
+            *ngIf="
+              !identificationImage.value &&
+              identificationImage?.classList.contains('ng-dirty')
             "
-            class="file-custom"
-            >{{
-              identificationCardImage?.nativeElement?.value | fileName
-            }}</span
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Shared.CorrectImage' | translate }}"
           >
-        </label>
-        <p-message
-          *ngIf="
-            !identificationImage.value &&
-            identificationImage?.classList.contains('ng-dirty')
+          </p-message>
+        </div>
+        <div
+          class="
+            col-md-2
+            text-md-right text-center
+            d-flex
+            justify-content-md-end justify-content-center
           "
-          styleClass="p-mt-1"
-          severity="error"
-          text="{{ 'Shared.CorrectImage' | translate }}"
         >
-        </p-message>
-      </div>
-      <div class="col-md-3 text-md-right text-center">
-        <button
+          <!-- <button
           class="btn btn-lg btn-warning"
           (click)="onPrieviewImage(identificationImage)"
         >
           {{ "Attachments.Review" | translate }}
-        </button>
+        </button> -->
+          <div
+            [style.backgroundImage]="
+              'url(' +
+              attachmentsService.images[Attachments.IdentificationCardImage] +
+              ')'
+            "
+            class="img-preview"
+            (click)="showModal(modalBtn, Attachments.IdentificationCardImage)"
+          ></div>
+          <!-- <div class="img-view d-flex align-items-center justify-content-center">
+          <img [src]="attachmentsService.images[0]" class="p-img">
+      </div> -->
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    class="
-      box-shadow
-      h-100
-      position-relative
-      rounded-10
-      overflow-hidden
-      p-4
-      mb-4
-      wow
-      fadeInUp
-    "
-    data-wow-delay="0.5s"
-    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
-  >
-    <div class="row">
-      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
-        {{ "Attachments.FamilyCardImage" | translate }}
-      </div>
-      <div class="col-md-6 text-md-left text-center">
-        <label class="file">
-          <input
-            type="file"
-            id="file"
-            aria-label="File browser example"
-            accept="image/*"
-            #familyImage
-            ngModel
-            (change)="indOrdersService.attachmentsService.chooseImage(familyImage)"
-          />
-          <span
-            [class.file-name-custom]="familyCardImage?.nativeElement?.value"
-            class="file-custom"
-            >{{ familyCardImage?.nativeElement?.value | fileName }}</span
+    <div
+      class="
+        box-shadow
+        h-100
+        position-relative
+        rounded-10
+        overflow-hidden
+        p-4
+        mb-4
+        wow
+        fadeInUp
+      "
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      <div class="row">
+        <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+          {{ "Attachments.FamilyCardImage" | translate }}
+        </div>
+        <div class="col-md-7 text-md-left text-center">
+          <label class="file">
+            <input
+              type="file"
+              id="file"
+              aria-label="File browser example"
+              accept="image/*"
+              #familyImage
+              ngModel
+              (change)="
+                attachmentsService.chooseImage(
+                  familyImage,
+                  Attachments.FamilyCardImage
+                )
+              "
+            />
+            <span
+              [class.file-name-custom]="familyCardImage?.nativeElement?.value"
+              class="file-custom"
+              >{{ familyCardImage?.nativeElement?.value | fileName }}</span
+            >
+          </label>
+          <p-message
+            *ngIf="
+              !familyImage.value && familyImage?.classList.contains('ng-dirty')
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Shared.CorrectImage' | translate }}"
           >
-        </label>
-        <p-message
-          *ngIf="
-            !familyImage.value && familyImage?.classList.contains('ng-dirty')
+          </p-message>
+        </div>
+        <div
+          class="
+            col-md-2
+            d-flex d-flex
+            justify-content-md-end justify-content-center
+            text-md-right text-center
           "
-          styleClass="p-mt-1"
-          severity="error"
-          text="{{ 'Shared.CorrectImage' | translate }}"
         >
-        </p-message>
-      </div>
-      <div class="col-md-3 text-md-right text-center">
-        <button
+          <!-- <button
           class="btn btn-lg btn-warning"
           (click)="onPrieviewImage(familyImage)"
         >
           {{ "Attachments.Review" | translate }}
-        </button>
+        </button> -->
+          <div
+            [style.backgroundImage]="
+              'url(' +
+              attachmentsService.images[Attachments.FamilyCardImage] +
+              ')'
+            "
+            class="shadow img-preview"
+            (click)="showModal(modalBtn, Attachments.FamilyCardImage)"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    class="
-      box-shadow
-      h-100
-      position-relative
-      rounded-10
-      overflow-hidden
-      p-4
-      mb-4
-      wow
-      fadeInUp
-    "
-    data-wow-delay="0.5s"
-    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
-  >
-    <div class="row">
-      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
-        {{ "Attachments.NationalAddressImage" | translate }}
-      </div>
-      <div class="col-md-6 text-md-left text-center">
-        <label class="file">
-          <input
-            type="file"
-            id="file"
-            aria-label="File browser example"
-            accept="image/*"
-            #nAddressImage
-            ngModel
-            (change)="indOrdersService.attachmentsService.chooseImage(nAddressImage)"
-          />
-          <span
-            [class.file-name-custom]="
-              nationalAddressImage?.nativeElement?.value
+    <div
+      class="
+        box-shadow
+        h-100
+        position-relative
+        rounded-10
+        overflow-hidden
+        p-4
+        mb-4
+        wow
+        fadeInUp
+      "
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      <div class="row">
+        <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+          {{ "Attachments.NationalAddressImage" | translate }}
+        </div>
+        <div class="col-md-7 text-md-left text-center">
+          <label class="file">
+            <input
+              type="file"
+              id="file"
+              aria-label="File browser example"
+              accept="image/*"
+              #nAddressImage
+              ngModel
+              (change)="
+                attachmentsService.chooseImage(
+                  nAddressImage,
+                  Attachments.NationalAddressImage
+                )
+              "
+            />
+            <span
+              [class.file-name-custom]="
+                nationalAddressImage?.nativeElement?.value
+              "
+              class="file-custom"
+              >{{ nationalAddressImage?.nativeElement?.value | fileName }}</span
+            >
+          </label>
+          <p-message
+            *ngIf="
+              !nAddressImage.value &&
+              nAddressImage?.classList.contains('ng-dirty')
             "
-            class="file-custom"
-            >{{ nationalAddressImage?.nativeElement?.value | fileName }}</span
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Shared.CorrectImage' | translate }}"
           >
-        </label>
-        <p-message
-          *ngIf="
-            !nAddressImage.value &&
-            nAddressImage?.classList.contains('ng-dirty')
+          </p-message>
+        </div>
+        <div
+          class="
+            col-md-2
+            d-flex
+            justify-content-md-end justify-content-center
+            text-md-right text-center
           "
-          styleClass="p-mt-1"
-          severity="error"
-          text="{{ 'Shared.CorrectImage' | translate }}"
         >
-        </p-message>
-      </div>
-      <div class="col-md-3 text-md-right text-center">
-        <button
+          <!-- <button
           class="btn btn-lg btn-warning"
           (click)="onPrieviewImage(nAddressImage)"
         >
           {{ "Attachments.Review" | translate }}
-        </button>
+        </button> -->
+          <div
+            [style.backgroundImage]="
+              'url(' +
+              attachmentsService.images[Attachments.NationalAddressImage] +
+              ')'
+            "
+            class="shadow img-preview"
+            (click)="showModal(modalBtn, Attachments.NationalAddressImage)"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    class="
-      box-shadow
-      h-100
-      position-relative
-      rounded-10
-      overflow-hidden
-      p-4
-      mb-4
-      wow
-      fadeInUp
-    "
-    data-wow-delay="0.5s"
-    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp"
-  >
-    <div class="row">
-      <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
-        {{ "Attachments.CustomerSalaryImage" | translate }}
-      </div>
-      <div class="col-md-6 text-md-left text-center">
-        <label class="file">
-          <input
-            type="file"
-            id="file"
-            aria-label="File browser example"
-            accept="image/*"
-            #custSalaryImage
-            ngModel
-            (change)="indOrdersService.attachmentsService.chooseImage(custSalaryImage)"
-          />
-          <span
-            [class.file-name-custom]="customerSalaryImage?.nativeElement?.value"
-            class="file-custom"
-            >{{ customerSalaryImage?.nativeElement?.value | fileName }}</span
+    <div
+      class="
+        box-shadow
+        h-100
+        position-relative
+        rounded-10
+        overflow-hidden
+        p-4
+        mb-4
+        wow
+        fadeInUp
+      "
+      data-wow-delay="0.5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.5s;
+        animation-name: fadeInUp;
+      "
+    >
+      <div class="row">
+        <div class="col-md-3 text-md-left text-center fs-md-22 text-0056a7">
+          {{ "Attachments.CustomerSalaryImage" | translate }}
+        </div>
+        <div class="col-md-7 text-md-left text-center">
+          <label class="file">
+            <input
+              type="file"
+              id="file"
+              aria-label="File browser example"
+              accept="image/*"
+              #custSalaryImage
+              ngModel
+              (change)="
+                attachmentsService.chooseImage(
+                  custSalaryImage,
+                  Attachments.CustomerSalaryImage
+                )
+              "
+            />
+            <span
+              [class.file-name-custom]="
+                customerSalaryImage?.nativeElement?.value
+              "
+              class="file-custom"
+              >{{ customerSalaryImage?.nativeElement?.value | fileName }}</span
+            >
+          </label>
+          <p-message
+            *ngIf="
+              !custSalaryImage?.value &&
+              custSalaryImage?.classList?.contains('ng-dirty')
+            "
+            styleClass="p-mt-1"
+            severity="error"
+            text="{{ 'Shared.CorrectImage' | translate }}"
           >
-        </label>
-        <p-message
-          *ngIf="
-            !custSalaryImage?.value &&
-            custSalaryImage?.classList?.contains('ng-dirty')
+          </p-message>
+        </div>
+        <div
+          class="
+            col-md-2
+            d-flex
+            justify-content-md-end justify-content-center
+            text-md-right text-center
           "
-          styleClass="p-mt-1"
-          severity="error"
-          text="{{ 'Shared.CorrectImage' | translate }}"
         >
-        </p-message>
-      </div>
-      <div class="col-md-3 text-md-right text-center">
-        <button
+          <!-- <button
           class="btn btn-lg btn-warning"
           (click)="onPrieviewImage(custSalaryImage)"
         >
           {{ "Attachments.Review" | translate }}
-        </button>
+        </button> -->
+          <div
+            [style.backgroundImage]="
+              'url(' +
+              attachmentsService.images[Attachments.CustomerSalaryImage] +
+              ')'
+            "
+            class="shadow img-preview"
+            (click)="showModal(modalBtn, Attachments.CustomerSalaryImage)"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
- 
-    <p-galleria
-      [(value)]="images"
-      [(visible)]="displayBasic2"
-      [containerStyle]="{ 'max-width': '850px' }"
-      [circular]="true"
-      [fullScreen]="true"
-      [showItemNavigators]="false"
-      [showThumbnails]="false"
-      [baseZIndex]="100000"
-    >
-      <ng-template pTemplate="item" let-item>
-        <img [src]="previewImage" style="width: 100%; display: block" />
-      </ng-template>
-    </p-galleria>
+
     <div class="d-flex justify-content-between mt-4" data-wow-delay="0.2s">
-      <button (click)="save()" class="btn btn-lg btn-outline-primary">
+      <button  (click)="cancel()" class="btn btn-lg btn-outline-primary">
         {{ "Shared.Previous" | translate }}
       </button>
-      <button (click)="cancel()" class="btn btn-lg btn-primary">
-        {{ "Shared.Next" | translate }}
+      <button (click)="save()" class="btn btn-lg btn-primary">
+        {{ "Shared.Save2" | translate }}
       </button>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<button
+  hidden
+  #modalBtn
+  type="button"
+  class="btn btn-primary btn-lg"
+  data-toggle="modal"
+  data-target="#modelId"
+>
+  Launch
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modelId"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modelTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center border-0 p-0">
+        <button
+          type="button"
+          class="btn btn-circle btn-lg bg-333"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" class="text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-2">
+        <div class="container-fluid d-flex justify-content-center">
+          <img
+            [src]="selectedImage | safeUrl"
+            class="img-fluid img-thumbnail rounded-10"
+            alt=""
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>

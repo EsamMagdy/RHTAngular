@@ -24,12 +24,13 @@ export class AttachmentsComponent implements OnInit {
   images: any = [];
   displayBasic2: boolean;
   isImage: boolean = true;
+  selectedImage: string = null;
 
   constructor(
     private router: Router,
     private individualContractService: IndividualContractService,
-    public attachmentsService: AttachmentsService
-  ) {}
+    public attachmentsService: AttachmentsService,
+  ) { }
 
   ngOnInit(): void {
     this.individualContractService.step.next(ContractStepsEnum.EighthStep);
@@ -71,7 +72,7 @@ export class AttachmentsComponent implements OnInit {
 
     this.individualContractService.individualContractReq.attachments = <
       IndividualContractAttachment
-    >this.attachments;
+      >this.attachments;
     this.router.navigate(['/services/payment-landing-page'], {
       queryParams: {
         stepId: this.individualContractService.individualContractReq.stepId,
@@ -125,8 +126,14 @@ export class AttachmentsComponent implements OnInit {
       // imageBase64=regex.exec(imageBase64);
       this.individualContractService
         .uploadAttachments(imageName, s, element.nativeElement.files[0].name)
-        .subscribe((s) => {});
+        .subscribe((s) => { });
     }
+  }
+
+  showModal(btn: HTMLButtonElement, index: number) {
+    this.selectedImage = this.attachmentsService.images[index];
+    if (this.selectedImage)
+      btn.click();
   }
   // getBase64(file: any): Promise<any> {
   //   return new Promise((resolve, reject) => {
@@ -135,14 +142,14 @@ export class AttachmentsComponent implements OnInit {
   //     reader.onload = () => resolve(reader.result);
   //     reader.onerror = (error) => reject(error);
   //   });
-    // let reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onload = function () {
-    //   //me.modelvalue = reader.result;
-    //   console.log(reader.result);
-    // };
-    // reader.onerror = function (error) {
-    //   console.log('Error: ', error);
-    // };
+  // let reader = new FileReader();
+  // reader.readAsDataURL(file);
+  // reader.onload = function () {
+  //   //me.modelvalue = reader.result;
+  //   console.log(reader.result);
+  // };
+  // reader.onerror = function (error) {
+  //   console.log('Error: ', error);
+  // };
   // }
 }

@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResponseDataCRMForContractTemplate } from 'src/app/shared/models/responseDataCRM.model';
 import { IndividualContractService } from 'src/app/shared/services/individualContractReq.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AttachmentsService {
@@ -35,7 +38,8 @@ export class AttachmentsService {
 
   constructor(
     private router: Router,
-    private individualContractService: IndividualContractService
+    private individualContractService: IndividualContractService,
+    private http: HttpClient
   ) { }
 
   navigateToContractPage() { }
@@ -86,4 +90,16 @@ export class AttachmentsService {
       reader.onerror = (error) => reject(error);
     });
   }
+  uploadAttachments(requestId: string, fieldName: string, imageBase: string, name: string) {
+    return this.http.post<ResponseDataCRMForContractTemplate<string>>(
+      environment.apiUrl + 'IndividualContractRequest/UploadAttachments',
+      {
+        Id: requestId,
+        ImageBase: imageBase,
+        Name: name,
+        FieldName: fieldName,
+      }
+    );
+  }
+
 }

@@ -68,7 +68,7 @@ export class CompletingDataComponent implements OnInit {
             this.nationalities = nationalities;
             if (this.contact.nationalityId)
                 this.selectedNationalities = nationalities.find(s => s.key == this.contact.nationalityId);
-
+                
         });
     }
     getGenders() {

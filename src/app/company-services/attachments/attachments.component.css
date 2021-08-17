@@ -1,1 +1,50 @@
 .file-name-custom:after{display: none;}
+
+.img-view {
+    height: 8em;
+    width: 8em;
+    border-radius: 10px;
+    background: #d2dbe9;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: end;
+  }
+  
+  .p-img {
+    height: 6em;
+  }
+
+  .img-preview{
+    height: 4em;
+    width: 4em; 
+    border-radius: 5px;
+    background: url('https://www.fillmurray.com/640/360'),#d2dbe9;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: end;
+  }
+
+  .modal-content{
+    background-color: transparent !important;
+  }
+
+  .btn-circle {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding: 3.5px 0;
+    font-size: 18px;
+    line-height: 1.428571429;
+    border-radius: 18px;
+  }
+  .bg-333{
+      background-color: rgb(51, 51, 51);
+  }
+
+  .close-btn{
+      position: absolute;
+      right: 0;
+      top: -10px;
+  }
