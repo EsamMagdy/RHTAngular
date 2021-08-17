@@ -1,8 +1,8 @@
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from './../../../shared/services/localStorage.service';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, HostListener } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { EmployeFilteringData } from 'src/app/shared/models/employeFilteringData.model';
+import { Employee, EmployeFilteringData } from 'src/app/shared/models/employeFilteringData.model';
 import { IndividualContractService } from 'src/app/shared/services/individualContractReq.service';
 import { EmployeeService } from '../employee.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -28,9 +28,21 @@ export class EmployeeFilterComponent implements OnInit {
     experience: number;
     religion: number;
     individualContractReq: IndividualContractReq;
+    pageNumber = 1;
+    pageSize = 3;
+    filterData = false;
+    employeeList: Employee[] = [];
+    totalCount = 0;
+    totalCountInPages = 0;
+    employeFilteringData: EmployeFilteringData;
+
+
     constructor(private individualContractService: IndividualContractService,
         private employeeService: EmployeeService,
-        private localStorageService: LocalStorageService) { }
+        private localStorageService: LocalStorageService) { 
+            console.log('employee filter');
+            
+        }
 
     ngOnInit(): void {
 
@@ -45,18 +57,22 @@ export class EmployeeFilterComponent implements OnInit {
 
     }
     onFilterData() {
+        debugger;
+        this.filterData = true; // flag to check if click filter employee 
+        this.employeeList = [];
+        this.employeFilteringData = new EmployeFilteringData();
         let professionId = this.individualContractReq.professionId;
         let nationalityId = this.individualContractReq.nationalityId;
         let professionName = this.individualContractReq.professionName;
 
-        let filterData = new EmployeFilteringData();
+        // let filterData = new EmployeFilteringData();
         let formValue = { ...this.filterDataForm.value };
 
         for (let prop in formValue)
             if (!formValue[prop])
                 delete formValue[prop];
 
-        filterData = Object.assign(<EmployeFilteringData>formValue, filterData);
+        this.employeFilteringData = Object.assign(<EmployeFilteringData>formValue, this.employeFilteringData);
 
 
         let newAge = "";
@@ -67,23 +83,80 @@ export class EmployeeFilterComponent implements OnInit {
 
         // if (!this.filterDataForm.value.pageSize)
         //     filterData.pageSize = 10;
-        filterData.pageSize = 4;
-        filterData.age = newAge;
-        filterData.nationalityId = nationalityId;
-        filterData.professionId = professionId;
-        filterData.professionName = professionName;
-        filterData.pageIndex = 1;
+        this.employeFilteringData.pageSize = this.pageSize;
+        this.pageNumber = 1;
+        this.employeFilteringData.pageIndex = this.pageNumber;
+        this.employeFilteringData.age = newAge;
+        this.employeFilteringData.nationalityId = nationalityId;
+        this.employeFilteringData.professionId = professionId;
+        this.employeFilteringData.professionName = professionName;
 
-        this.employeeService.showEmployeeList.next(true);
+        // this.employeeService.showEmployeeList.next(true);
         // document.getElementById('headerClass').scrollIntoView();
-        this.employeeService.getemplyeeFilter(filterData).subscribe();
+        this.employeeService.getemplyeeFilter(this.employeFilteringData).subscribe(resData => {
+            this.totalCountInPages = resData.totalCountInPages;
+            console.log(resData);
+
+            if (!this.totalCountInPages) {
+                this.employeeList = [];
+                this.totalCount = 0;
+            } else {
+                this.employeeList.push(...resData.model);
+                this.totalCount = this.employeeList.length;
+            }
+            this.employeeService.employeesFilteredList.next({
+                model: this.employeeList,
+                totalCount: this.totalCount,
+                totalCountInPages: this.totalCountInPages
+            });
+        });
     }
     onClearForm() {
         this.filterDataForm.reset();
         this.age = [18, 50];
-        this.maxNumberToDisplay = 5;
+        this.maxNumberToDisplay = 3;
+        this.employeeList = [];
+        this.filterData = false;
+        this.pageNumber = 1;
         this.employeeService.showAllEmployeeOnClearFilter.next(true);
         // this.employeeService.getemplyeeFilter(filterData).subscribe();
+    }
+
+    @HostListener('window:scroll', [])
+    onScroll(): void {
+        debugger;
+
+
+        // if (!this.scrollData || this.totalCount == this.totalCountInPages) return; // not scroll if all employees returned 
+        if (this.totalCountInPages == 0 || (this.totalCount == this.totalCountInPages)) return; // not scroll if no employee or all employees returned 
+
+        if (this.bottomReached() && this.filterData) {
+            this.pageNumber += 1;
+            this.employeFilteringData.pageIndex = this.pageNumber;
+            this.employeeService.getemplyeeFilter(this.employeFilteringData).subscribe(resData => {
+                this.totalCountInPages = resData.totalCountInPages;
+                console.log('resData ', resData);
+
+                if (!this.totalCountInPages) {
+                    this.employeeList = [];
+                    this.totalCount = 0;
+                } else {
+
+                    this.employeeList.push(...resData.model);
+                    this.totalCount = this.employeeList.length;
+                }
+                this.employeeService.employeesFilteredList.next({
+                    model: this.employeeList,
+                    totalCount: this.totalCount,
+                    totalCountInPages: this.totalCountInPages
+                });
+            });
+
+        }
+    }
+
+    bottomReached(): boolean {
+        return window.innerHeight + window.scrollY >= document.body.offsetHeight;
     }
 
 

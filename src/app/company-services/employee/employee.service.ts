@@ -58,7 +58,7 @@ export class EmployeeService {
       )
       .pipe(
         map((resData) => {
-          this.employeesFilteredList.next(resData.data);
+          // this.employeesFilteredList.next(resData.data);
           return resData.data;
         })
       );
