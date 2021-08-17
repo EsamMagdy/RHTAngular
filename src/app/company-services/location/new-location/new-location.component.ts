@@ -102,6 +102,16 @@ export class NewLocationComponent implements OnInit {
 
     this.newLocation = await this.newLocationService.checkIfCurrentLocationInPolygin(this.newLocation.paths);
   }
+  markerDragEnd($event: any) {
+    console.log($event);
+    if (this.newLocation.paths && this.newLocation.paths.length > 0) {
+      this.newLocation.locationOutsideTheNeighborhoodEM = true;
+      return;
+    }
+    this.newLocation.latitude = $event.coords.lat;
+    this.newLocation.longitude = $event.coords.lng;
+    // this.getAddress(this.latitude, this.longitude);
+  }
   setLocationData() {
     this.individualContractService.step.next(ContractStepsEnum.SecondStep);
     this.indContractReq = this.localStorageService.indivContractReqLocalStorage;
