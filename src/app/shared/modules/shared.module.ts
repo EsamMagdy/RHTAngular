@@ -57,6 +57,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FileName } from '../pipes/fileUploadName.pipe';
 import { CheckImageDirective } from '../directive/image.directive';
 import { CurrentDatePipe } from '../pipes/getCurrentDate.pipe';
+import { SafeUrlPipe } from '../pipes/safeUrl.pipe';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,6 +76,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AlertComponent,
     CheckImageDirective,
     CurrentDatePipe,
+    SafeUrlPipe
   ],
   imports: [
     NgwWowModule,
@@ -158,6 +160,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SweetAlert2Module,
     CheckImageDirective,
     CurrentDatePipe,
+    SafeUrlPipe
   ]
 })
 export class SharedModule {
