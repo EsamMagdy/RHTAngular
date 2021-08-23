@@ -7,7 +7,7 @@ export class LanguageSerive {
     lang = new Subject<LanguagesEnum>();
     constructor() { }
     get language() {
-        return localStorage.getItem(languageLocalStorageKey) ?? Languages.arabic;
+        return localStorage.getItem(languageLocalStorageKey) ?? Languages.Arabic;
     }
 }
 export enum LanguagesEnum {

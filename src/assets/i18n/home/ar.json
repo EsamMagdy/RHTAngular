@@ -1,0 +1,15 @@
+{
+  "HOME": {
+    "Content": " <div class='mb-3 h3 font-weight-bold'><span class='text-success'>مرحباً بكم</span> في راحة الأسرة</div><div class='mb-3 fs-17'><p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</p><p>إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدومقسماولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير منالأحيانأن يطلع على صورة حقيقية لتصميم الموقع.</p></div>",
+    "CustomerService": "<div class='border p-3 p-md-4 rounded-20 w-100'><div class='mb-md-4 mb-3'><img src='/assets/img/contact-icon.png'></div><div class='mb-md-4 mb-3 text-fd9f4b font-weight-bold fs-md-24 fs-18'>خدمة عملاء متواصلة</div><div>يشمل المرض و رفض العمل و الهروب و عدم العمل بإحترافيه و البطء في التعامل مع الأسرة و عدم قابلية الأسرةلها</div></div>",
+    "DomesticWorkers": "عاملات منزلية",
+    "Guarantee": "<div class='border h-100 p-3 p-md-4 rounded-20 w-100'><div class='mb-md-4 mb-3'><img src='/assets/img/guarantee-icon.png'></div><div class='mb-md-4 mb-3 text-229942 font-weight-bold fs-md-24 fs-18'>ضمان لمدة 3 أشهر</div><div>يشمل المرض و رفض العمل و الهروب و عدم العمل بإحترافيه و البطء في التعامل مع الأسرة و عدم قابلية الأسرةلها</div></div>",
+    "IndividualPricing": "باقات شهرية",
+    "NeedHelp": "محتاج مساعدة؟",
+    "OfficeWorkingTimes": "  <div class='border h-100 p-3 p-md-4 rounded-20 w-100'><div class='mb-md-4 mb-3'><img src='/assets/img/working-icon.png'></div><div class='mb-md-4 mb-3 text-0056a7 font-weight-bold fs-md-24 fs-18'>أوقات عمل المكتب</div><div><div class='font-weight-bold'>الرياض - حي التعاون - شارع دمياط</div><div>الأحد - الخميس من 9ص حتى 9م</div><div>الجمعة من 4م حتى 9م</div><div>السبت من 10ص حتى 9م</div></div></div>",
+    "RecruitmentOfQualifiedWorkers": "إستقدام العمالة المؤهلة",
+    "SELECT": "متخصصين فى مجال",
+    "SendNeeds": "ارسل احتياجاتك",
+    "TITLE": "Hello Angular with ngx-translate!"
+  }
+}

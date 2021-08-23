@@ -29,6 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./customer-control-panel/customer-control-panel.module').then(m => m.CustomerPanelModule)
   },
   { path: 'payment', loadChildren: () => import('./payment/payment.module').then(s => s.PaymentModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(s => s.AuthModule) },
   { path: '**', component: HomeComponent }
 ];
 

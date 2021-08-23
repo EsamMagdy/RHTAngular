@@ -1,0 +1,17 @@
+{
+  "Contracts": {
+    "Contract": "Contract",
+    "ContractStatus": "Contract Status",
+    "ContractDate": "ContractDate",
+    "ContractNumberDetails": "Contract Number Details",
+    "RenewContract": "Renew Contract",
+    "RequiredNationality": "Nationality",
+    "RequiredProfession": "Profession",
+    "FinalPricePlusVat": "FinalPrice + Vat",
+    "ChooseAnotherPricing": "or choose another pricing",
+    "Pricing": "Pricing",
+    "NewContract": "New Contract",
+    "DeliveryCost": "Delivery Cost",
+    "FinalPrice": "Final Price"
+  }
+}

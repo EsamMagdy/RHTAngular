@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
 import { FooterLoaderService } from '../shared/services/footerLoaderAfterView.service';
+import { Languages } from '../shared/models/languages.model';
 
 @Component({
   selector: 'app-company-services',
@@ -22,12 +23,16 @@ export class CompanyServicesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private localStorageService: LocalStorageService,
-    private footerLoaderService: FooterLoaderService
+    private footerLoaderService: FooterLoaderService,
+    private translateService: TranslateService
   ) {
     this.footerLoaderService.footer.emit();
   }
 
   ngOnInit(): void {
+
+    let lang = localStorage.getItem(LocalStorageKeys.language);
+    this.translateService.use(lang);
     this.setIndivContractReq();
     this.checkIfUserDataCompleted();
     // let indContract = this.localStorageService.indivContractCreatedLocalStorage;

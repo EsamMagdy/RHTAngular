@@ -10,13 +10,13 @@ import { AuthComponent } from './auth.component';
 @NgModule({
     imports: [
         RouterModule.forChild([
+            // {
+            //     path: "auth",
+            //     redirectTo: "auth/login",
+            //     pathMatch:'full'
+            // },
             {
-                path: "auth",
-                redirectTo: "auth/login",
-                pathMatch:'full'
-            },
-            {
-                path: 'auth',
+                path: '',
                 component: AuthComponent,
                 children: [
                     {

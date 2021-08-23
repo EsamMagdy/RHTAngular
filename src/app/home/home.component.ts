@@ -15,16 +15,14 @@ import { bounceInDownAnimation, bounceInUpAnimation } from 'angular-animations';
 export class HomeComponent implements OnInit {
   animationState = false;
   animationWithState = false;
-  constructor(private footerLoaderService: FooterLoaderService) {
+  constructor(private footerLoaderService: FooterLoaderService,
+    private translateService: TranslateService) {
     this.footerLoaderService.footer.emit();
   }
 
   ngOnInit(): void {
-    // this.animationState = false;
-    // setTimeout(() => {
-    //   this.animationState = true;
-    //   this.animationWithState = !this.animationWithState;
-    // }, 1);
+    let lang = localStorage.getItem('lang');
+    this.translateService.use(lang);
   }
 
 }

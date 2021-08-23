@@ -6,7 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ContactUsComponent } from './contact-us.component';
 import { NgModule } from "@angular/core";
 import { BranchesComponent } from './branches/branches.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  }
 @NgModule({
     declarations: [
         ContactUsComponent,
@@ -17,6 +24,14 @@ import { BranchesComponent } from './branches/branches.component';
     imports: [
         CommonModule,
         ContactUsRoutingModule,
+        TranslateModule.forChild({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+            },
+            isolate: true
+          }),
         SharedModule
     ]
 })

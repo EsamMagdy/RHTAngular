@@ -2,12 +2,14 @@ import { TicketCreationComponent } from './ticket-creation/ticket-creation.compo
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
+import { TicketComponent } from './ticket.component';
 const routes: Routes = [
     {
         path: '',
+        component:TicketComponent,
         children: [
             {
-                path: '',
+                path: 'ticket-list',
                 component: TicketListComponent
             },
             {

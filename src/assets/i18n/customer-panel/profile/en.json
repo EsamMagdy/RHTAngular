@@ -1,0 +1,17 @@
+{
+  "Profile": {
+    "Header": "My account and personal information",
+    "FullName": "Full Name",
+    "JobTitle": "Job Title",
+    "City": "City",
+    "Nationality": "Nationality",
+    "Sex": "Gender",
+    "Region": "Region",
+    "IDNumber": "ID Number",
+    "EnterJobTitle": "Enter Job Title",
+    "ChooseNationalityFirst": "Please Choose Nationality First",
+    "IdNumberStartWith1": "Id Number must start with 1",
+    "IdNumberStartWith2": "Id Number must start with 2",
+    "Enter10Numbers": "Enter 10 Numbers"
+  }
+}

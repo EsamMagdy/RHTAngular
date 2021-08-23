@@ -1,0 +1,17 @@
+{
+  "Contracts": {
+    "Contract": "عقد",
+    "ContractStatus": "حالة العقد",
+    "ContractDate": "تاريخ العقد",
+    "ContractNumberDetails": "تفاصيل العقد رقم",
+    "RenewContract": "تجديد العقد",
+    "RequiredNationality": "الجنسية المطلوبة",
+    "RequiredProfession": "المهنة المطلوبة",
+    "FinalPricePlusVat": "السعر الإجمالي + الضريبة",
+    "ChooseAnotherPricing": " أو يمكنك اختيار باقة أخري",
+    "Pricing": "السعر",
+    "NewContract": "عقد جديد",
+    "DeliveryCost": "رسوم توصيل",
+    "FinalPrice": "السعر النهائى"
+  }
+}

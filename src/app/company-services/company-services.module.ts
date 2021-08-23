@@ -31,7 +31,13 @@ import { NoEmployeeModalComponent } from './employee/no-employee/no-employee.com
 import { CompletingDataComponent } from './completing-data/completing-data.component';
 import { environment } from 'src/environments/environment';
 import { PaymentLandingPageComponent } from './payment-landing-page/payment-landing-page.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  }
 @NgModule({
     declarations: [
         CompanyServicesComponent,
@@ -67,6 +73,14 @@ import { PaymentLandingPageComponent } from './payment-landing-page/payment-land
             apiKey: environment.googleMapKey
 
         }),
+        TranslateModule.forChild({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+            },
+            isolate: true
+          }),
         SharedModule,
         SliderModule,
         NgxSliderModule,

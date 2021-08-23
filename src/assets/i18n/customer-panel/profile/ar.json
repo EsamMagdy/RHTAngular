@@ -1,0 +1,17 @@
+{
+  "Profile": {
+    "Header": "حسابي و بياناتي الشخصية",
+    "FullName": "الاسم الكامل",
+    "JobTitle": "المسمى الوظيفي",
+    "City": "المدينة",
+    "Nationality": "الجنسية",
+    "Sex": "الجنس",
+    "Region": "المنطقة",
+    "IDNumber": "رقم الهوية",
+    "EnterJobTitle": "أدخل المسمى الوظيفي",
+    "ChooseNationalityFirst": "من فضلك اختر الجنسية اولا",
+    "IdNumberStartWith1": "من فضلك رقم الهوية يجب ان يبدا ب 1",
+    "IdNumberStartWith2": "من فضلك رقم الهوية يجب ان يبدا ب 2",
+    "Enter10Numbers": "من فضلك ادخل 10 ارقام"
+  }
+}

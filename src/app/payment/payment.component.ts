@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { paymentMethodMobileList } from '../company-services/payment-landing-page/payment-landing-page.model';
 import { IndividualContractReq } from '../shared/models/individualContractReq.model';
+import { LocalStorageKeys } from '../shared/models/localStorage.model';
 import { FooterLoaderService } from '../shared/services/footerLoaderAfterView.service';
 import { LocalStorageService } from '../shared/services/localStorage.service';
 import { PaymentService } from './payment.service';
@@ -25,11 +27,13 @@ export class PaymentComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private footerLoaderService: FooterLoaderService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private translateService:TranslateService) { }
 
   ngOnInit(): void {
     this.footerLoaderService.footer.emit();
-
+    let lang = localStorage.getItem(LocalStorageKeys.language);
+    this.translateService.use(lang);
 
     this.indContReq = this.localStorageService.indivContractCreatedLocalStorage;
 

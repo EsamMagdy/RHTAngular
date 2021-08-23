@@ -21,29 +21,28 @@ const routes: Routes = [
         component: CustomerControlPanelComponent,
         canActivate: [AuthGurad],
         children: [
-            { path: '', component: DashboardComponent },
+            {
+                path: '',
+                loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+            },
             {
                 path: 'profile',
-                component: ProfileComponent
+                loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
             },
             {
                 path: 'contracts',
-                component: ContractsComponent,
                 loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule)
             },
             {
                 path: 'ind-orders',
-                component: IndOrdersComponent,
                 loadChildren: () => import('./ind-orders/ind-orders.module').then(m => m.IndOrdersModule)
             },
             {
                 path: 'ticket',
-                component: TicketComponent,
                 loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule)
             },
             {
                 path: 'other-orders',
-                component: OtherOrdersComponent,
                 loadChildren: () => import('./other-orders/other-orders.module').then(m => m.OtherOrdersModule)
             }
         ]

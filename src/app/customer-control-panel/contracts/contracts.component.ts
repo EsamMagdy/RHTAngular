@@ -1,6 +1,8 @@
 import { ContractsService } from './contracts.service';
 import { Component, OnInit } from '@angular/core';
 import { IndividualContract } from 'src/app/shared/models/individualContract.model';
+import { LocalStorageKeys } from 'src/app/shared/models/localStorage.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contracts',
@@ -12,10 +14,12 @@ export class ContractsComponent implements OnInit {
   pageNumber: number = 1;
   pageSize: number = 5;
   individualContract: IndividualContract[];
-  constructor(private contractsService: ContractsService) { }
+  constructor(private contractsService: ContractsService,
+    private translateService:TranslateService) { }
 
   ngOnInit(): void {
-   
+    let lang = localStorage.getItem(LocalStorageKeys.language);
+    this.translateService.use(lang);
     this.getAllContracts(1, 5);
   }
 

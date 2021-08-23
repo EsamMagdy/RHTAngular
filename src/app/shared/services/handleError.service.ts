@@ -12,7 +12,7 @@ export class HandleErrorService {
     handleError(errorRes: HttpErrorResponse) {
         this.lang = localStorage.getItem('lang');
         let errorMessage =
-            this.lang == Languages.arabic ?
+            this.lang == Languages.Arabic ?
                 'خطأ فى الاتصال بالانترنت' :
                 'An  error on connecting with internet';
         let name = '0';

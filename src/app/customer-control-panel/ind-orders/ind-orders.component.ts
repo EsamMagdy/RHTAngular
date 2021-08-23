@@ -2,6 +2,8 @@ import { CustomerControlPanelService } from './../customer-control-panel.service
 import { IndividualContractReq } from './../../shared/models/individualContractReq.model';
 import { Component, OnInit } from '@angular/core';
 import { IndOrdersService } from './ind-orders.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LocalStorageKeys } from 'src/app/shared/models/localStorage.model';
 
 @Component({
   selector: 'app-ind-orders',
@@ -15,10 +17,12 @@ export class IndOrdersComponent implements OnInit {
   pageSize: number = 5;
 
   constructor(private indOrdersService: IndOrdersService,
-    private customerControlPanelService:CustomerControlPanelService) { }
+    private customerControlPanelService:CustomerControlPanelService,
+    private translateService:TranslateService) { }
 
   ngOnInit(): void {
-
+    let lang = localStorage.getItem(LocalStorageKeys.language);
+    this.translateService.use(lang);
     this.getAllContractRequests(1, 5);
   }
 

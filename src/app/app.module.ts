@@ -40,18 +40,18 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DisconnectedComponent
   ],
   imports: [
-    AuthModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
 
     TranslateModule.forRoot({
       loader: {
+
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
-      isolate: false
+      isolate: true
     }),
     SharedModule
   ],

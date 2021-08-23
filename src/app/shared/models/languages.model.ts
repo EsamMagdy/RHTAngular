@@ -1,5 +1,5 @@
 export class Languages {
-    static arabic: string = 'ar';
-    static english: string = 'en';
+    static Arabic: string = 'ar';
+    static English: string = 'en';
 }
 export const languageLocalStorageKey='lang';

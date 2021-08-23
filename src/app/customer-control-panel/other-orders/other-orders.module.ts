@@ -9,7 +9,13 @@ import { OtherOrdersComponent } from './other-orders.component';
 import { NgModule } from "@angular/core";
 import { OtherOrdersCreationComponent } from './other-orders-creation/other-orders-creation.component';
 import { OtherOrdersFilterComponent } from './other-orders-filter/other-orders-filter.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  }
 @NgModule({
     declarations: [
         OtherOrdersComponent,
@@ -23,6 +29,14 @@ import { OtherOrdersFilterComponent } from './other-orders-filter/other-orders-f
         CommonModule,
         SharedModule,
         OtherOrdersRoutingModule,
+        TranslateModule.forChild({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+            },
+            isolate: true
+          }),
         CustomerControlPanelSharedModule
     ]
 })

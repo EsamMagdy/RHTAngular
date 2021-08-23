@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     });
 
     let lang = localStorage.getItem(languageLocalStorageKey);
-    if (lang && lang == Languages.arabic) this.language = 0;
+    if (lang && lang == Languages.Arabic) this.language = 0;
     else this.language = 1;
   }
   onLogout() {
@@ -32,11 +32,11 @@ export class HeaderComponent implements OnInit {
   onChangeLanguage(lang: number) {
     if (lang == this.languageEnum.English) {
       // this.translateService.use('en');
-      localStorage.setItem(languageLocalStorageKey, Languages.english);
+      localStorage.setItem(languageLocalStorageKey, Languages.English);
       // this.language = this.languageEnum.Arabic;
     }
     else {
-      localStorage.setItem(languageLocalStorageKey, Languages.arabic);
+      localStorage.setItem(languageLocalStorageKey, Languages.Arabic);
       // this.translateService.use('ar');
       // this.language = this.languageEnum.English;
     }

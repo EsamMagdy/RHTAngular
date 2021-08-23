@@ -2,7 +2,7 @@
   "translationFiles": [
     {
       "lang": "enter",
-      "uri": "src/assets/i18n/en.json"
+      "uri": "src/assets/i18n/shared/en.json"
     },
     {
       "lang": "Enter",

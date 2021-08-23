@@ -17,33 +17,51 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ContractRenewalPricingDetailsComponent } from './contract-renewal/pricing-details/pricing-details.component';
 import { PricingChoosingComponent } from './contract-renewal/pricing-choosing/pricing-choosing.component';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: "./assets/i18n/customer-panel/ind-contracts/", suffix: ".json" },
+    { prefix: "./assets/i18n/shared/", suffix: ".json" },
+  ]);
+}
 @NgModule({
-    declarations: [
-        ContractsComponent,
-        ContractCreationComponent,
-        ContractDetailsComponent,
-        ContractListComponent,
-        ContractItemComponent,
-        ContractRenewalComponent,
-        CurrentPricingComponent,
-        OtherPricingComponent,
-        ContractRenewalPricingDetailsComponent,
-        PricingChoosingComponent,
-        ContractPaymentRenwalComponent
-    ],
-    imports: [
-        CommonModule,
-        ContractsRoutingModule,
-        SharedModule,
-        AgmCoreModule.forRoot({
-            // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk'
-            apiKey: environment.googleMapKey
+  declarations: [
+    ContractsComponent,
+    ContractCreationComponent,
+    ContractDetailsComponent,
+    ContractListComponent,
+    ContractItemComponent,
+    ContractRenewalComponent,
+    CurrentPricingComponent,
+    OtherPricingComponent,
+    ContractRenewalPricingDetailsComponent,
+    PricingChoosingComponent,
+    ContractPaymentRenwalComponent
+  ],
+  imports: [
+    CommonModule,
+    ContractsRoutingModule,
+    SharedModule,
+    AgmCoreModule.forRoot({
+      // apiKey: 'AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk'
+      apiKey: environment.googleMapKey
 
-        }),
-        CustomerControlPanelSharedModule ,
-        ScrollPanelModule   
-    ],
+    }),
+    CustomerControlPanelSharedModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      isolate: true
+    }),
+    ScrollPanelModule
+  ],
 })
 export class ContractsModule {
 

@@ -81,15 +81,15 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   imports: [
     NgwWowModule,
     AnimateOnScrollModule.forRoot(),
-    TranslateModule.forChild({
-      loader: {
+    // TranslateModule.forChild({
+    //   loader: {
 
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      isolate: false
-    }),
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient]
+    //   },
+    //   isolate: false
+    // }),
     ReactiveFormsModule,
     FormsModule,
     // BrowserAnimationsModule,
@@ -129,7 +129,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CheckEmailDirective,
     CheckMobileDirective,
     CheckIDNumberDirective,
-    TranslateModule,
+    // TranslateModule,
     ReactiveFormsModule,
     FormsModule,
     // BrowserAnimationsModule,
